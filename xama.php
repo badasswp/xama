@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Xama
- * Plugin URI:  https://github.com/chigozieorunta/xama
+ * Plugin URI:  https://github.com/badasswp/xama
  * Description: A simple WP plugin to help you set up Quizzes.
  * Version:     1.0.0
  * Author:      Chigozie Orunta
