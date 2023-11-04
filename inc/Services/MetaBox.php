@@ -12,6 +12,7 @@
 namespace Xama\Services;
 
 use Xama\MetaBoxes\Answer;
+use Xama\MetaBoxes\Scores;
 use Xama\MetaBoxes\Options;
 use Xama\MetaBoxes\Questions;
 use Xama\Abstracts\Service;
@@ -28,6 +29,7 @@ class MetaBox extends Service implements Registrable {
 			Answer::class,
 			Options::class,
 			Questions::class,
+			Scores::class,
 		];
 	}
 
