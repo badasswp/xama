@@ -12,6 +12,7 @@
 namespace Xama\Services;
 
 use Xama\Posts\Quiz;
+use Xama\Posts\Score;
 use Xama\Posts\Question;
 use Xama\Abstracts\Service;
 use Xama\Interfaces\Registrable;
@@ -26,6 +27,7 @@ class Post extends Service implements Registrable {
 		$this->post_types = [
 			Quiz::class,
 			Question::class,
+			Score::class,
 		];
 	}
 
