@@ -12,6 +12,7 @@
 namespace Xama\Core;
 
 use Xama\Services\Menu;
+use Xama\Services\Post;
 use Xama\Interfaces\Registrable;
 
 /**
@@ -34,6 +35,7 @@ final class Container implements Registrable {
 	 */
 	public function __construct() {
 		self::$services = [
+			Post::class,
 			Menu::class,
 		];
 	}
