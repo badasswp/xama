@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  wordpress:
+    image: arm64v8/wordpress
+    env_file: .env
+    depends_on:
+      - mysql
+    ports:
+      - "2468:80"
+    volumes:
+      - wp_data:/var/www/html/wp-content
+      - .:/var/www/html/wp-content/plugins/xama
+    restart: always
+    environment:
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - xama
+
+  mysql:
+    image: arm64v8/mysql
+    platform: linux/arm64/v8
+    restart: always
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - xama
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    env_file: .env
+    depends_on:
+      - mysql
+    ports:
+      - "2467:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - xama
+
+volumes:
+  db_data: {}
+  wp_data: {}
+
+networks:
+  xama:
