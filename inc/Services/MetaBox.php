@@ -12,6 +12,7 @@
 namespace Xama\Services;
 
 use Xama\MetaBoxes\Answer;
+use Xama\MetaBoxes\Options;
 use Xama\Abstracts\Service;
 use Xama\Interfaces\Registrable;
 
@@ -24,6 +25,7 @@ class MetaBox extends Service implements Registrable {
 	public function __construct() {
 		$this->meta_boxes = [
 			Answer::class,
+			Options::class,
 		];
 	}
 
