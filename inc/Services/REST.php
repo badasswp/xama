@@ -13,6 +13,7 @@ namespace Xama\Services;
 
 use Xama\Abstracts\Service;
 use Xama\Routes\QuizGetRoute;
+use Xama\Routes\QuizGetIDRoute;
 use Xama\Interfaces\Registrable;
 
 class REST extends Service implements Registrable {
@@ -24,6 +25,7 @@ class REST extends Service implements Registrable {
 	public function __construct() {
 		$this->routes = [
 			QuizGetRoute::class,
+			QuizGetIDRoute::class,
 		];
 
 		/**
