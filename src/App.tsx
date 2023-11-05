@@ -1,5 +1,6 @@
 import Layout from './layout/Layout';
 import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
 
 /**
  * App Component
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <Layout>
       <Sidebar/>
+      <Dashboard/>
     </Layout>
   );
 }
