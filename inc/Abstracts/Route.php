@@ -11,9 +11,7 @@
 
 namespace Xama\Abstracts;
 
-use Xama\Interfaces\Route as RouteInterface;
-
-abstract class Route implements RouteInterface {
+abstract class Route implements \Xama\Interfaces\Route {
 	/**
 	 * Set up.
 	 */
