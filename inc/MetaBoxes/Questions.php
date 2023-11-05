@@ -151,12 +151,12 @@ class Questions extends MetaBox {
 
 			$exam .= sprintf(
 				'<li class="xama_admin_question">
-					<a href="%1$s">
-						<h2>
+					<a href="%1$s" style="text-decoration: none; margin-bottom: 20px; display: block;">
+						<h2 style="color: rebeccapurple;">
 							<strong>%2$s</strong>
 							<span class="dashicons dashicons-edit" style="float: right;"></span>
 						</h2>
-						<ol>%3$s</ol>
+						<ol style="color: #000;">%3$s</ol>
 					</a>
 				</li>',
 				esc_url( $this->url ),
