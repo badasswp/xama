@@ -22,8 +22,8 @@ msgid "Xama"
 msgstr "Xama"
 
 #. Plugin URI of the plugin
-msgid "https://github.com/chigozieorunta/xama"
-msgstr "https://github.com/chigozieorunta/xama"
+msgid "https://github.com/badasswp/xama"
+msgstr "https://github.com/badasswp/xama"
 
 #. Description of the plugin
 msgid "A simple, but powerful WP plugin to help you set up Quizzes."
@@ -34,8 +34,8 @@ msgid "Chigozie Orunta"
 msgstr "Chigozie Orunta"
 
 #. Author URI of the plugin
-msgid "https://chigozieorunta.com"
-msgstr "https://chigozieorunta.com"
+msgid "https://badasswp.com"
+msgstr "https://badasswp.com"
 
 #. Quiz
 msgid "Quiz"
