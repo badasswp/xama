@@ -12,6 +12,7 @@
 namespace Xama\Core;
 
 use Xama\Services\Auth;
+use Xama\Services\Boot;
 use Xama\Services\Menu;
 use Xama\Services\REST;
 use Xama\Services\Post;
@@ -40,6 +41,7 @@ final class Container implements Registrable {
 	public function __construct() {
 		self::$services = [
 			Auth::class,
+			Boot::class,
 			Menu::class,
 			Post::class,
 			Metabox::class,
