@@ -65,7 +65,7 @@ class Quiz extends Post {
 		 * @param array Support options.
 		 * @return array
 		 */
-		return (array) apply_filters( 'xama_quiz_supports', [ 'title' ] );
+		return (array) apply_filters( 'xama_quiz_supports', [ 'title', 'editor' ] );
 	}
 
 	/**
