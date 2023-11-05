@@ -85,8 +85,8 @@ class QuizGetRoute extends Route implements \Xama\Interfaces\Route {
 			$quizzies[] = [
 				'ID'             => $post->ID,
 				'title'          => get_the_title( $post->ID ),
-				'featured_image' => get_the_post_thumbnail_url( $post->ID, 'full' ),
 				'content'        => $post->post_content,
+				'featured_image' => get_the_post_thumbnail_url( $post->ID, 'full' ),
 			];
 		}
 
