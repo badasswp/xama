@@ -1,0 +1,369 @@
+# Copyright (C) 2023 Chigozie Orunta
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Xama 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/xama\n"
+"POT-Creation-Date: 2023-04-09T21:54:05+00:00\n"
+"PO-Revision-Date: 2023-04-23 16:24+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Domain: xama\n"
+
+#. Plugin Name of the plugin
+msgid "Xama"
+msgstr "Xama"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/badasswp/xama"
+msgstr "https://github.com/badasswp/xama"
+
+#. Description of the plugin
+msgid "A simple, but powerful WP plugin to help you set up Quizzes."
+msgstr "Jednostavan, ali moćan WP dodatak koji će vam pomoći u postavljanju kvizova."
+
+#. Author of the plugin
+msgid "Chigozie Orunta"
+msgstr "Chigozie Orunta"
+
+#. Author URI of the plugin
+msgid "https://chigozieorunta.com"
+msgstr "https://chigozieorunta.com"
+
+#. Quiz
+msgid "Quiz"
+msgstr "Kviz"
+
+#. Question
+msgid "Question"
+msgstr "Pitanje"
+
+#. Score
+msgid "Score"
+msgstr "Postići"
+
+#. Quizzes
+msgid "Quizzes"
+msgstr "Kvizovi"
+
+#. Questions
+msgid "Questions"
+msgstr "Pitanja"
+
+#. Scores
+msgid "Scores"
+msgstr "Rezultati"
+
+#. Add New Quiz
+msgid "Add New Quiz"
+msgstr "Dodaj Novi Kviz"
+
+#. Add New Question
+msgid "Add New Question"
+msgstr "Dodaj Novo Pitanje"
+
+#. Add New Score
+msgid "Add New Score"
+msgstr "Dodaj Novi Rezultat"
+
+#. New Quiz
+msgid "New Quiz"
+msgstr "Novi Kviz"
+
+#. New Question
+msgid "New Question"
+msgstr "Novo Pitanje"
+
+#. New Score
+msgid "New Score"
+msgstr "Novi Rezultat"
+
+#. Edit Quiz
+msgid "Edit Quiz"
+msgstr "Uredi Kviz"
+
+#. Edit Question
+msgid "Edit Question"
+msgstr "Uredi Pitanje"
+
+#. Edit Score
+msgid "Edit Score"
+msgstr "Uredi Rezultat"
+
+#. View Quiz
+msgid "View Quiz"
+msgstr "Pogledaj Kviz"
+
+#. View Question
+msgid "View Question"
+msgstr "Pogledaj Pitanje"
+
+#. View Score
+msgid "View Score"
+msgstr "Pogledajte Rezultat"
+
+#. Search Quiz
+msgid "Search Quiz"
+msgstr "Kviz Pretraživanja"
+
+#. Search Question
+msgid "Search Question"
+msgstr "Traži Pitanje"
+
+#. Search Score
+msgid "Search Score"
+msgstr "Rezultat Pretraživanja"
+
+#. Search Quizzes
+msgid "Search Quizzes"
+msgstr "Traži Kvizove"
+
+#. Search Questions
+msgid "Search Questions"
+msgstr "Pitanja za Pretraživanje"
+
+#. Search Scores
+msgid "Search Scores"
+msgstr "Rezultati Pretraživanja"
+
+#. Quiz URL
+msgid "Quiz URL"
+msgstr "URL Kviza"
+
+#. Quiz Questions
+msgid "Quiz Questions"
+msgstr "Pitanja za Pretraživanje"
+
+#. Quiz Price
+msgid "Quiz Price"
+msgstr "Cijena Kviza"
+
+#. Quiz Paywall
+msgid "Quiz Paywall"
+msgstr "Platite prije pristupa kvizu"
+
+#. Quiz Scores
+msgid "Quiz Scores"
+msgstr "Rezultati Kviza"
+
+#. Quiz Instructions
+msgid "Quiz Instructions"
+msgstr "Upute za Kviz"
+
+#. Question Options
+msgid "Question Options"
+msgstr "Mogućnosti Pitanja"
+
+#. Question Answer
+msgid "Question Answer"
+msgstr "Pitanje Odgovor"
+
+#. Question Instructions
+msgid "Question Instructions"
+msgstr "Upute za Pitanje"
+
+#. User Name
+msgid "User Name"
+msgstr "Korisničko Ime"
+
+#. User Email
+msgid "User Email"
+msgstr "E-pošta Korisnika"
+
+#. User Score
+msgid "User Score"
+msgstr "Korisnički Rezultati"
+
+#. Total No. of Questions
+msgid "Total No. of Questions"
+msgstr "Ukupan broj Pitanja"
+
+#. Question's Answer
+msgid "Question's Answer"
+msgstr "Odgovor na Pitanje"
+
+#. User's Answer
+msgid "User's Answer"
+msgstr "Odgovor Korisnika"
+
+#. Option 1
+msgid "Option 1"
+msgstr "Opcija 1"
+
+#. Option 2
+msgid "Option 2"
+msgstr "Opcija 2"
+
+#. Option 3
+msgid "Option 3"
+msgstr "Opcija 3"
+
+#. Option 4
+msgid "Option 4"
+msgstr "Opcija 4"
+
+#. Yes
+msgid "Yes"
+msgstr "Da"
+
+#. No
+msgid "No"
+msgstr "Ne"
+
+#. A
+msgid "A"
+msgstr "A"
+
+#. B
+msgid "B"
+msgstr "B"
+
+#. C
+msgid "C"
+msgstr "C"
+
+#. D
+msgid "D"
+msgstr "D"
+
+#. Shortcode
+msgid "Shortcode"
+msgstr "Kratki kod"
+
+#. WC Paywall
+msgid "Paywall"
+msgstr "Platite prije pristupa"
+
+#. Price
+msgid "Price"
+msgstr "Cijena"
+
+#. Number of Questions
+msgid "Number of Questions"
+msgstr "Broj Pitanja"
+
+#. Answer
+msgid "Answer"
+msgstr "Odgovor"
+
+#. People Passed
+msgid "People Passed (%)"
+msgstr "Ljudi su prošli (%)"
+
+#. Total
+msgid "Total"
+msgstr "Ukupno"
+
+#. Percentage
+msgid "Percentage (%)"
+msgstr "Postotak (%)"
+
+#. Dashboard
+msgid "Dashboard"
+msgstr "Nadzorna Ploča"
+
+#. Go Back To Quiz
+msgid "Go Back To Quiz"
+msgstr "Natrag na Kviz"
+
+#. Contributors
+msgid "Contributors"
+msgstr "Suradnici"
+
+#. Albert Einstein
+msgid "Albert Einstein"
+msgstr "Albert Einstein"
+
+#. you@email.com
+msgid "you@email.com"
+msgstr "you@email.com"
+
+#. Password
+msgid "Password"
+msgstr "Lozinka"
+
+#. Log In
+msgid "Log In"
+msgstr "Prijaviti se"
+
+#. Please enter a valid User name
+msgid "Please enter a valid User name"
+msgstr "Molimo unesite važeće korisničko ime"
+
+#. Please enter a valid User email
+msgid "Please enter a valid User email"
+msgstr "Unesite važeću e-poštu korisnika"
+
+#. Please enter a valid Password
+msgid "Please enter a valid Password"
+msgstr "Unesite valjanu lozinku"
+
+#. Already have an account? Login here...
+msgid "Already have an account? Login here..."
+msgstr "Već imate račun? Prijavite se ovdje…"
+
+#. Top Scores
+msgid "Top Scores"
+msgstr "Najbolji Rezultati"
+
+#. Total Quizzes
+msgid "Total Quizzes"
+msgstr "Totalni Kvizovi"
+
+#. Total Questions
+msgid "Total Questions"
+msgstr "Ukupno Pitanja"
+
+#. Total Scores
+msgid "Total Scores"
+msgstr "Ukupni Rezultati"
+
+#. Latest Quiz
+msgid "Latest Quiz"
+msgstr "Najnoviji Kviz"
+
+#. Latest Question
+msgid "Latest Question"
+msgstr "Najnovije Pitanje"
+
+#. Latest Score
+msgid "Latest Score"
+msgstr "Najnoviji Rezultat"
+
+#. Notifications
+msgid "Notifications"
+msgstr "Obavijesti"
+
+#. Submit Answer
+msgid "Submit Answer"
+msgstr "Pošalji Odgovor"
+
+#. Continue
+msgid "Continue"
+msgstr "Nastaviti"
+
+#. Finish Quiz
+msgid "Finish Quiz"
+msgstr "Završi Kviz"
+
+#. Number of Participants
+msgid "Number of Participants"
+msgstr "Broj Sudionika"
+
+#. Highest Score
+msgid "Highest Score"
+msgstr "Najviši Rezultat"
+
+#. Date
+msgid "Date"
+msgstr "Datum"
+
+#. Description
+msgid "Xama provides a simple and elegant way for WordPress site owners to create Quizzes very quickly and launch on their websites so students or candidates can answer and get automatically scored once they have completed the tests. It's super fast and free!"
+msgstr "Xama pruža jednostavan i elegantan način za vlasnike WordPress stranica da vrlo brzo kreiraju kvizove i pokrenu ih na svojim web stranicama kako bi studenti ili kandidati mogli odgovoriti i automatski dobiti bodove nakon što završe testove. Super je brzo i besplatno!"
