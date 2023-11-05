@@ -90,7 +90,7 @@ class QuizGetIDRoute extends Route implements \Xama\Interfaces\Route {
 		);
 
 		foreach ( $posts as $post ) {
-			for( $i = 1; $i < 5; $i++ ) {
+			for ( $i = 1; $i < 5; $i++ ) {
 				$options[] = get_post_meta( $post->ID, 'xama_option_' . $i, true );
 			}
 
