@@ -11,6 +11,9 @@
 
 namespace Xama\Abstracts;
 
+/**
+ * Route class.
+ */
 abstract class Route implements \Xama\Interfaces\Route {
 	/**
 	 * Set up.
