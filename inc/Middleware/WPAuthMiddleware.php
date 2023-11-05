@@ -47,7 +47,7 @@ class WPAuthMiddleware extends Middleware implements \Xama\Interfaces\Middleware
 			$this->redirect();
 		}
 
-		if ( ! in_array( wp_get_current_user()->roles[0], [ 'administrator', 'student' ], true ) ) {
+		if ( ! in_array( wp_get_current_user()->roles[0], [ 'administrator', 'xama' ], true ) ) {
 			$this->redirect();
 		}
 	}
