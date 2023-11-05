@@ -6,6 +6,7 @@
  * @since 1.0.0
  */
 import ReactDOM from 'react-dom';
+import './styles/app.scss';
 import App from './App';
 
 document.addEventListener( 'DOMContentLoaded', function () {
