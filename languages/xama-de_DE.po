@@ -1,0 +1,369 @@
+# Copyright (C) 2023 Chigozie Orunta
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Xama 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/xama\n"
+"POT-Creation-Date: 2023-04-09T21:54:05+00:00\n"
+"PO-Revision-Date: 2023-04-19 16:10+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Domain: xama\n"
+
+#. Plugin Name of the plugin
+msgid "Xama"
+msgstr "Xama"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/badasswp/xama"
+msgstr "https://github.com/badasswp/xama"
+
+#. Description of the plugin
+msgid "A simple, but powerful WP plugin to help you set up Quizzes."
+msgstr "Ein einfaches, aber leistungsstarkes WP-Plugin, das Ihnen beim Einrichten von Quiz hilft."
+
+#. Author of the plugin
+msgid "Chigozie Orunta"
+msgstr "Chigozie Orunta"
+
+#. Author URI of the plugin
+msgid "https://badasswp.com"
+msgstr "https://badasswp.com"
+
+#. Quiz
+msgid "Quiz"
+msgstr "Quiz"
+
+#. Question
+msgid "Question"
+msgstr "Frage"
+
+#. Score
+msgid "Score"
+msgstr "Ergebnis"
+
+#. Quizzes
+msgid "Quizzes"
+msgstr "Quiz"
+
+#. Questions
+msgid "Questions"
+msgstr "Fragen"
+
+#. Scores
+msgid "Scores"
+msgstr "Ergebnisse"
+
+#. Add New Quiz
+msgid "Add New Quiz"
+msgstr "Neue Quiz Hinzufügen"
+
+#. Add New Question
+msgid "Add New Question"
+msgstr "Neue Frage Hinzufügen"
+
+#. Add New Score
+msgid "Add New Score"
+msgstr "Neue Ergebnis Hinzufügen"
+
+#. New Quiz
+msgid "New Quiz"
+msgstr "Neue Quiz"
+
+#. New Question
+msgid "New Question"
+msgstr "Neue Frage"
+
+#. New Score
+msgid "New Score"
+msgstr "Neue Ergebnis"
+
+#. Edit Quiz
+msgid "Edit Quiz"
+msgstr "Quiz Bearbeiten"
+
+#. Edit Question
+msgid "Edit Question"
+msgstr "Frage Bearbeiten"
+
+#. Edit Score
+msgid "Edit Score"
+msgstr "Partitur Ergebnis"
+
+#. View Quiz
+msgid "View Quiz"
+msgstr "Quiz Ansehen"
+
+#. View Question
+msgid "View Question"
+msgstr "Frage Anzeigen"
+
+#. View Score
+msgid "View Score"
+msgstr "Ergebnis Anzeigen"
+
+#. Search Quiz
+msgid "Search Quiz"
+msgstr "Such Quiz"
+
+#. Search Question
+msgid "Search Question"
+msgstr "Such Frage"
+
+#. Search Score
+msgid "Search Score"
+msgstr "Such Ergebnis"
+
+#. Search Quizzes
+msgid "Search Quizzes"
+msgstr "Quiz Durchsuchen"
+
+#. Search Questions
+msgid "Search Questions"
+msgstr "Fragen Suchen"
+
+#. Search Scores
+msgid "Search Scores"
+msgstr "Ergebnisse Suchen"
+
+#. Quiz URL
+msgid "Quiz URL"
+msgstr "Quiz URL"
+
+#. Quiz Questions
+msgid "Quiz Questions"
+msgstr "Quiz Fragen"
+
+#. Quiz Price
+msgid "Quiz Price"
+msgstr "Quiz Preis"
+
+#. Quiz Paywall
+msgid "Quiz Paywall"
+msgstr "Bezahlen Sie vor dem Zugriff auf das Quiz"
+
+#. Quiz Scores
+msgid "Quiz Scores"
+msgstr "Quiz Ergebnisse"
+
+#. Quiz Instructions
+msgid "Quiz Instructions"
+msgstr "Quiz Anleitung"
+
+#. Question Options
+msgid "Question Options"
+msgstr "Fragen Optionen"
+
+#. Question Answer
+msgid "Question Answer"
+msgstr "Frage Antwort"
+
+#. Question Instructions
+msgid "Question Instructions"
+msgstr "Fragen Anweisungen"
+
+#. User Name
+msgid "User Name"
+msgstr "Nutzername"
+
+#. User Email
+msgid "User Email"
+msgstr "Benutzer Email"
+
+#. User Score
+msgid "User Score"
+msgstr "Benutzerbewertung"
+
+#. Total No. of Questions
+msgid "Total No. of Questions"
+msgstr "Gesamtzahl der Fragen"
+
+#. Question's Answer
+msgid "Question's Answer"
+msgstr "Antwort der Frage"
+
+#. User's Answer
+msgid "User's Answer"
+msgstr "Antwort des Benutzers"
+
+#. Option 1
+msgid "Option 1"
+msgstr "Möglichkeit 1"
+
+#. Option 2
+msgid "Option 2"
+msgstr "Möglichkeit 2"
+
+#. Option 3
+msgid "Option 3"
+msgstr "Möglichkeit 3"
+
+#. Option 4
+msgid "Option 4"
+msgstr "Möglichkeit 4"
+
+#. Yes
+msgid "Yes"
+msgstr "Ja"
+
+#. No
+msgid "No"
+msgstr "Nein"
+
+#. A
+msgid "A"
+msgstr "A"
+
+#. B
+msgid "B"
+msgstr "B"
+
+#. C
+msgid "C"
+msgstr "C"
+
+#. D
+msgid "D"
+msgstr "D"
+
+#. Shortcode
+msgid "Shortcode"
+msgstr "Kurzwahl"
+
+#. WC Paywall
+msgid "Paywall"
+msgstr "Bezahlen Sie vor dem Zugriff"
+
+#. Price
+msgid "Price"
+msgstr "Preis"
+
+#. Number of Questions
+msgid "Number of Questions"
+msgstr "Anzahl der Fragen"
+
+#. Answer
+msgid "Answer"
+msgstr "Antworten"
+
+#. People Passed
+msgid "People Passed (%)"
+msgstr "Bestandene Personen (%)"
+
+#. Total
+msgid "Total"
+msgstr "Gesamt"
+
+#. Percentage
+msgid "Percentage (%)"
+msgstr "Prozentsatz (%)"
+
+#. Dashboard
+msgid "Dashboard"
+msgstr "Armaturenbrett"
+
+#. Go Back To Quiz
+msgid "Go Back To Quiz"
+msgstr "Gehen Sie zurück zum Quiz"
+
+#. Contributors
+msgid "Contributors"
+msgstr "Mitwirkende"
+
+#. Albert Einstein
+msgid "Albert Einstein"
+msgstr ""
+
+#. you@email.com
+msgid "you@email.com"
+msgstr ""
+
+#. Password
+msgid "Password"
+msgstr ""
+
+#. Log In
+msgid "Log In"
+msgstr ""
+
+#. Please enter a valid User name
+msgid "Please enter a valid User name"
+msgstr ""
+
+#. Please enter a valid User email
+msgid "Please enter a valid User email"
+msgstr ""
+
+#. Please enter a valid Password
+msgid "Please enter a valid Password"
+msgstr ""
+
+#. Already have an account? Login here...
+msgid "Already have an account? Login here..."
+msgstr ""
+
+#. Top Scores
+msgid "Top Scores"
+msgstr ""
+
+#. Total Quizzes
+msgid "Total Quizzes"
+msgstr ""
+
+#. Total Questions
+msgid "Total Questions"
+msgstr ""
+
+#. Total Scores
+msgid "Total Scores"
+msgstr ""
+
+#. Latest Quiz
+msgid "Latest Quiz"
+msgstr ""
+
+#. Latest Question
+msgid "Latest Question"
+msgstr ""
+
+#. Latest Score
+msgid "Latest Score"
+msgstr ""
+
+#. Notifications
+msgid "Notifications"
+msgstr ""
+
+#. Submit Answer
+msgid "Submit Answer"
+msgstr ""
+
+#. Continue
+msgid "Continue"
+msgstr ""
+
+#. Finish Quiz
+msgid "Finish Quiz"
+msgstr ""
+
+#. Number of Participants
+msgid "Number of Participants"
+msgstr ""
+
+#. Highest Score
+msgid "Highest Score"
+msgstr ""
+
+#. Date
+msgid "Date"
+msgstr "Datum"
+
+#. Description
+msgid "Xama provides a simple and elegant way for WordPress site owners to create Quizzes very quickly and launch on their websites so students or candidates can answer and get automatically scored once they have completed the tests. It's super fast and free!"
+msgstr "Xama bietet Besitzern von WordPress-Websites eine einfache und elegante Möglichkeit, sehr schnell Quizze zu erstellen und auf ihren Websites zu starten, damit Studenten oder Kandidaten antworten können und automatisch Punkte erhalten, sobald sie die Tests abgeschlossen haben. Es ist superschnell und kostenlos!"
