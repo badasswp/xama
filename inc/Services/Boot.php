@@ -2,7 +2,7 @@
 /**
  * Boot Service.
  *
- * This service is responsible for loading base, language settings
+ * This service is responsible for loading base, language, user settings
  * used in other areas of the plugin. By default, this binds to the
  * "init" hook of WP.
  *
