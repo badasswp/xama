@@ -21,7 +21,7 @@ abstract class Route implements \Xama\Interfaces\Route {
 	public function __construct() {
 		register_rest_route(
 			'xama/v1',
-			'/' . $this->endpoint,
+			$this->endpoint,
 			[
 				'methods'             => $this->method,
 				'callback'            => [ $this, 'callback' ],
