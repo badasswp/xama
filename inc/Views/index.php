@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="http://localhost:2468/wp-content/plugins/xama/dist/app.js"></script>
 	<style type="text/css">
 		body {
+			margin: 0; padding: 0;
 			font-family: 'Inter', 'sans-serif';
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
