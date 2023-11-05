@@ -12,8 +12,8 @@ import Content from './Content';
 const Sidebar = () => {
   return (
     <section>
-      <Title />
-      <Content />
+      <Title/>
+      <Content/>
     </section>
   )
 }
