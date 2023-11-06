@@ -3,6 +3,7 @@
 	<rule ref="WordPress-Core">
 		<exclude name="WordPress.Files.FileName" />
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+		<exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound" />
 		<exclude name="WordPress.PHP.DisallowShortTernary.Found" />
 		<exclude name="WordPress.WP.I18n.NoEmptyStrings" />
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
