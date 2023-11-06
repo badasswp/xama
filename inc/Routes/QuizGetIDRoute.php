@@ -126,6 +126,6 @@ class QuizGetIDRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return bool
 	 */
 	public function is_user_permissible(): bool {
-		return current_user_can( 'manage_options' );
+		return in_array( wp_get_current_user()->roles[0], [ 'administrator', 'xama' ], true );
 	}
 }
