@@ -59,7 +59,7 @@ class REST extends Service implements Registrable {
 	 */
 	public function register_rest_routes(): void {
 		foreach ( $this->routes as $route ) {
-			$route = new $route();
+			( new $route() )->register_route();
 		}
 	}
 }

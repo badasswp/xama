@@ -16,9 +16,11 @@ namespace Xama\Abstracts;
  */
 abstract class Route implements \Xama\Interfaces\Route {
 	/**
-	 * Set up.
+	 * Register REST Route.
+	 *
+	 * @return void
 	 */
-	public function __construct() {
+	public function register_route(): void {
 		register_rest_route(
 			'xama/v1',
 			$this->endpoint,
