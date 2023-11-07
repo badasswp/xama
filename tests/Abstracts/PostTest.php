@@ -73,6 +73,23 @@ class PostTest extends TestCase {
 		$this->assertTrue( array_key_exists( 'menu_name', $labels ) );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_permalink() {
+		\WP_Mock::userFunction( 'esc_attr' )
+			->once();
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once();
+
+		\WP_Mock::userFunction( 'get_permalink' )
+			->twice()
+			->andReturn( 'http://example.com/quiz' );
+
+		$link = $this->post->get_permalink( 1 );
+
+		$this->assertTrue( (bool) preg_match( '/target="_blank"/', $link ) );
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcretePost extends Post {
