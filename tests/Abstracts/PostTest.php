@@ -114,6 +114,29 @@ class PostTest extends TestCase {
 		$this->assertIsArray( $posts );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_number_of_posts() {
+		$post1 = new stdClass();
+		$post2 = new stdClass();
+		$post3 = new stdClass();
+
+		$post1->ID = 1;
+		$post2->ID = 2;
+		$post3->ID = 3;
+
+		$post1->post_content = 'Hello World 1';
+		$post2->post_content = 'Hello World 2';
+		$post3->post_content = 'Hello World 2';
+
+		\WP_Mock::userFunction( 'get_posts' )
+			->once()
+			->andReturn( [ $post1, $post2, $post3 ] );
+
+		$count = ConcretePost::get_number_of_posts();
+
+		$this->assertSame( $count, 3 );
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcretePost extends Post {
