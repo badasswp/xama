@@ -51,6 +51,25 @@ class PostTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_labels() {
+		\WP_Mock::userFunction( '__' )
+			->times( 9 );
+
+		$labels = $this->post->get_labels();
+
+		$this->assertIsArray( $labels );
+		$this->assertTrue( array_key_exists( 'name', $labels ) );
+		$this->assertTrue( array_key_exists( 'singular_name', $labels ) );
+		$this->assertTrue( array_key_exists( 'add_new', $labels ) );
+		$this->assertTrue( array_key_exists( 'add_new_item', $labels ) );
+		$this->assertTrue( array_key_exists( 'new_item', $labels ) );
+		$this->assertTrue( array_key_exists( 'edit_item', $labels ) );
+		$this->assertTrue( array_key_exists( 'view_item', $labels ) );
+		$this->assertTrue( array_key_exists( 'search_items', $labels ) );
+		$this->assertTrue( array_key_exists( 'menu_name', $labels ) );
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcretePost extends Post {
