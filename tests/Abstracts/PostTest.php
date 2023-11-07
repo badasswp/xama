@@ -14,7 +14,7 @@ class PostTest extends TestCase {
 
 	public function setUp(): void {
 		ConcretePost::$name = 'xama_quiz';
-		$this->post = new ConcretePost();
+		$this->post         = new ConcretePost();
 	}
 
 	public function test_get_name() {
@@ -35,17 +35,20 @@ class PostTest extends TestCase {
 		\WP_Mock::userFunction( '__' )
 			->times( 18 );
 
-		\WP_Mock::expectFilter( 'xama_post_options', [
-			'labels'       => $this->post->get_labels(),
-			'public'       => true,
-			'has_archive'  => true,
-			'show_in_menu' => Settings::DOMAIN,
-			'supports'     => $this->post->get_supports(),
-			'show_in_rest' => $this->post->is_post_visible_in_rest(),
-			'rewrite'      => [
-				'slug' => ( method_exists( $this->post, 'url_slug' ) ) ? $this->post->url_slug() : '',
-			],
-		] );
+		\WP_Mock::expectFilter(
+			'xama_post_options',
+			[
+				'labels'       => $this->post->get_labels(),
+				'public'       => true,
+				'has_archive'  => true,
+				'show_in_menu' => Settings::DOMAIN,
+				'supports'     => $this->post->get_supports(),
+				'show_in_rest' => $this->post->is_post_visible_in_rest(),
+				'rewrite'      => [
+					'slug' => ( method_exists( $this->post, 'url_slug' ) ) ? $this->post->url_slug() : '',
+				],
+			]
+		);
 
 		$this->post->register_post_type();
 
