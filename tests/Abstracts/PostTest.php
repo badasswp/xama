@@ -14,8 +14,14 @@ class PostTest extends TestCase {
 	private $post;
 
 	public function setUp(): void {
+		\WP_Mock::setUp();
+
 		ConcretePost::$name = 'xama_quiz';
 		$this->post         = new ConcretePost();
+	}
+
+	public function tearDown(): void {
+		\WP_Mock::tearDown();
 	}
 
 	public function test_get_name() {

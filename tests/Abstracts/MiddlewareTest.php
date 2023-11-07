@@ -13,8 +13,14 @@ class MiddlewareTest extends TestCase {
 	private $middleware;
 
 	public function setUp(): void {
+		\WP_Mock::setUp();
+
 		$this->middleware                = new ConcreteMiddleware();
 		$this->middleware->redirect_page = 'login';
+	}
+
+	public function tearDown(): void {
+		\WP_Mock::tearDown();
 	}
 
 	public function test_redirect() {
