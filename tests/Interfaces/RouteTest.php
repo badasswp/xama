@@ -12,7 +12,13 @@ class RouteTest extends TestCase {
 	private $route;
 
 	public function setUp(): void {
+		\WP_Mock::setUp();
+
 		$this->route = $this->getMockForAbstractClass( Route::class );
+	}
+
+	public function tearDown(): void {
+		\WP_Mock::tearDown();
 	}
 
 	public function test_request() {
