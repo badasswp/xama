@@ -39,6 +39,19 @@ class RouteTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_callback() {
+		$wp_rest_response_mock_class = $this->getMockBuilder( '\WP_REST_Response' )
+										->disableOriginalConstructor()
+										->getMock();
+
+		$request = new $wp_rest_response_mock_class();
+
+		$response = $this->route->callback( $request );
+
+		$this->assertInstanceOf( \WP_REST_Response::class, $response );
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcreteRoute extends Route {
