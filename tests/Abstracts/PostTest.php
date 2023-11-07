@@ -23,6 +23,34 @@ class PostTest extends TestCase {
 		$this->assertSame( $post_name, 'xama_quiz' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_post_type() {
+		\WP_Mock::userFunction( 'post_type_exists' )
+			->once()
+			->andReturn( false );
+
+		\WP_Mock::userFunction( 'register_post_type' )
+			->once();
+
+		\WP_Mock::userFunction( '__' )
+			->times( 18 );
+
+		\WP_Mock::expectFilter( 'xama_post_options', [
+			'labels'       => $this->post->get_labels(),
+			'public'       => true,
+			'has_archive'  => true,
+			'show_in_menu' => Settings::DOMAIN,
+			'supports'     => $this->post->get_supports(),
+			'show_in_rest' => $this->post->is_post_visible_in_rest(),
+			'rewrite'      => [
+				'slug' => ( method_exists( $this->post, 'url_slug' ) ) ? $this->post->url_slug() : '',
+			],
+		] );
+
+		$this->post->register_post_type();
+
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcretePost extends Post {
