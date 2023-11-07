@@ -18,6 +18,15 @@ use Xama\Core\Settings;
  */
 abstract class Post {
 	/**
+	 * Post type.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	public static $name;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
