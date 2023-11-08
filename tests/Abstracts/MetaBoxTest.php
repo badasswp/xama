@@ -25,9 +25,9 @@ class MetaBoxTest extends TestCase {
 	}
 
 	public function test_get_name() {
-		$post_name = $this->metabox->get_name();
+		$metabox_name = $this->metabox->get_name();
 
-		$this->assertSame( $post_name, 'xama_mb_metabox' );
+		$this->assertSame( $metabox_name, 'xama_mb_metabox' );
 		$this->assertConditionsMet();
 	}
 
