@@ -30,6 +30,39 @@ class MetaBoxTest extends TestCase {
 		$this->assertSame( $post_name, 'xama_mb_metabox' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_meta_box() {
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'MetaBox Heading', 'xama' )
+			->andReturn( 'MetaBox Heading' );
+
+		\WP_Mock::expectFilter(
+			'xama_metabox_options',
+			[
+				'name'      => $this->metabox->get_name(),
+				'heading'   => $this->metabox->get_heading(),
+				'post_type' => $this->metabox->get_post_type(),
+				'position'  => $this->metabox->get_position(),
+				'priority'  => $this->metabox->get_priority(),
+			]
+		);
+
+		\WP_Mock::userFunction( 'add_meta_box' )
+			->once()
+			->with(
+				'xama_mb_metabox',
+				'MetaBox Heading',
+				[ $this->metabox, 'get_metabox_callback' ],
+				'xama_quiz',
+				'advanced',
+				'default'
+			);
+
+		$this->metabox->register_meta_box();
+
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcreteMetaBox extends MetaBox {
