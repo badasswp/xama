@@ -40,4 +40,25 @@ class ContainerTest extends TestCase {
 		$this->assertTrue( in_array( Template::class, Container::$services, true ) );
 		$this->assertConditionsMet();
 	}
+
+	public function test_registers_all_services() {
+		\WP_Mock::userFunction( 'plugin_basename' )
+			->once();
+
+		\WP_Mock::userFunction( 'plugin_dir_path' )
+			->once();
+
+		foreach( Container::$services as $key => $service ) {
+			$mockedService = $this->getMockBuilder( $service )
+				->disableOriginalConstructor()
+				->onlyMethods( [ 'register' ] )
+				->getMock();
+
+			Container::$services[ $key ] = $mockedService;
+		}
+
+		$this->container->register();
+
+		$this->assertConditionsMet();
+	}
 }
