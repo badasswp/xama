@@ -18,6 +18,15 @@ use Xama\Core\Settings;
  */
 abstract class MetaBox {
 	/**
+	 * Meta box name.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	public static $name;
+
+	/**
 	 * Abstract Meta box.
 	 *
 	 * @since 1.0.0
