@@ -27,16 +27,6 @@ class REST extends Service implements Registrable {
 			QuizGetRoute::class,
 			QuizGetIDRoute::class,
 		];
-
-		/**
-		 * Filter list of WP REST Routes.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $routes WP Rest Routes.
-		 * @return array
-		 */
-		$this->routes = (array) apply_filters( 'xama_rest_routes', $this->routes );
 	}
 
 	/**
@@ -58,6 +48,16 @@ class REST extends Service implements Registrable {
 	 * @return void
 	 */
 	public function register_rest_routes(): void {
+		/**
+		 * Filter list of WP REST Routes.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $routes WP Rest Routes.
+		 * @return array
+		 */
+		$this->routes = (array) apply_filters( 'xama_rest_routes', $this->routes );
+
 		foreach ( $this->routes as $route ) {
 			( new $route() )->register_route();
 		}
