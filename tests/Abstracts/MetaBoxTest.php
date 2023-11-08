@@ -23,6 +23,13 @@ class MetaBoxTest extends TestCase {
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
 	}
+
+	public function test_get_name() {
+		$post_name = $this->metabox->get_name();
+
+		$this->assertSame( $post_name, 'xama_mb_metabox' );
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcreteMetaBox extends MetaBox {
