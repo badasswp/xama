@@ -48,7 +48,7 @@ class ContainerTest extends TestCase {
 		\WP_Mock::userFunction( 'plugin_dir_path' )
 			->once();
 
-		foreach( Container::$services as $key => $service ) {
+		foreach ( Container::$services as $key => $service ) {
 			$mockedService = $this->getMockBuilder( $service )
 				->disableOriginalConstructor()
 				->onlyMethods( [ 'register' ] )
