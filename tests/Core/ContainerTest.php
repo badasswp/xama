@@ -49,12 +49,12 @@ class ContainerTest extends TestCase {
 			->once();
 
 		foreach ( Container::$services as $key => $service ) {
-			$mockedService = $this->getMockBuilder( $service )
+			$mocked_service = $this->getMockBuilder( $service )
 				->disableOriginalConstructor()
 				->onlyMethods( [ 'register' ] )
 				->getMock();
 
-			Container::$services[ $key ] = $mockedService;
+			Container::$services[ $key ] = $mocked_service;
 		}
 
 		$this->container->register();
