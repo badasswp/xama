@@ -7,7 +7,7 @@ use Xama\Services\Boot;
 use Xama\Services\Menu;
 use Xama\Services\Post;
 use Xama\Services\REST;
-use Xama\Services\Metabox;
+use Xama\Services\MetaBox;
 use Xama\Services\Template;
 
 use Xama\Core\Container;
@@ -35,7 +35,7 @@ class ContainerTest extends TestCase {
 		$this->assertTrue( in_array( Boot::class, Container::$services, true ) );
 		$this->assertTrue( in_array( Menu::class, Container::$services, true ) );
 		$this->assertTrue( in_array( Post::class, Container::$services, true ) );
-		$this->assertTrue( in_array( Metabox::class, Container::$services, true ) );
+		$this->assertTrue( in_array( MetaBox::class, Container::$services, true ) );
 		$this->assertTrue( in_array( REST::class, Container::$services, true ) );
 		$this->assertTrue( in_array( Template::class, Container::$services, true ) );
 		$this->assertConditionsMet();

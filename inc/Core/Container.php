@@ -16,7 +16,7 @@ use Xama\Services\Boot;
 use Xama\Services\Menu;
 use Xama\Services\REST;
 use Xama\Services\Post;
-use Xama\Services\Metabox;
+use Xama\Services\MetaBox;
 use Xama\Services\Template;
 use Xama\Interfaces\Registrable;
 
@@ -44,7 +44,7 @@ final class Container implements Registrable {
 			Boot::class,
 			Menu::class,
 			Post::class,
-			Metabox::class,
+			MetaBox::class,
 			REST::class,
 			Template::class,
 		];
