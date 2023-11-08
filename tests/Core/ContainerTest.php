@@ -28,4 +28,16 @@ class ContainerTest extends TestCase {
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
 	}
+
+	public function test_stores_all_services() {
+		$this->assertIsArray( Container::$services );
+		$this->assertTrue( in_array( Auth::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Boot::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Menu::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Post::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Metabox::class, Container::$services, true ) );
+		$this->assertTrue( in_array( REST::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Template::class, Container::$services, true ) );
+		$this->assertConditionsMet();
+	}
 }
