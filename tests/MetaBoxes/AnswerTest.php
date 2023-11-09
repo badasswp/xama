@@ -120,4 +120,25 @@ class AnswerTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_save_meta_box() {
+		$_POST['xama_answer'] = '<script type="src/javascript">console.log(1)</script>1';
+
+		$post     = new stdClass();
+		$post->ID = 1;
+
+		\WP_Mock::userFunction( 'sanitize_text_field' )
+			->once()
+			->with( '<script type="src/javascript">console.log(1)</script>1' )
+			->andReturn( 1 );
+
+		\WP_Mock::userFunction( 'update_post_meta' )
+			->once()
+			->with( 1, 'xama_answer', 1 )
+			->andReturn( null );
+
+		$this->metabox->save_meta_box( $post->ID, $post );
+
+		$this->assertConditionsMet();
+	}
 }
