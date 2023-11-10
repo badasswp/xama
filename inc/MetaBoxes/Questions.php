@@ -27,7 +27,7 @@ class Questions extends MetaBox {
 	 *
 	 * @var string
 	 */
-	public static $name = 'xama_mb_question';
+	public static $name = 'xama_mb_questions';
 
 	/**
 	 * Return meta box heading.

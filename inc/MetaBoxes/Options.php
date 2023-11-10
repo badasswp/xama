@@ -26,7 +26,7 @@ class Options extends MetaBox {
 	 *
 	 * @var string
 	 */
-	public static $name = 'xama_mb_option';
+	public static $name = 'xama_mb_options';
 
 	/**
 	 * Return meta box heading.
