@@ -74,7 +74,7 @@ class MetaBox extends Service implements Registrable {
 	 */
 	public function register_meta_boxes() {
 		foreach ( $this->objects as $object ) {
-			 $object->register_meta_box();
+			$object->register_meta_box();
 		}
 	}
 }
