@@ -126,7 +126,6 @@ class Question extends Post {
 	 * @return void
 	 */
 	public function register_post_column_data( $column, $post_id ): void {
-		// Get column data.
 		$quiz_id     = get_post_meta( $post_id, 'xama_quiz_id', true );
 		$quiz_answer = get_post_meta( $post_id, 'xama_answer', true );
 		$quiz_title  = get_the_title( $quiz_id ? $quiz_id : '' );
