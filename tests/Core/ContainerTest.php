@@ -10,6 +10,11 @@ use Xama\Services\REST;
 use Xama\Services\MetaBox;
 use Xama\Services\Template;
 
+use Xama\MetaBoxes\Answer;
+use Xama\MetaBoxes\Options;
+use Xama\MetaBoxes\Scores;
+use Xama\MetaBoxes\Questions;
+
 use Xama\Core\Container;
 use WP_Mock\Tools\TestCase;
 
@@ -47,6 +52,16 @@ class ContainerTest extends TestCase {
 
 		\WP_Mock::userFunction( 'plugin_dir_path' )
 			->once();
+
+		\WP_Mock::expectFilter(
+			'xama_meta_boxes',
+			[
+				Answer::class,
+				Options::class,
+				Questions::class,
+				Scores::class,
+			]
+		);
 
 		foreach ( Container::$services as $key => $service ) {
 			$mocked_service = $this->getMockBuilder( $service )
