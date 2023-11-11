@@ -19,4 +19,30 @@ class FunctionsTest extends TestCase {
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
 	}
+
+	public function test_xama_get_quizzies() {
+		$post = new stdClass();
+
+		$post->ID           = 1;
+		$post->post_title   = 'Hello World';
+		$post->post_content = '';
+
+		$posts = [
+			[
+				$post->ID,
+				$post->post_title,
+				$post->post_content,
+			],
+		];
+
+		\WP_Mock::userFunction( 'wp_cache_get' )
+			->twice()
+			->with( 'xama_cache_quizzies' )
+			->andReturn( $posts );
+
+		$quizzies = xama_get_quizzies();
+
+		$this->assertIsArray( $quizzies );
+		$this->assertConditionsMet();
+	}
 }
