@@ -43,4 +43,11 @@ class OptionsTest extends TestCase {
 		$this->assertSame( $post_type, 'xama_question' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_position() {
+		$position = $this->options->get_position();
+
+		$this->assertSame( $position, '' );
+		$this->assertConditionsMet();
+	}
 }
