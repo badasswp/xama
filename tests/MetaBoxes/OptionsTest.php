@@ -50,4 +50,11 @@ class OptionsTest extends TestCase {
 		$this->assertSame( $position, '' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_priority() {
+		$priority = $this->options->get_priority();
+
+		$this->assertSame( $priority, '' );
+		$this->assertConditionsMet();
+	}
 }
