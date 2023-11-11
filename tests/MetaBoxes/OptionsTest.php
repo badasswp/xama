@@ -22,4 +22,11 @@ class OptionsTest extends TestCase {
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
 	}
+
+	public function test_get_name() {
+		$name = Options::$name;
+
+		$this->assertSame( $name, 'xama_mb_options' );
+		$this->assertConditionsMet();
+	}
 }
