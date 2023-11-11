@@ -29,4 +29,11 @@ class OptionsTest extends TestCase {
 		$this->assertSame( $name, 'xama_mb_options' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_heading() {
+		$heading = $this->options->get_heading();
+
+		$this->assertSame( $heading, 'Question Options' );
+		$this->assertConditionsMet();
+	}
 }
