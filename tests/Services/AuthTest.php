@@ -2,10 +2,12 @@
 
 namespace Xama\Tests\Services;
 
+use Mockery;
 use stdClass;
 use Xama\Core\Settings;
 use Xama\Services\Auth;
 use WP_Mock\Tools\TestCase;
+use Xama\Middleware\WPAuthMiddleware;
 
 /**
  * @covers Auth
