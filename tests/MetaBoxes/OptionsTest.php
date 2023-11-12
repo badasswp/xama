@@ -109,4 +109,32 @@ class OptionsTest extends TestCase {
 		$this->assertSame( $expected, $button );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_button_url() {
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_quiz_id', true )
+			->andReturn( 1 );
+
+		\WP_Mock::userFunction( 'home_url' )
+			->once()
+			->andReturn( 'http://example.com' );
+
+		\WP_Mock::userFunction( 'absint' )
+			->once()
+			->with( 1 )
+			->andReturn( 1 );
+
+		$reflection = new \ReflectionClass( $this->options );
+		$method     = $reflection->getMethod( 'get_button_url' );
+		$method->setAccessible( true );
+
+		$url = $method->invoke( $this->options );
+
+		$expected = 'http://example.com/wp-admin/post.php?post=1&action=edit';
+
+		$this->assertStringContainsString( '/wp-admin/post.php?post=1', $expected );
+		$this->assertSame( $expected, $url );
+		$this->assertConditionsMet();
+	}
 }
