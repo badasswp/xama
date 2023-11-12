@@ -6,9 +6,17 @@
  * @since 1.0.0
  */
 import ReactDOM from 'react-dom';
-import './styles/app.scss';
+import { Provider } from 'react-redux';
+import Store from './store';
+
 import App from './App';
+import './styles/app.scss';
 
 document.addEventListener( 'DOMContentLoaded', function () {
-  ReactDOM.render( <App />, document.getElementById( 'xama' ) );
+  ReactDOM.render(
+    <Provider store={ Store }>
+      <App />
+    </Provider>,
+    document.getElementById( 'xama' )
+  );
 } );
