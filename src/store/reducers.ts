@@ -19,7 +19,8 @@ export interface stateProps {
       id: string;
       title: string;
       content: string;
-    } []
+      options: string[];
+    } [];
   };
   error: string;
 }
