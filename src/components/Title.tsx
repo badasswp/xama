@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { stateProps } from '../store/reducers';
+
 /**
  * Title Component
  *
@@ -7,8 +10,10 @@
  * @returns {JSX.Element}  The rendered Title component.
  */
 const Title = () => {
+  const post = useSelector( ( state: stateProps ) => state.post );
+
   return (
-    <h1></h1>
+    <h1>{ post.title }</h1>
   )
 }
 
