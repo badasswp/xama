@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { stateProps } from '../store/reducers';
+
 /**
  * Content Component
  *
@@ -7,8 +10,10 @@
  * @returns {JSX.Element}  The rendered Content component.
  */
 const Content = () => {
+  const post = useSelector( ( state: stateProps ) => state.post );
+
   return (
-    <div id="content"></div>
+    <div id="content" dangerouslySetInnerHTML={{ __html: post.content }} />
   )
 }
 
