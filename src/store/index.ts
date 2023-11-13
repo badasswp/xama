@@ -1,10 +1,19 @@
+/**
+ * Store
+ *
+ * This module defines the Redux store used for storing
+ * the global state of the application. It utilises the Redux
+ * toolkit & thunk middleware alongside.
+ *
+ * @module store
+ * @returns {Object}  Global store.
+ */
+
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
-const store = configureStore( {
+export const store = configureStore( {
   reducer: reducers,
   middleware: [ thunk ],
 } );
-
-export default store;
