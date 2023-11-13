@@ -1,5 +1,5 @@
 /**
- * Actions for managing state.
+ * Actions
  *
  * This module defines a set of actions for managing state
  * changes. It provides a set of actions that can be dispatched

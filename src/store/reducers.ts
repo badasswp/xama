@@ -1,5 +1,5 @@
 /**
- * Reducers for manipulating state.
+ * Reducers
  *
  * This module defines a set of reducers for manipulating
  * state. It provides a new set of state objects based on the
