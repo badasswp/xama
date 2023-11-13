@@ -1,3 +1,12 @@
+/**
+ * React Dependencies
+ */
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+/**
+ * Custom Components
+ */
 import Layout from './layout/Layout';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
