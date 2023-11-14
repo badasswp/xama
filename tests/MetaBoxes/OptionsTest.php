@@ -231,4 +231,33 @@ class OptionsTest extends TestCase {
 		$this->assertSame( $expected, $options );
 		$this->assertConditionsMet();
 	}
+
+	public function test_save_meta_box() {
+		\WP_Mock::userFunction( 'update_post_meta' )
+			->times( 5 );
+
+		\WP_Mock::userFunction( 'sanitize_text_field' )
+			->times( 5 )
+			->andReturn(
+				[
+					'Option 1',
+					'Option 2',
+					'Option 3',
+					'Option 4',
+					'1',
+				]
+			);
+
+		$_POST = [
+			'xama_option_1' => 'Option 1',
+			'xama_option_2' => 'Option 2',
+			'xama_option_3' => 'Option 3',
+			'xama_option_4' => 'Option 4',
+			'xama_quiz_id'  => '1',
+		];
+
+		$this->options->save_meta_box( $this->options->post->ID, $this->options->post );
+
+		$this->assertConditionsMet();
+	}
 }
