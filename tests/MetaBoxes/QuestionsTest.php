@@ -64,6 +64,40 @@ class QuestionsTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	public function test_get_button() {
+		\WP_Mock::userFunction( 'home_url' )
+			->once()
+			->andReturn( 'http://example.com' );
+
+		\WP_Mock::userFunction( 'absint' )
+			->once()
+			->with( 1 )
+			->andReturn( '1' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'xama_question' )
+			->andReturn( 'xama_question' );
+
+		\WP_Mock::userFunction( 'esc_url' )
+			->once()
+			->with( 'http://example.com/wp-admin/post-new.php?post_type=xama_question&quiz_id=1' )
+			->andReturn( 'http://example.com/wp-admin/post-new.php?post_type=xama_question&quiz_id=1' );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'Add New Question', Settings::DOMAIN )
+			->andReturn( 'Add New Question' );
+
+		$reflection = new \ReflectionClass( $this->questions );
+		$method     = $reflection->getMethod( 'get_button' );
+		$method->setAccessible( true );
+
+		$button = $method->invoke( $this->questions );
+
+		$this->assertConditionsMet();
+	}
+
 	public function test_get_options() {
 		$this->questions->id = 1;
 
