@@ -181,7 +181,8 @@ class Questions extends MetaBox {
 	 * @return string
 	 */
 	protected function get_options(): string {
-		$i = 1;
+		$i       = 1;
+		$options = '';
 
 		while ( $i < 5 ) {
 			$options .= sprintf(
