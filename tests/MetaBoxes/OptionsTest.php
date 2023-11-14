@@ -137,4 +137,98 @@ class OptionsTest extends TestCase {
 		$this->assertSame( $expected, $url );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_options() {
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->times( 4 )
+			->andReturnValues(
+				[
+					'Option 1',
+					'Option 2',
+					'Option 3',
+					'Option 4',
+				]
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->times( 8 )
+			->andReturnValues(
+				[
+					'1',
+					'Option Value 1',
+					'2',
+					'Option Value 2',
+					'3',
+					'Option Value 3',
+					'4',
+					'Option Value 4',
+				]
+			);
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->times( 4 )
+			->andReturnValues(
+				[
+					'Option 1',
+					'Option 2',
+					'Option 3',
+					'Option 4',
+				]
+			);
+
+		$reflection = new \ReflectionClass( $this->options );
+		$method     = $reflection->getMethod( 'get_options' );
+		$method->setAccessible( true );
+
+		$expected = '<p>
+					<label for="option1">
+						Option 1
+					</label>
+					<br/>
+					<input
+						type="text"
+						class="widefat"
+						name="xama_option_1"
+						value="Option Value 1"
+					/>
+				</p><p>
+					<label for="option2">
+						Option 2
+					</label>
+					<br/>
+					<input
+						type="text"
+						class="widefat"
+						name="xama_option_2"
+						value="Option Value 2"
+					/>
+				</p><p>
+					<label for="option3">
+						Option 3
+					</label>
+					<br/>
+					<input
+						type="text"
+						class="widefat"
+						name="xama_option_3"
+						value="Option Value 3"
+					/>
+				</p><p>
+					<label for="option4">
+						Option 4
+					</label>
+					<br/>
+					<input
+						type="text"
+						class="widefat"
+						name="xama_option_4"
+						value="Option Value 4"
+					/>
+				</p>';
+
+		$options = $method->invoke( $this->options );
+
+		$this->assertSame( $expected, $options );
+		$this->assertConditionsMet();
+	}
 }
