@@ -63,4 +63,47 @@ class QuestionsTest extends TestCase {
 		$this->assertSame( $priority, 'high' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_options() {
+		$this->questions->id = 1;
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_1', true )
+			->andReturn( '1' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_2', true )
+			->andReturn( '2' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_3', true )
+			->andReturn( '3' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_4', true )
+			->andReturn( '4' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->times( 4 )
+			->andReturnValues(
+				[
+					'Option Value 1',
+					'Option Value 2',
+					'Option Value 3',
+					'Option Value 4',
+				]
+			);
+
+		$reflection = new \ReflectionClass( $this->questions );
+		$method     = $reflection->getMethod( 'get_options' );
+		$method->setAccessible( true );
+
+		$options = $method->invoke( $this->questions );
+
+		$this->assertConditionsMet();
+	}
 }
