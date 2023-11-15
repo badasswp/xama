@@ -25,4 +25,37 @@ class WPAuthMiddlewareTest extends TestCase {
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
 	}
+
+	public function test_authenticate_for_logged_in_user() {
+		$user           = new stdClass();
+		$user->roles[0] = 'editor';
+
+		$page     = new stdClass();
+		$page->ID = 1;
+
+		$this->middleware->exit = false;
+
+		\WP_Mock::userFunction( 'is_user_logged_in' )
+			->once()
+			->andReturn( true );
+
+		\WP_Mock::userFunction( 'wp_get_current_user' )
+			->once()
+			->andReturn( $user );
+
+		\WP_Mock::userFunction( 'get_page_by_path' )
+			->once()
+			->andReturn( $page );
+
+		\WP_Mock::userFunction( 'get_permalink' )
+			->once()
+			->andReturn( 'http://example.com/login' );
+
+		\WP_Mock::userFunction( 'wp_redirect' )
+			->once();
+
+		$this->middleware->authenticate();
+
+		$this->assertConditionsMet();
+	}
 }
