@@ -35,9 +35,13 @@ abstract class Middleware implements \Xama\Interfaces\Middleware {
 	public function redirect( $exit = true ): void {
 		$this->logout();
 
+		if ( ! isset( $this->exit ) ) {
+			$this->exit = $exit;
+		}
+
 		$page = get_page_by_path( $this->redirect_page, OBJECT, 'page' );
 		wp_redirect( get_permalink( $page->ID ) );
-		if ( $exit ) {
+		if ( $this->exit ) {
 			exit;
 		}
 	}
