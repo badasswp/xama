@@ -174,8 +174,29 @@ class QuestionsTest extends TestCase {
 		$method     = $reflection->getMethod( 'get_questions' );
 		$method->setAccessible( true );
 
+		$expected = '<ul>
+				<li class="xama_admin_question">
+					<a href="http://example.com/wp-admin/post.php?post=1&action=edit" style="text-decoration: none; margin-bottom: 20px; display: block;">
+						<h2 style="color: rebeccapurple;">
+							<strong>What is a Butterfly?</strong>
+							<span class="dashicons dashicons-edit" style="float: right;"></span>
+						</h2>
+						<ol style="color: #000;"><li>
+					Option Value 1
+				</li><li>
+					Option Value 2
+				</li><li>
+					Option Value 3
+				</li><li>
+					Option Value 4
+				</li></ol>
+					</a>
+				</li>
+			</ul>';
+
 		$questions = $method->invoke( $this->questions );
 
+		$this->assertSame( $expected, $questions );
 		$this->assertConditionsMet();
 	}
 
