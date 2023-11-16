@@ -109,8 +109,8 @@ class QuestionsTest extends TestCase {
 	public function test_get_questions() {
 		$post = new stdClass();
 
-		$post->ID           = 1;
-		$post->post_title   = 'What is a Butterfly?';
+		$post->ID         = 1;
+		$post->post_title = 'What is a Butterfly?';
 
 		$posts = [
 			$post,
