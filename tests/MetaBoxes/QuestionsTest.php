@@ -217,8 +217,19 @@ class QuestionsTest extends TestCase {
 		$method     = $reflection->getMethod( 'get_options' );
 		$method->setAccessible( true );
 
+		$expected = '<li>
+					Option Value 1
+				</li><li>
+					Option Value 2
+				</li><li>
+					Option Value 3
+				</li><li>
+					Option Value 4
+				</li>';
+
 		$options = $method->invoke( $this->questions );
 
+		$this->assertSame( $expected, $options );
 		$this->assertConditionsMet();
 	}
 }
