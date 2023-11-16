@@ -140,6 +140,8 @@ class Questions extends MetaBox {
 			]
 		);
 
+		$exam = '';
+
 		foreach ( $questions as $question ) {
 			$this->id    = $question->ID;
 			$this->title = $question->post_title;
