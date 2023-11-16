@@ -58,4 +58,67 @@ class ScoresTest extends TestCase {
 		$this->assertSame( $priority, 'high' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_question_options() {
+		$this->scores->id = 1;
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_1', true )
+			->andReturn( 'Option 1' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_2', true )
+			->andReturn( 'Option 2' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_3', true )
+			->andReturn( 'Option 3' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_4', true )
+			->andReturn( 'Option 4' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'Option 1' )
+			->andReturn( 'Option 1' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'Option 2' )
+			->andReturn( 'Option 2' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'Option 3' )
+			->andReturn( 'Option 3' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'Option 4' )
+			->andReturn( 'Option 4' );
+
+		$reflection = new \ReflectionClass( $this->scores );
+		$method = $reflection->getMethod( 'get_question_options' );
+		$method->setAccessible( true );
+
+		$expected = '<li>
+					Option 1
+				</li><li>
+					Option 2
+				</li><li>
+					Option 3
+				</li><li>
+					Option 4
+				</li>';
+
+		$options = $method->invoke( $this->scores );
+
+		$this->assertSame( $expected, $options );
+		$this->assertConditionsMet();
+	}
 }
