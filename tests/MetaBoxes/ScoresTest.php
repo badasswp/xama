@@ -103,7 +103,7 @@ class ScoresTest extends TestCase {
 			->andReturn( 'Option 4' );
 
 		$reflection = new \ReflectionClass( $this->scores );
-		$method = $reflection->getMethod( 'get_question_options' );
+		$method     = $reflection->getMethod( 'get_question_options' );
 		$method->setAccessible( true );
 
 		$expected = '<li>
