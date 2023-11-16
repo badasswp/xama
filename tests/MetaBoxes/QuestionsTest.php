@@ -106,6 +106,79 @@ class QuestionsTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	public function test_get_questions() {
+		$post = new stdClass();
+
+		$post->ID           = 1;
+		$post->post_title   = 'What is a Butterfly?';
+
+		$posts = [
+			$post,
+		];
+
+		\WP_Mock::userFunction( 'get_posts' )
+			->once()
+			->andReturn( $posts );
+
+		\WP_Mock::userFunction( 'home_url' )
+			->once()
+			->andReturn( 'http://example.com' );
+
+		\WP_Mock::userFunction( 'absint' )
+			->once()
+			->with( 1 )
+			->andReturn( '1' );
+
+		\WP_Mock::userFunction( 'esc_url' )
+			->once()
+			->with( 'http://example.com/wp-admin/post.php?post=1&action=edit' )
+			->andReturn( 'http://example.com/wp-admin/post.php?post=1&action=edit' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'What is a Butterfly?' )
+			->andReturn( 'What is a Butterfly?' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_1', true )
+			->andReturn( '1' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_2', true )
+			->andReturn( '2' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_3', true )
+			->andReturn( '3' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_option_4', true )
+			->andReturn( '4' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->times( 4 )
+			->andReturnValues(
+				[
+					'Option Value 1',
+					'Option Value 2',
+					'Option Value 3',
+					'Option Value 4',
+				]
+			);
+
+		$reflection = new \ReflectionClass( $this->questions );
+		$method     = $reflection->getMethod( 'get_questions' );
+		$method->setAccessible( true );
+
+		$questions = $method->invoke( $this->questions );
+
+		$this->assertConditionsMet();
+	}
+
 	public function test_get_options() {
 		$this->questions->id = 1;
 
