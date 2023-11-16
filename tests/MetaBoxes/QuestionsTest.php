@@ -93,8 +93,16 @@ class QuestionsTest extends TestCase {
 		$method     = $reflection->getMethod( 'get_button' );
 		$method->setAccessible( true );
 
+		$expected = '<div>
+				<a href="http://example.com/wp-admin/post-new.php?post_type=xama_question&quiz_id=1"
+					class="button button-primary button-large"
+					style="margin-top: 5px;"
+				>Add New Question</a>
+			</div>';
+
 		$button = $method->invoke( $this->questions );
 
+		$this->assertSame( $expected, $button );
 		$this->assertConditionsMet();
 	}
 
