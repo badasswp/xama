@@ -182,6 +182,8 @@ class Scores extends MetaBox {
 	 * @return string
 	 */
 	protected function get_question_options(): string {
+		$options = '';
+
 		foreach ( Settings::OPTIONS as $key => $value ) {
 			$options .= sprintf(
 				'<li>
