@@ -121,4 +121,54 @@ class ScoresTest extends TestCase {
 		$this->assertSame( $expected, $options );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_scores_heading_labels_and_data() {
+		$this->scores->scores_meta['xama_score_user_name'][0] = 'John Doe';
+		$this->scores->scores_meta['xama_score_user_email'][0] = 'john@doe.com';
+		$this->scores->scores_meta['xama_score_total'][0] = '100';
+		$this->scores->scores_meta['xama_score_total_questions'][0] = '100';
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'User Name', Settings::DOMAIN )
+			->andReturn( 'User Name' );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'User Email', Settings::DOMAIN )
+			->andReturn( 'User Email' );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'User Score', Settings::DOMAIN )
+			->andReturn( 'User Score' );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'Total No. of Questions', Settings::DOMAIN )
+			->andReturn( 'Total No. of Questions' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'John Doe' )
+			->andReturn( 'John Doe' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'john@doe.com' )
+			->andReturn( 'john@doe.com' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->twice()
+			->with( '100' )
+			->andReturn( '100' );
+
+		$reflection = new \ReflectionClass( $this->scores );
+		$method = $reflection->getMethod( 'get_scores_heading_labels_and_data' );
+		$method->setAccessible( true );
+
+		$headings = $method->invoke( $this->scores );
+
+		$this->assertConditionsMet();
+	}
 }
