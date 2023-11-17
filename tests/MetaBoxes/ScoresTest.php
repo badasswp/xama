@@ -123,9 +123,9 @@ class ScoresTest extends TestCase {
 	}
 
 	public function test_get_scores_heading_labels_and_data() {
-		$this->scores->scores_meta['xama_score_user_name'][0] = 'John Doe';
-		$this->scores->scores_meta['xama_score_user_email'][0] = 'john@doe.com';
-		$this->scores->scores_meta['xama_score_total'][0] = '100';
+		$this->scores->scores_meta['xama_score_user_name'][0]       = 'John Doe';
+		$this->scores->scores_meta['xama_score_user_email'][0]      = 'john@doe.com';
+		$this->scores->scores_meta['xama_score_total'][0]           = '100';
 		$this->scores->scores_meta['xama_score_total_questions'][0] = '100';
 
 		\WP_Mock::userFunction( 'esc_html__' )
@@ -164,7 +164,7 @@ class ScoresTest extends TestCase {
 			->andReturn( '100' );
 
 		$reflection = new \ReflectionClass( $this->scores );
-		$method = $reflection->getMethod( 'get_scores_heading_labels_and_data' );
+		$method     = $reflection->getMethod( 'get_scores_heading_labels_and_data' );
 		$method->setAccessible( true );
 
 		$headings = $method->invoke( $this->scores );
