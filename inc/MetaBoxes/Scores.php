@@ -113,7 +113,7 @@ class Scores extends MetaBox {
 		foreach ( $scores_metadata_labels as $key => $label ) {
 			$heading_label = $label;
 			$heading_value = isset( $this->scores_meta[ $key ][0] )
-			? $this->scores_meta[ $key ][0]: 0;
+			? $this->scores_meta[ $key ][0] : 0;
 
 			$labels_and_data .= sprintf(
 				'<p>
