@@ -102,20 +102,26 @@ class Scores extends MetaBox {
 	 */
 	protected function get_scores_heading_labels_and_data(): string {
 		$scores_metadata_labels = [
-			'xama_score_user_name'       => esc_html__( 'User Name', Settings::DOMAIN ),
-			'xama_score_user_email'      => esc_html__( 'User Email', Settings::DOMAIN ),
-			'xama_score_total'           => esc_html__( 'User Score', Settings::DOMAIN ),
-			'xama_score_total_questions' => esc_html__( 'Total No. of Questions', Settings::DOMAIN ),
+			'xama_score_user_name'       => 'User Name',
+			'xama_score_user_email'      => 'User Email',
+			'xama_score_total'           => 'User Score',
+			'xama_score_total_questions' => 'Total No. of Questions',
 		];
 
-		foreach ( $scores_metadata_labels as $key => $value ) {
+		$labels_and_data = '';
+
+		foreach ( $scores_metadata_labels as $key => $label ) {
+			$heading_label = $label;
+			$heading_value = isset( $this->scores_meta[ $key ][0] )
+			? $this->scores_meta[ $key ][0]: 0;
+
 			$labels_and_data .= sprintf(
 				'<p>
 					<strong>%1$s</strong><br/>
 					%2$s
 				</p>',
-				esc_html( $value ),
-				esc_html( isset( $this->scores_meta[ $key ][0] ) ? $this->scores_meta[ $key ][0] : 0 )
+				esc_html__( $heading_label, Settings::DOMAIN ),
+				esc_html( $heading_value )
 			);
 		}
 
