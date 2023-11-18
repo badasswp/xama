@@ -81,6 +81,16 @@ class Scores extends MetaBox {
 	 * @return void
 	 */
 	public function get_metabox_callback( $post ): void {
+		/**
+		 * Just for proper context, the...
+		 * $this->scores_meta is an array with:
+		 * 'xama_score_user_name'       => 'User Name'
+		 * 'xama_score_user_email'      => 'User Email'
+		 * 'xama_score_total'           => 'User Score'
+		 * 'xama_score_total_questions' => 'Total No. of Questions',
+		 * 'xama_score_status_*' meta tag for e.g. xama_score_status_1
+		 * 'xama_score_answer_*' meta tag for e.g. xama_score_answer_1
+		 */
 		$this->scores_meta = get_post_meta( $post->ID );
 
 		printf(
@@ -111,8 +121,7 @@ class Scores extends MetaBox {
 		$labels_and_data = '';
 
 		foreach ( $scores_metadata_labels as $key => $label ) {
-			$heading_label = $label;
-			$heading_value = isset( $this->scores_meta[ $key ][0] )
+			$value = isset( $this->scores_meta[ $key ][0] )
 			? $this->scores_meta[ $key ][0] : 0;
 
 			$labels_and_data .= sprintf(
@@ -120,8 +129,8 @@ class Scores extends MetaBox {
 					<strong>%1$s</strong><br/>
 					%2$s
 				</p>',
-				esc_html__( $heading_label, Settings::DOMAIN ),
-				esc_html( $heading_value )
+				esc_html__( $label, Settings::DOMAIN ),
+				esc_html( $value )
 			);
 		}
 
@@ -136,6 +145,12 @@ class Scores extends MetaBox {
 	 * @return string
 	 */
 	protected function get_scores_questions_labels_and_data(): string {
+		/**
+		 * Just for proper context, the...
+		 * $this->scores_meta contains the ffg:
+		 * 'xama_score_status_*' meta tag for e.g. xama_score_status_1
+		 * 'xama_score_answer_*' meta tag for e.g. xama_score_answer_1
+		 */
 		foreach ( $this->scores_meta as $key => $value ) {
 			if ( strpos( $key, 'xama_score_status_' ) !== false ) {
 				$this->id = explode( '_', $key )[3];
