@@ -11,12 +11,12 @@ use WP_Mock\Tools\TestCase;
  * @covers Quiz
  */
 class QuizTest extends TestCase {
-	private $metabox;
+	private $post;
 
 	public function setUp(): void {
 		\WP_Mock::setUp();
 
-		$this->metabox = new Quiz();
+		$this->post = new Quiz();
 	}
 
 	public function tearDown(): void {
