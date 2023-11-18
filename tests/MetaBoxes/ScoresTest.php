@@ -171,4 +171,62 @@ class ScoresTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_question_and_score_info() {
+		$this->scores->id = 1;
+
+		// The asnwer the user provided...
+		$this->scores->scores_meta['xama_score_answer_1'][0] = 1;
+
+		\WP_Mock::userFunction( 'get_the_title' )
+			->once()
+			->with( 1 )
+			->andReturn( 'What is a Butterfly?' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'What is a Butterfly?' )
+			->andReturn( 'What is a Butterfly?' );
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->once()
+			->with( 'rebeccapurple' )
+			->andReturn( 'rebeccapurple' );
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->once()
+			->with( 'dashicons dashicons-yes' )
+			->andReturn( 'dashicons dashicons-yes' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_answer', true )
+			->andReturn( 1 );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->twice()
+			->with( 'A', 'xama' )
+			->andReturn( 'A' );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'Question\'s Answer', 'xama' )
+			->andReturn( 'Question\'s Answer' );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->once()
+			->with( 'User\'s Answer', 'xama' )
+			->andReturn( 'User\'s Answer' );
+
+		$reflection = new \ReflectionClass( $this->scores );
+		$method     = $reflection->getMethod( 'get_question_and_score_info' );
+		$method->setAccessible( true );
+
+		$key      = 1;
+		$value[0] = true;
+
+		$headings = $method->invoke( $this->scores, $key, $value );
+
+		$this->assertConditionsMet();
+	}
 }
