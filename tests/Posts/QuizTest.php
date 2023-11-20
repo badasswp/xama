@@ -54,4 +54,19 @@ class QuizTest extends TestCase {
 		$this->assertSame( $supports, [ 'title', 'editor' ] );
 		$this->assertConditionsMet();
 	}
+
+	public function test_save_post_type() {
+		$post = $this->getMockBuilder( '\WP_Post' )
+					->disableOriginalConstructor()
+					->getMock();
+
+		$post->ID = 1;
+
+		\WP_Mock::expectAction( 'xama_quiz_save', $post->ID, $post );
+
+		$supports = $this->post->save_post_type( $post->ID, $post );
+
+		$this->assertInstanceOf( '\WP_Post', $post );
+		$this->assertConditionsMet();
+	}
 }
