@@ -69,4 +69,37 @@ class QuizTest extends TestCase {
 		$this->assertInstanceOf( '\WP_Post', $post );
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_post_columns() {
+		$columns = [
+			'name'      => 'Name',
+			'url'       => 'URL',
+			'questions' => 'Number of Questions',
+			'date'      => 'Date',
+		];
+
+		\WP_Mock::userFunction(
+			'esc_html__',
+			[
+				'return' => function ( $column, $domain = Settings::DOMAIN ) {
+					return $column;
+				},
+			]
+		);
+
+		\WP_Mock::expectFilter( 'xama_quiz_columns', $columns );
+
+		$columns = $this->post->register_post_columns( $columns );
+
+		$this->assertSame(
+			$columns,
+			[
+				'name'      => 'Name',
+				'url'       => 'URL',
+				'questions' => 'Number of Questions',
+				'date'      => 'Date',
+			]
+		);
+		$this->assertConditionsMet();
+	}
 }
