@@ -43,4 +43,15 @@ class QuizTest extends TestCase {
 		$this->assertSame( $plural_label, 'Quizzes' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_supports() {
+		\WP_Mock::onFilter( 'xama_quiz_supports' )
+			->with( [ 'title', 'editor' ] )
+			->reply( [ 'title', 'editor' ] );
+
+		$supports = $this->post->get_supports();
+
+		$this->assertSame( $supports, [ 'title', 'editor' ] );
+		$this->assertConditionsMet();
+	}
 }
