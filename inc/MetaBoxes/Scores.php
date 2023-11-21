@@ -82,13 +82,6 @@ class Scores extends MetaBox {
 	 */
 	public function get_metabox_callback( $post ): void {
 		/**
-		 * TODO:
-		 * We need to refine the meta data saving logic, it appears convoluted.
-		 * 1. What do we need to save and why?
-		 * 2. Can we populate user name and email from logged in user.
-		 */
-
-		/**
 		 * Just for proper context, the...
 		 * $this->scores_meta is an array with:
 		 * 'xama_score_user_name'       => 'User Name'
