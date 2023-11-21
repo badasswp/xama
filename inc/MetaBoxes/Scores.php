@@ -152,12 +152,8 @@ class Scores extends MetaBox {
 	 * @return string
 	 */
 	protected function get_scores_questions_labels_and_data(): string {
-		/**
-		 * Just for proper context, the...
-		 * $this->scores_meta contains the ffg:
-		 * 'xama_score_status_*' meta tag for e.g. xama_score_status_1
-		 * 'xama_score_answer_*' meta tag for e.g. xama_score_answer_1
-		 */
+		$labels_and_data = '';
+
 		foreach ( $this->scores_meta as $key => $value ) {
 			if ( strpos( $key, 'xama_score_status_' ) !== false ) {
 				$this->id = explode( '_', $key )[3];
