@@ -131,7 +131,7 @@ class Score extends Post {
 		$score = get_post_meta( $post_id, 'xama_score_total', true ) ?: 0;
 		$total = get_post_meta( $post_id, 'xama_score_total_questions', true ) ?: 0;
 
-		$percentage = number_format( ( $score / $total ) * 100, 0 );
+		$percentage = $total > 0 ? number_format( ( $score / $total ) * 100, 0 ) : 0;
 
 		switch ( $column ) {
 			case 'quiz':
