@@ -53,6 +53,30 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	}
 
 	/**
+	 * Response Callback.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return WP_REST_Response
+	 */
+	public function response(): \WP_REST_Response {
+		if ( ! preg_match( '/[1-9]+/', $this->user_question ) || ! preg_match( '/^[1-4]$/', $this->user_answer ) ) {
+			$response = [
+				'status'  => 400,
+				'message' => 'Bad Request!',
+				'request' => [
+					'userQuestion' => $this->user_question,
+					'userAnswer'   => $this->user_answer,
+				],
+			];
+
+			return rest_ensure_response( $response );
+		}
+
+		return rest_ensure_response( $this->get_response() );
+	}
+
+	/**
 	 * Permissions callback for endpoints.
 	 *
 	 * @since 1.0.0
