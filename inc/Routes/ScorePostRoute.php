@@ -108,6 +108,61 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	}
 
 	/**
+	 * Create Score Post.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return integer
+	 */
+	protected function create_score_post(): int {
+		$user = wp_get_current_user();
+		$this->post = 0;
+
+		$posts = new \WP_Query(
+			[
+				'post_type'   => Score::$name,
+				'post_author' => $user->ID,
+				'post_status' => 'publish',
+				'meta_key'    => 'xama_score_quiz_id',
+				'meta_value'  => $this->user_question,
+			]
+		);
+
+		if ( ! $posts->found_posts ) {
+			$this->post = wp_insert_post(
+				[
+					'post_type'   => Score::$name,
+					'post_status' => 'publish',
+					'post_title'  => $user->user_login . ' | ' . get_the_title( $this->user_question ),
+					'post_author' => $user->ID,
+				]
+			);
+
+			update_post_meta( $this->post, 'xama_score_quiz_id', $this->user_question );
+		}
+
+		return $this->post;
+	}
+
+	/**
+	 * Create Score Meta.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return integer
+	 */
+	protected function create_score_meta(): int {
+		if ( ! $this->post ) {
+			return 0;
+		}
+
+		update_post_meta( $this->post, 'xama_score_status_' . $this->user_question, (int) $this->is_answer_correct() );
+		update_post_meta( $this->post, 'xama_score_answer_' . $this->user_question, $this->user_answer );
+
+		return $this->post;
+	}
+
+	/**
 	 * Permissions callback for endpoints.
 	 *
 	 * @since 1.0.0
