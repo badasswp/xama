@@ -115,7 +115,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return integer
 	 */
 	protected function create_score_post(): int {
-		$user = wp_get_current_user();
+		$user       = wp_get_current_user();
 		$this->post = 0;
 
 		$posts = new \WP_Query(
