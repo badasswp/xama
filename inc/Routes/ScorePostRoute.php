@@ -163,6 +163,36 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	}
 
 	/**
+	 * Check if answer is correct.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return boolean
+	 */
+	protected function is_answer_correct(): bool {
+		if ( (int) $this->get_correct_answer() === (int) $this->user_answer ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get Correct Answer.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	protected function get_correct_answer(): string {
+		if ( is_null( $this->user_question ) ) {
+			return '';
+		}
+
+		return get_post_meta( $this->user_question, 'xama_answer', true );
+	}
+
+	/**
 	 * Permissions callback for endpoints.
 	 *
 	 * @since 1.0.0
