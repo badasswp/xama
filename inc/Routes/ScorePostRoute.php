@@ -77,6 +77,37 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	}
 
 	/**
+	 * Get Response for valid WP REST request.
+	 *
+	 * This method creates the Score post if it doesn't exist
+	 * and stores the appropriate meta data for each Score post.
+	 * Each Score post contains multiple meta data.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
+	protected function get_response(): array {
+		$post = $this->create_score_post();
+		$meta = $this->create_score_meta();
+
+		return [
+			'status'  => 201,
+			'message' => 'Score Post created successfully!',
+			'data'    => [
+				'question'      => [
+					'ID'         => $this->user_question,
+					'title'      => get_the_title( $this->user_question ),
+					'userAnswer' => Settings::OPTIONS[ $this->user_answer ],
+				],
+				'answer'        => Settings::OPTIONS[ $this->get_correct_answer() ],
+				'isUserCorrect' => $this->is_answer_correct(),
+				'scoreID'       => $post,
+			],
+		];
+	}
+
+	/**
 	 * Permissions callback for endpoints.
 	 *
 	 * @since 1.0.0
