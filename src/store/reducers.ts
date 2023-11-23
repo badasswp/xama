@@ -23,12 +23,14 @@ export interface stateProps {
     } [];
   };
   error: string;
+  option: number;
 }
 
 export const initialState = {
   loading: false,
   post: {},
-  error: ''
+  error: '',
+  option: 0,
 }
 
 const reducers = ( state = initialState, action ) => {
@@ -51,6 +53,12 @@ const reducers = ( state = initialState, action ) => {
         loading: false,
         post: {},
         error: action.payload
+      }
+
+    case 'SET_SELECTED_OPTION':
+      return {
+        ...state,
+        option: action.payload
       }
 
     default: return state
