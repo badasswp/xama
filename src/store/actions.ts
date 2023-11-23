@@ -29,6 +29,13 @@ const actions = {
       payload: error
     }
   },
+
+  setSelectedOption: ( key ) => {
+    return {
+      type: 'SET_SELECTED_OPTION',
+      payload: key
+    }
+  },
 };
 
 export default actions;
