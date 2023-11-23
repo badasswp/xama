@@ -16,6 +16,10 @@ const Options = () => {
   const { questions } = useSelector( ( state: stateProps ) => state.post );
   const options = [ 'A', 'B', 'C', 'D' ];
 
+  const onSelect = ( e ) => {
+    dispatch( actions.setSelectedOption( e.target.value ) );
+  }
+
   if ( ! questions || questions.length === 0 ) {
     return '';
   }
