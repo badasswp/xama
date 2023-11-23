@@ -30,7 +30,7 @@ const Options = () => {
         questions[0].options.map( ( item, key ) => {
           return (
             <li key={ key }>
-              <input type="radio" name="user_answer_1" value="1" />
+              <input type="radio" name="xama_options" value={ key + 1 } onClick={ onSelect } />
               <p>
                 <span>{ options[key] }.</span>
                 { item }
