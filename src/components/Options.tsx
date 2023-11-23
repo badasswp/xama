@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { stateProps } from '../store/reducers';
 
 /**
@@ -10,6 +10,7 @@ import { stateProps } from '../store/reducers';
  * @returns {JSX.Element}  The rendered Options component.
  */
 const Options = () => {
+  const dispatch = useDispatch();
   const { questions } = useSelector( ( state: stateProps ) => state.post );
   const options = [ 'A', 'B', 'C', 'D' ];
 
