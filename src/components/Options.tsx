@@ -13,8 +13,8 @@ import actions from '../store/actions';
  */
 const Options = () => {
   const dispatch = useDispatch();
+  const options: string[] = [ 'A', 'B', 'C', 'D' ];
   const { questions } = useSelector( ( state: stateProps ) => state.post );
-  const options = [ 'A', 'B', 'C', 'D' ];
 
   const onSelect = ( e ) => {
     dispatch( actions.setSelectedOption( e.target.value ) );
