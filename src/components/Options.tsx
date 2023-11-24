@@ -14,7 +14,8 @@ import actions from '../store/actions';
 const Options = () => {
   const dispatch = useDispatch();
   const options: string[] = [ 'A', 'B', 'C', 'D' ];
-  const { questions } = useSelector( ( state: stateProps ) => state.post );
+  const { post, answer } = useSelector( ( state: stateProps ) => state );
+  const { questions } = post;
 
   const onSelect = ( e ) => {
     dispatch( actions.setSelectedOption( e.target.value ) );
@@ -35,6 +36,7 @@ const Options = () => {
                 <span>{ options[key] }.</span>
                 { item }
               </p>
+              { answer && answer.correct === key + 1 ? <i></i> : '' }
             </li>
           );
         } )
