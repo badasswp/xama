@@ -15,20 +15,19 @@ const Options = () => {
   const dispatch = useDispatch();
   const options: string[] = [ 'A', 'B', 'C', 'D' ];
   const { post, answer } = useSelector( ( state: stateProps ) => state );
-  const { questions } = post;
 
   const onSelect = ( e ) => {
     dispatch( actions.setSelectedOption( e.target.value ) );
   }
 
-  if ( ! questions || questions.length === 0 ) {
+  if ( ! post.questions || post.questions.length === 0 ) {
     return '';
   }
 
   return (
     <ol>
       {
-        questions[0].options.map( ( item, key ) => {
+        post.questions[0].options.map( ( item, key ) => {
           return (
             <li key={ key }>
               <input type="radio" name="xama_options" value={ key + 1 } onClick={ onSelect } />
