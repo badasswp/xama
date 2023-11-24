@@ -47,7 +47,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 */
 	public function request(): \WP_REST_Response {
 		$this->user_question = $this->request->get_json_params()['id'];
-		$this->user_answer   = $this->request->get_json_params()['answer'];
+		$this->user_answer   = $this->request->get_json_params()['option'];
 
 		return $this->response();
 	}
@@ -100,7 +100,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 					'title'      => get_the_title( $this->user_question ),
 					'userAnswer' => Settings::OPTIONS[ $this->user_answer ],
 				],
-				'answer'        => Settings::OPTIONS[ $this->get_correct_answer() ],
+				'answer'        => $this->get_correct_answer(),
 				'isUserCorrect' => $this->is_answer_correct(),
 				'scoreID'       => $post,
 			],
