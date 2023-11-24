@@ -22,15 +22,21 @@ export interface stateProps {
       options: string[];
     } [];
   };
+  answer: {
+    option: number;
+    correct: number;
+  }
   error: string;
-  option: number;
 }
 
 export const initialState = {
   loading: false,
   post: {},
+  answer: {
+    option: 0,
+    correct: 0,
+  },
   error: '',
-  option: 0,
 }
 
 const reducers = ( state = initialState, action ) => {
@@ -58,7 +64,19 @@ const reducers = ( state = initialState, action ) => {
     case 'SET_SELECTED_OPTION':
       return {
         ...state,
-        option: action.payload
+        answer: {
+          ...state.answer,
+          option: action.payload,
+        },
+      }
+
+    case 'SET_MARKER_OPTION':
+      return {
+        ...state,
+        answer: {
+          ...state.answer,
+          correct: action.payload,
+        },
       }
 
     default: return state
