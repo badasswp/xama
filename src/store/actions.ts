@@ -43,6 +43,27 @@ const actions = {
       payload: key
     }
   },
+
+  setCounterPosition: ( key ) => {
+    return {
+      type: 'SET_COUNTER_POSITION',
+      payload: key
+    }
+  },
+
+  setScoreID: ( key ) => {
+    return {
+      type: 'SET_SCORE_ID',
+      payload: key
+    }
+  },
+
+  setUser: ( key ) => {
+    return {
+      type: 'SET_USER',
+      payload: key
+    }
+  },
 };
 
 export default actions;
