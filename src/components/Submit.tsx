@@ -19,6 +19,51 @@ const Submit = () => {
   const [ answered, setAnswered ]       = useState<boolean>( false );
   const [ buttonText, setButtonText ]   = useState<string>( 'Submit Answer' );
 
+  const onSubmit = async () => {
+    /**
+     * Perform POST request.
+     */
+    try {
+      const response = await fetch(
+        url,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(
+            {
+              user: {
+                id: user.ID,
+                login: user.login
+              },
+              userQuiz: post.ID,
+              userQuestion: post.questions[counter].ID,
+              userAnswer: answer.option,
+              userScore: answer.score,
+            }
+          )
+        }
+      );
+
+      const { data } = await response.json();
+      console.log( data );
+      /**
+       * Dispatch relevant global state values
+       */
+      dispatch( actions.setMarkerOption( parseInt( data.answer ) ) );
+      dispatch( actions.setScoreID( data.scoreID ) );
+
+      /**
+       * Set component state values
+       */
+      setAnswered( true );
+      setButtonText( 'Continue' );
+    } catch ( error ) {
+      console.log( error );
+    }
+  }
+
   return (
     <button
       type="button"
