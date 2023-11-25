@@ -30,7 +30,12 @@ const Options = () => {
         post.questions[counter].options.map( ( item, key ) => {
           return (
             <li key={ key }>
-              <input type="radio" name="xama_options" value={ key + 1 } onClick={ onSelect } />
+              <input
+                type="radio"
+                name="xama_options"
+                value={ key + 1 }
+                onClick={ onSelect }
+              />
               <p>
                 <span>{ options[key] }.</span>
                 { item }
