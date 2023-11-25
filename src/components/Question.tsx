@@ -10,14 +10,14 @@ import { stateProps } from '../store/reducers';
  * @returns {JSX.Element}  The rendered Question component.
  */
 const Question = () => {
-  const { questions } = useSelector( ( state: stateProps ) => state.post );
+  const { post, counter } = useSelector( ( state: stateProps ) => state );
 
-  if ( ! questions || questions.length === 0 ) {
+  if ( ! post.questions || post.questions.length === 0 || typeof counter === 'undefined' ) {
     return <h2>Loading...</h2>;
   }
 
   return (
-    <h2>{ questions[0].title }</h2>
+    <h2>{ post.questions[counter].title }</h2>
   )
 }
 
