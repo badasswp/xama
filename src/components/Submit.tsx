@@ -13,8 +13,24 @@ import actions from '../store/actions';
  * @returns {JSX.Element}  The rendered Submit component.
  */
 const Submit = () => {
+  const dispatch = useDispatch();
+
+  const { post, answer, counter, user } = useSelector( ( state: stateProps ) => state );
+  const [ answered, setAnswered ]       = useState<boolean>( false );
+  const [ buttonText, setButtonText ]   = useState<string>( 'Submit Answer' );
+
   return (
-    <button type="submit">Submit Answer</button>
+    <button
+      type="button"
+      style={
+        {
+          backgroundColor: 'Continue' === buttonText ? 'red' : 'black'
+        }
+      }
+      onClick={ onSubmit }
+    >
+      { buttonText }
+    </button>
   )
 }
 
