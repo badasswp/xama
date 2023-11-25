@@ -24,6 +24,7 @@ import actions from './store/actions';
  */
 const App = () => {
   const dispatch = useDispatch();
+  const xama = document.getElementById( 'xama' );
 
   useEffect( () => {
     ( async () => {
@@ -37,7 +38,10 @@ const App = () => {
       dispatch( actions.fetchPostRequest() );
 
       try {
-        const response = await fetch( url );
+        const id  = xama.getAttribute( 'data-id' );
+        const url = xama.getAttribute( 'data-url' );
+
+        const response = await fetch( `${url}/wp-json/xama/v1/quiz/${id}` );
         const { data } = await response.json();
 
         /**
