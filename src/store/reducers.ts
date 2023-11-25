@@ -12,11 +12,11 @@
 export interface stateProps {
   loading: boolean;
   post: {
-    id: string;
+    ID: string;
     title: string;
     content: string;
     questions: {
-      id: string;
+      ID: string;
       title: string;
       content: string;
       options: string[];
@@ -25,17 +25,34 @@ export interface stateProps {
   answer: {
     option: number;
     correct: number;
-  }
+    score: number;
+  };
+  user: {
+    ID: number,
+    login: string,
+  },
+  counter: number;
   error: string;
 }
 
-export const initialState = {
+export const initialState: stateProps = {
   loading: false,
-  post: {},
+  post: {
+    ID: '',
+    title: '',
+    content: '',
+    questions: [],
+  },
   answer: {
     option: 0,
     correct: 0,
+    score: 0,
   },
+  user: {
+    ID: 0,
+    login: '',
+  },
+  counter: 0,
   error: '',
 }
 
@@ -49,15 +66,15 @@ const reducers = ( state = initialState, action ) => {
 
     case 'FETCH_POST_SUCCESS':
       return {
+        ...state,
         loading: false,
         post: action.payload,
-        error: ''
       }
 
     case 'FETCH_POST_FAILURE':
       return {
+        ...state,
         loading: false,
-        post: {},
         error: action.payload
       }
 
@@ -77,6 +94,27 @@ const reducers = ( state = initialState, action ) => {
           ...state.answer,
           correct: action.payload,
         },
+      }
+
+    case 'SET_COUNTER_POSITION':
+      return {
+        ...state,
+        counter: action.payload,
+      }
+
+    case 'SET_SCORE_ID':
+      return {
+        ...state,
+        answer: {
+          ...state.answer,
+          score: action.payload,
+        },
+      }
+
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.payload,
       }
 
     default: return state
