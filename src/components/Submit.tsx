@@ -36,7 +36,7 @@ const Submit = () => {
       /**
        * Reset radio options
        */
-      document.querySelectorAll( 'input[type="radio"]' ).forEach( (radio) => {
+      document.querySelectorAll( 'input[type="radio"]' ).forEach( ( radio ) => {
         radio.checked = false;
       } );
 
