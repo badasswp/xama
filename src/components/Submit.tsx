@@ -20,6 +20,29 @@ const Submit = () => {
   const [ buttonText, setButtonText ]   = useState<string>( 'Submit Answer' );
 
   const onSubmit = async () => {
+    if ( answered ) {
+      /**
+       * Dispatch relevant global state values
+       */
+      dispatch( actions.setCounterPosition( counter + 1 ) );
+      dispatch( actions.setMarkerOption( 0 ) );
+
+      /**
+       * Set component state values
+       */
+      setAnswered( false );
+      setButtonText( 'Submit Answer' );
+
+      /**
+       * Reset radio options
+       */
+      document.querySelectorAll( 'input[type="radio"]' ).forEach( (radio) => {
+        radio.checked = false;
+      } );
+
+      return;
+    }
+
     /**
      * Perform POST request.
      */
