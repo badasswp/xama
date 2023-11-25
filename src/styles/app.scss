@@ -26,8 +26,6 @@
 		#content {
 			color: #555555;
 			font-size: 16px;
-			font-weight: 500;
-			font-family: 'SLB Sans', Roboto;
 			line-height: 32px;
 		}
 	}
@@ -96,7 +94,7 @@
 					background: #ECECEC;
 					display: block;
 					margin: 0;
-					font: 500 16px/28px 'SLB Sans', Arial;
+					font: 500 16px/28px Inter, Arial;
 					color: #333;
 
 					span {
@@ -149,7 +147,7 @@
 		button {
 			background: #000;
 			color: #fff;
-			font: 600 15px/24px 'SLB Sans', Arial;
+			font: 600 15px/24px Inter, Arial;
 			border: none !important;
 			border-radius: 5px;
 			width: 200px;
