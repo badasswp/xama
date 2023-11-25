@@ -36,6 +36,12 @@ const App = () => {
        * @returns {void}
        */
       dispatch( actions.fetchPostRequest() );
+      dispatch( actions.setUser(
+        {
+          ID:    xama.getAttribute( 'data-user-id' ),
+          login: xama.getAttribute( 'data-user' ),
+        }
+      ) );
 
       try {
         const id  = xama.getAttribute( 'data-id' );
