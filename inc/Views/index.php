@@ -9,7 +9,7 @@
 	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 	<script type="text/javascript" src="http://localhost:2468/wp-content/plugins/xama/dist/app.js"></script>
 </head>
-<body id="<?php global $post; echo $post->ID; ?>">
-	<div id="xama"></div>
+<body>
+	<div id="xama" data-id="<?php global $post; echo $post->ID; ?>" data-url="<?php echo home_url(); ?>" data-user="<?php echo wp_get_current_user()->user_login; ?>" data-user-id="<?php echo wp_get_current_user()->ID; ?>"></div>
 </body>
 </html>
