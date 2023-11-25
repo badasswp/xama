@@ -8,15 +8,6 @@
 	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 	<script type="text/javascript" src="http://localhost:2468/wp-content/plugins/xama/dist/app.js"></script>
-	<style type="text/css">
-		body {
-			margin: 0; padding: 0;
-			font-family: 'Inter', 'sans-serif';
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			text-rendering: optimizelegibility;
-		}
-	</style>
 </head>
 <body id="<?php global $post; echo $post->ID; ?>">
 	<div id="xama"></div>
