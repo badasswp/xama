@@ -26,6 +26,10 @@ const App = () => {
   const dispatch = useDispatch();
   const xama = document.getElementById( 'xama' );
 
+  const id   = xama.getAttribute( 'data-id' );
+  const url  = xama.getAttribute( 'data-url' );
+  const path = `${url}/wp-json/xama/v1`;
+
   useEffect( () => {
     ( async () => {
       /**
@@ -38,8 +42,8 @@ const App = () => {
       dispatch( actions.fetchPostRequest() );
       dispatch( actions.setUser(
         {
-          ID:    xama.getAttribute( 'data-user-id' ),
-          login: xama.getAttribute( 'data-user' ),
+          ID:    xama.getAttribute( 'data-user' ),
+          login: xama.getAttribute( 'data-login' ),
         }
       ) );
 
