@@ -81,17 +81,8 @@ class Scores extends MetaBox {
 	 * @return void
 	 */
 	public function get_metabox_callback( $post ): void {
-		/**
-		 * Just for proper context, the...
-		 * $this->scores_meta is an array with:
-		 * 'xama_score_user_name'       => 'User Name'
-		 * 'xama_score_user_email'      => 'User Email'
-		 * 'xama_score_total'           => 'User Score'
-		 * 'xama_score_total_questions' => 'Total No. of Questions',
-		 * 'xama_score_status_*' meta tag for e.g. xama_score_status_1
-		 * 'xama_score_answer_*' meta tag for e.g. xama_score_answer_1
-		 */
 		$this->scores_meta = get_post_meta( $post->ID );
+		$this->scores_auth = $post->post_author;
 
 		printf(
 			'<section>
@@ -111,19 +102,18 @@ class Scores extends MetaBox {
 	 * @return string
 	 */
 	protected function get_scores_heading_labels_and_data(): string {
+		$user = get_user_by( 'id', $this->scores_auth );
+
 		$scores_metadata_labels = [
-			'xama_score_user_name'       => 'User Name',
-			'xama_score_user_email'      => 'User Email',
-			'xama_score_total'           => 'User Score',
-			'xama_score_total_questions' => 'Total No. of Questions',
+			'User Name'       => $user->user_login,
+			'User Email'      => $user->user_email,
+			'User Score'      => $this->scores_meta['xama_score_total'][0] ?: 0,
+			'Total Questions' => count( xama_get_questions( $this->scores_meta['xama_score_quiz_id'][0] ) ),
 		];
 
 		$labels_and_data = '';
 
-		foreach ( $scores_metadata_labels as $key => $label ) {
-			$value = isset( $this->scores_meta[ $key ][0] )
-			? $this->scores_meta[ $key ][0] : 0;
-
+		foreach ( $scores_metadata_labels as $label => $value ) {
 			$labels_and_data .= sprintf(
 				'<p>
 					<strong>%1$s</strong><br/>
