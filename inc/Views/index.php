@@ -10,6 +10,6 @@
 	<script type="text/javascript" src="http://localhost:2468/wp-content/plugins/xama/dist/app.js"></script>
 </head>
 <body>
-	<div id="xama" data-id="<?php global $post; echo $post->ID; ?>" data-url="<?php echo home_url(); ?>" data-user="<?php echo wp_get_current_user()->user_login; ?>" data-user-id="<?php echo wp_get_current_user()->ID; ?>"></div>
+	<div id="xama" data-id="<?php global $post; echo $post->ID; ?>" data-url="<?php echo home_url(); ?>" data-user="<?php echo wp_get_current_user()->ID; ?>" data-login="<?php echo wp_get_current_user()->user_login; ?>"></div>
 </body>
 </html>
