@@ -127,9 +127,10 @@ class Score extends Post {
 	 * @return void
 	 */
 	public function register_post_column_data( $column, $post_id ): void {
-		$quiz  = get_the_title( get_post_meta( $post_id, 'xama_score_quiz_id', true ) ) ?: '';
+		$id    = get_post_meta( $post_id, 'xama_score_quiz_id', true );
+		$quiz  = get_the_title( $id ) ?: '';
 		$score = get_post_meta( $post_id, 'xama_score_total', true ) ?: 0;
-		$total = get_post_meta( $post_id, 'xama_score_total_questions', true ) ?: 0;
+		$total = count( xama_get_questions( $id ) );
 
 		$percentage = $total > 0 ? number_format( ( $score / $total ) * 100, 0 ) : 0;
 
