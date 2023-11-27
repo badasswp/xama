@@ -64,6 +64,13 @@ const actions = {
       payload: key
     }
   },
+
+  setRestPath: ( key ) => {
+    return {
+      type: 'SET_REST_PATH',
+      payload: key
+    }
+  },
 };
 
 export default actions;
