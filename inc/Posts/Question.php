@@ -227,4 +227,28 @@ class Question extends Post {
 
 		return $percentage;
 	}
+
+	/**
+	 * Get Questions belonging to ID.
+	 *
+	 * @param integer $id Post ID.
+	 * @return array
+	 */
+	public static function get_posts_by_id( $id ): array {
+		if ( ! isset( $id ) ) {
+			return [];
+		}
+
+		$posts = get_posts(
+			[
+				'post_type'      => static::$name,
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				'meta_key'       => 'xama_quiz_id',
+				'meta_value'     => $id,
+			]
+		);
+
+		return $posts;
+	}
 }
