@@ -40,6 +40,7 @@ const App = () => {
        * @returns {void}
        */
       dispatch( actions.fetchPostRequest() );
+      dispatch( actions.setRestPath( path ) );
       dispatch( actions.setUser(
         {
           ID:    xama.getAttribute( 'data-user' ),
@@ -48,10 +49,7 @@ const App = () => {
       ) );
 
       try {
-        const id  = xama.getAttribute( 'data-id' );
-        const url = xama.getAttribute( 'data-url' );
-
-        const response = await fetch( `${url}/wp-json/xama/v1/quiz/${id}` );
+        const response = await fetch( `${path}/quiz/${id}` );
         const { data } = await response.json();
 
         /**
