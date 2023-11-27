@@ -28,3 +28,22 @@ function xama_get_quizzies(): array {
 
 	return (array) wp_cache_get( $cache_key );
 }
+
+/**
+ * Get Questions belonging to ID.
+ *
+ * @param integer $id Post ID.
+ * @return array
+ */
+function xama_get_questions( $id ): array {
+	$cache_key = 'xama_cache_questions_' . (int) $id;
+
+	if ( ! wp_cache_get( $cache_key ) ) {
+		$posts = \Xama\Posts\Question::get_posts_by_id( $id );
+		wp_cache_set( $cache_key, $posts );
+
+		return (array) $posts;
+	}
+
+	return (array) wp_cache_get( $cache_key );
+}
