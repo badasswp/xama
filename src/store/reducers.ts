@@ -28,9 +28,10 @@ export interface stateProps {
     score: number;
   };
   user: {
-    ID: number,
+    ID: string,
     login: string,
   },
+  rest: string;
   counter: number;
   error: string;
 }
@@ -49,9 +50,10 @@ export const initialState: stateProps = {
     score: 0,
   },
   user: {
-    ID: 0,
+    ID: "0",
     login: '',
   },
+  rest: '',
   counter: 0,
   error: '',
 }
@@ -115,6 +117,12 @@ const reducers = ( state = initialState, action ) => {
       return {
         ...state,
         user: action.payload,
+      }
+
+    case 'SET_REST_PATH':
+      return {
+        ...state,
+        rest: action.payload,
       }
 
     default: return state
