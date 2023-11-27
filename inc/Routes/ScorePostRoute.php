@@ -125,7 +125,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 		$posts = new \WP_Query(
 			[
 				'post_type'   => Score::$name,
-				'post_author' => $this->user['ID'],
+				'post_author' => $this->user['id'],
 				'post_status' => 'publish',
 				'meta_key'    => 'xama_score_quiz_id',
 				'meta_value'  => $this->user_quiz,
@@ -138,7 +138,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 					'post_type'   => Score::$name,
 					'post_status' => 'publish',
 					'post_title'  => $this->user['login'] . ' | ' . get_the_title( $this->user_quiz ),
-					'post_author' => $this->user['ID'],
+					'post_author' => $this->user['id'],
 				]
 			);
 
@@ -160,8 +160,19 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 			return 0;
 		}
 
+		$total_score     = get_post_meta( $this->user_score, 'xama_score_total', true ) ?: 0;
+		$total_questions = count( xama_get_questions( $this->user_quiz ) );
+
+		/**
+		 * Set user's total score.
+		 * Did the user get it right, TRUE OR FALSE ?
+		 * Set user's selected option.
+		 * Set user's percentage.
+		 */
+		update_post_meta( $this->user_score, 'xama_score_total', $this->is_answer_correct() ? $total_score + 1 : $total_score );
 		update_post_meta( $this->user_score, 'xama_score_status_' . $this->user_question, (int) $this->is_answer_correct() );
 		update_post_meta( $this->user_score, 'xama_score_answer_' . $this->user_question, $this->user_answer );
+		update_post_meta( $this->user_score, 'xama_score_percentage', ( $total_score / $total_questions ) * 100 );
 
 		return $this->user_score;
 	}
