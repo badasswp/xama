@@ -15,9 +15,12 @@ import actions from '../store/actions';
 const Submit = () => {
   const dispatch = useDispatch();
 
-  const { post, answer, counter, user } = useSelector( ( state: stateProps ) => state );
-  const [ answered, setAnswered ]       = useState<boolean>( false );
-  const [ buttonText, setButtonText ]   = useState<string>( 'Submit Answer' );
+  const {
+    post, answer, counter, user, rest
+  } = useSelector( ( state: stateProps ) => state );
+
+  const [ answered, setAnswered ]     = useState<boolean>( false );
+  const [ buttonText, setButtonText ] = useState<string>( 'Submit Answer' );
 
   const onSubmit = async () => {
     if ( answered ) {
@@ -48,7 +51,7 @@ const Submit = () => {
      */
     try {
       const response = await fetch(
-        url,
+        `${rest}/score`,
         {
           method: 'POST',
           headers: {
@@ -60,10 +63,10 @@ const Submit = () => {
                 id: user.ID,
                 login: user.login
               },
-              userQuiz: post.ID,
+              userQuiz:     post.ID,
               userQuestion: post.questions[counter].ID,
-              userAnswer: answer.option,
-              userScore: answer.score,
+              userAnswer:   answer.option,
+              userScore:    answer.score,
             }
           )
         }
@@ -90,11 +93,6 @@ const Submit = () => {
   return (
     <button
       type="button"
-      style={
-        {
-          backgroundColor: 'Continue' === buttonText ? 'red' : 'black'
-        }
-      }
       onClick={ onSubmit }
     >
       { buttonText }
