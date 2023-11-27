@@ -123,45 +123,53 @@ class ScoresTest extends TestCase {
 	}
 
 	public function test_get_scores_heading_labels_and_data() {
-		$this->scores->scores_meta['xama_score_user_name'][0]       = 'John Doe';
-		$this->scores->scores_meta['xama_score_user_email'][0]      = 'john@doe.com';
-		$this->scores->scores_meta['xama_score_total'][0]           = '100';
-		$this->scores->scores_meta['xama_score_total_questions'][0] = '100';
+		$user             = new stdClass();
+		$user->ID         = 1;
+		$user->user_login = 'johndoe';
+		$user->user_email = 'john@doe.com';
 
-		\WP_Mock::userFunction( 'esc_html__' )
+		$this->scores->scores_auth                          = 1;
+		$this->scores->scores_meta['xama_score_total'][0]   = 100;
+		$this->scores->scores_meta['xama_score_quiz_id'][0] = 1;
+
+		\WP_Mock::userFunction( 'wp_cache_get' )
 			->once()
-			->with( 'User Name', Settings::DOMAIN )
-			->andReturn( 'User Name' );
+			->with( 'xama_cache_questions_1' )
+			->andReturn( [] );
 
-		\WP_Mock::userFunction( 'esc_html__' )
+		\WP_Mock::userFunction( 'wp_cache_set' )
 			->once()
-			->with( 'User Email', Settings::DOMAIN )
-			->andReturn( 'User Email' );
+			->with( 'xama_cache_questions_1', [] )
+			->andReturn( null );
 
-		\WP_Mock::userFunction( 'esc_html__' )
+		\WP_Mock::userFunction( 'get_posts' )
 			->once()
-			->with( 'User Score', Settings::DOMAIN )
-			->andReturn( 'User Score' );
+			->andReturn( [] );
 
-		\WP_Mock::userFunction( 'esc_html__' )
+		\WP_Mock::userFunction( 'get_user_by' )
 			->once()
-			->with( 'Total No. of Questions', Settings::DOMAIN )
-			->andReturn( 'Total No. of Questions' );
+			->with( 'id', 1 )
+			->andReturn( $user );
 
-		\WP_Mock::userFunction( 'esc_html' )
-			->once()
-			->with( 'John Doe' )
-			->andReturn( 'John Doe' );
+		\WP_Mock::userFunction(
+			'esc_html__',
+			[
+				'times'  => 4,
+				'return' => function ( $text, $domain = Settings::DOMAIN ) {
+					return $text;
+				},
+			]
+		);
 
-		\WP_Mock::userFunction( 'esc_html' )
-			->once()
-			->with( 'john@doe.com' )
-			->andReturn( 'john@doe.com' );
-
-		\WP_Mock::userFunction( 'esc_html' )
-			->twice()
-			->with( '100' )
-			->andReturn( '100' );
+		\WP_Mock::userFunction(
+			'esc_html',
+			[
+				'times'  => 4,
+				'return' => function ( $text ) {
+					return $text;
+				},
+			]
+		);
 
 		$reflection = new \ReflectionClass( $this->scores );
 		$method     = $reflection->getMethod( 'get_scores_heading_labels_and_data' );
