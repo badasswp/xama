@@ -51,3 +51,19 @@ function xama_get_questions( $id ): array {
 
 	return (array) wp_cache_get( $cache_key );
 }
+
+/**
+ * Return number of Questions belonging to ID.
+ *
+ * @since 1.0.0
+ *
+ * @param integer $id
+ * @return integer
+ */
+function xama_get_count_questions( $id ): int {
+	if ( ! isset( $id ) ) {
+		return 0;
+	}
+
+	return (int) count( xama_get_questions( $id ) );
+}
