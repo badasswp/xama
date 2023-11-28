@@ -127,7 +127,7 @@ class Quiz extends Post {
 	public function register_post_column_data( $column, $post_id ): void {
 		switch ( $column ) {
 			case 'questions':
-				echo $this->get_number_of_questions( $post_id );
+				echo xama_get_count_questions( $post_id );
 				break;
 
 			case 'url':
@@ -174,27 +174,5 @@ class Quiz extends Post {
 		 * @return bool
 		 */
 		return (bool) apply_filters( 'xama_quiz_visible_in_rest', false );
-	}
-
-	/**
-	 * Get number of Questions.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param int $post_id Quiz ID.
-	 * @return string
-	 */
-	protected function get_number_of_questions( $post_id ): string {
-		return count(
-			get_posts(
-				[
-					'post_type'      => Question::$name,
-					'post_status'    => 'publish',
-					'posts_per_page' => -1,
-					'meta_key'       => 'xama_quiz_id',
-					'meta_value'     => $post_id,
-				]
-			)
-		);
 	}
 }
