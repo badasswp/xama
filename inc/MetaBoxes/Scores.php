@@ -108,7 +108,7 @@ class Scores extends MetaBox {
 			'User Name'       => $user->user_login,
 			'User Email'      => $user->user_email,
 			'User Score'      => $this->scores_meta['xama_score_total'][0] ?: 0,
-			'Total Questions' => count( xama_get_questions( $this->scores_meta['xama_score_quiz_id'][0] ) ),
+			'Total Questions' => xama_get_count_questions( $this->scores_meta['xama_score_quiz_id'][0] ),
 		];
 
 		$labels_and_data = '';
