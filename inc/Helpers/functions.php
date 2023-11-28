@@ -32,6 +32,8 @@ function xama_get_quizzies(): array {
 /**
  * Get Questions belonging to ID.
  *
+ * @since 1.0.0
+ *
  * @param integer $id Post ID.
  * @return array
  */
