@@ -36,6 +36,10 @@ function xama_get_quizzies(): array {
  * @return array
  */
 function xama_get_questions( $id ): array {
+	if ( ! isset( $id ) ) {
+		return [];
+	}
+
 	$cache_key = 'xama_cache_questions_' . (int) $id;
 
 	if ( ! wp_cache_get( $cache_key ) ) {
