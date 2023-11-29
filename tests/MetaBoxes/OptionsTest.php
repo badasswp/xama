@@ -17,12 +17,12 @@ class OptionsTest extends TestCase {
 	public function setUp(): void {
 		\WP_Mock::setUp();
 
-		$this->options = new Options();
+		$this->metabox = new Options();
 
 		$post     = new stdClass();
 		$post->ID = 1;
 
-		$this->options->post = $post;
+		$this->metabox->post = $post;
 	}
 
 	public function tearDown(): void {
@@ -37,28 +37,28 @@ class OptionsTest extends TestCase {
 	}
 
 	public function test_get_heading() {
-		$heading = $this->options->get_heading();
+		$heading = $this->metabox->get_heading();
 
 		$this->assertSame( $heading, 'Question Options' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_post_type() {
-		$post_type = $this->options->get_post_type();
+		$post_type = $this->metabox->get_post_type();
 
 		$this->assertSame( $post_type, 'xama_question' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_position() {
-		$position = $this->options->get_position();
+		$position = $this->metabox->get_position();
 
 		$this->assertSame( $position, '' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_priority() {
-		$priority = $this->options->get_priority();
+		$priority = $this->metabox->get_priority();
 
 		$this->assertSame( $priority, 'high' );
 		$this->assertConditionsMet();
@@ -91,11 +91,11 @@ class OptionsTest extends TestCase {
 			->with( 1 )
 			->andReturn( 1 );
 
-		$reflection = new \ReflectionClass( $this->options );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_button' );
 		$method->setAccessible( true );
 
-		$button = $method->invoke( $this->options );
+		$button = $method->invoke( $this->metabox );
 
 		$expected = '<div>
 				<a
@@ -125,11 +125,11 @@ class OptionsTest extends TestCase {
 			->with( 1 )
 			->andReturn( 1 );
 
-		$reflection = new \ReflectionClass( $this->options );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_button_url' );
 		$method->setAccessible( true );
 
-		$url = $method->invoke( $this->options );
+		$url = $method->invoke( $this->metabox );
 
 		$expected = 'http://example.com/wp-admin/post.php?post=1&action=edit';
 
@@ -176,7 +176,7 @@ class OptionsTest extends TestCase {
 				]
 			);
 
-		$reflection = new \ReflectionClass( $this->options );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_options' );
 		$method->setAccessible( true );
 
@@ -226,7 +226,7 @@ class OptionsTest extends TestCase {
 					/>
 				</p>';
 
-		$options = $method->invoke( $this->options );
+		$options = $method->invoke( $this->metabox );
 
 		$this->assertSame( $expected, $options );
 		$this->assertConditionsMet();
@@ -256,7 +256,7 @@ class OptionsTest extends TestCase {
 			'xama_quiz_id'  => '1',
 		];
 
-		$this->options->save_meta_box( $this->options->post->ID, $this->options->post );
+		$this->metabox->save_meta_box( $this->metabox->post->ID, $this->metabox->post );
 
 		$this->assertConditionsMet();
 	}

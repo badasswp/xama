@@ -17,7 +17,7 @@ class ScoresTest extends TestCase {
 	public function setUp(): void {
 		\WP_Mock::setUp();
 
-		$this->scores = new Scores();
+		$this->metabox = new Scores();
 	}
 
 	public function tearDown(): void {
@@ -32,35 +32,35 @@ class ScoresTest extends TestCase {
 	}
 
 	public function test_get_heading() {
-		$heading = $this->scores->get_heading();
+		$heading = $this->metabox->get_heading();
 
 		$this->assertSame( $heading, 'Quiz Scores' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_post_type() {
-		$post_type = $this->scores->get_post_type();
+		$post_type = $this->metabox->get_post_type();
 
 		$this->assertSame( $post_type, 'xama_score' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_position() {
-		$position = $this->scores->get_position();
+		$position = $this->metabox->get_position();
 
 		$this->assertSame( $position, '' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_priority() {
-		$priority = $this->scores->get_priority();
+		$priority = $this->metabox->get_priority();
 
 		$this->assertSame( $priority, 'high' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_question_options() {
-		$this->scores->id = 1;
+		$this->metabox->id = 1;
 
 		\WP_Mock::userFunction( 'get_post_meta' )
 			->once()
@@ -102,7 +102,7 @@ class ScoresTest extends TestCase {
 			->with( 'Option 4' )
 			->andReturn( 'Option 4' );
 
-		$reflection = new \ReflectionClass( $this->scores );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_question_options' );
 		$method->setAccessible( true );
 
@@ -116,7 +116,7 @@ class ScoresTest extends TestCase {
 					Option 4
 				</li>';
 
-		$options = $method->invoke( $this->scores );
+		$options = $method->invoke( $this->metabox );
 
 		$this->assertSame( $expected, $options );
 		$this->assertConditionsMet();
@@ -128,9 +128,9 @@ class ScoresTest extends TestCase {
 		$user->user_login = 'johndoe';
 		$user->user_email = 'john@doe.com';
 
-		$this->scores->scores_auth                          = 1;
-		$this->scores->scores_meta['xama_score_total'][0]   = 100;
-		$this->scores->scores_meta['xama_score_quiz_id'][0] = 1;
+		$this->metabox->scores_auth                          = 1;
+		$this->metabox->scores_meta['xama_score_total'][0]   = 100;
+		$this->metabox->scores_meta['xama_score_quiz_id'][0] = 1;
 
 		\WP_Mock::userFunction( 'wp_cache_get' )
 			->once()
@@ -171,20 +171,20 @@ class ScoresTest extends TestCase {
 			]
 		);
 
-		$reflection = new \ReflectionClass( $this->scores );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_scores_heading_labels_and_data' );
 		$method->setAccessible( true );
 
-		$headings = $method->invoke( $this->scores );
+		$headings = $method->invoke( $this->metabox );
 
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_question_and_score_info() {
-		$this->scores->id = 1;
+		$this->metabox->id = 1;
 
 		// The asnwer the user provided...
-		$this->scores->scores_meta['xama_score_answer_1'][0] = 1;
+		$this->metabox->scores_meta['xama_score_answer_1'][0] = 1;
 
 		\WP_Mock::userFunction( 'get_the_title' )
 			->once()
@@ -226,14 +226,14 @@ class ScoresTest extends TestCase {
 			->with( 'User\'s Answer', 'xama' )
 			->andReturn( 'User\'s Answer' );
 
-		$reflection = new \ReflectionClass( $this->scores );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_question_and_score_info' );
 		$method->setAccessible( true );
 
 		$key      = 1;
 		$value[0] = true;
 
-		$headings = $method->invoke( $this->scores, $key, $value );
+		$headings = $method->invoke( $this->metabox, $key, $value );
 
 		$this->assertConditionsMet();
 	}

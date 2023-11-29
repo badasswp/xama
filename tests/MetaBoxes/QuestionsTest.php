@@ -17,12 +17,12 @@ class QuestionsTest extends TestCase {
 	public function setUp(): void {
 		\WP_Mock::setUp();
 
-		$this->questions = new Questions();
+		$this->metabox = new Questions();
 
 		$post     = new stdClass();
 		$post->ID = 1;
 
-		$this->questions->post = $post;
+		$this->metabox->post = $post;
 	}
 
 	public function tearDown(): void {
@@ -37,28 +37,28 @@ class QuestionsTest extends TestCase {
 	}
 
 	public function test_get_heading() {
-		$heading = $this->questions->get_heading();
+		$heading = $this->metabox->get_heading();
 
 		$this->assertSame( $heading, 'Quiz Questions' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_post_type() {
-		$post_type = $this->questions->get_post_type();
+		$post_type = $this->metabox->get_post_type();
 
 		$this->assertSame( $post_type, 'xama_quiz' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_position() {
-		$position = $this->questions->get_position();
+		$position = $this->metabox->get_position();
 
 		$this->assertSame( $position, '' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_priority() {
-		$priority = $this->questions->get_priority();
+		$priority = $this->metabox->get_priority();
 
 		$this->assertSame( $priority, 'high' );
 		$this->assertConditionsMet();
@@ -89,7 +89,7 @@ class QuestionsTest extends TestCase {
 			->with( 'Add New Question', Settings::DOMAIN )
 			->andReturn( 'Add New Question' );
 
-		$reflection = new \ReflectionClass( $this->questions );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_button' );
 		$method->setAccessible( true );
 
@@ -100,7 +100,7 @@ class QuestionsTest extends TestCase {
 				>Add New Question</a>
 			</div>';
 
-		$button = $method->invoke( $this->questions );
+		$button = $method->invoke( $this->metabox );
 
 		$this->assertSame( $expected, $button );
 		$this->assertConditionsMet();
@@ -170,7 +170,7 @@ class QuestionsTest extends TestCase {
 				]
 			);
 
-		$reflection = new \ReflectionClass( $this->questions );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_questions' );
 		$method->setAccessible( true );
 
@@ -194,14 +194,14 @@ class QuestionsTest extends TestCase {
 				</li>
 			</ul>';
 
-		$questions = $method->invoke( $this->questions );
+		$questions = $method->invoke( $this->metabox );
 
 		$this->assertSame( $expected, $questions );
 		$this->assertConditionsMet();
 	}
 
 	public function test_get_options() {
-		$this->questions->id = 1;
+		$this->metabox->id = 1;
 
 		\WP_Mock::userFunction( 'get_post_meta' )
 			->once()
@@ -234,7 +234,7 @@ class QuestionsTest extends TestCase {
 				]
 			);
 
-		$reflection = new \ReflectionClass( $this->questions );
+		$reflection = new \ReflectionClass( $this->metabox );
 		$method     = $reflection->getMethod( 'get_options' );
 		$method->setAccessible( true );
 
@@ -248,7 +248,7 @@ class QuestionsTest extends TestCase {
 					Option Value 4
 				</li>';
 
-		$options = $method->invoke( $this->questions );
+		$options = $method->invoke( $this->metabox );
 
 		$this->assertSame( $expected, $options );
 		$this->assertConditionsMet();
