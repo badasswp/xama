@@ -70,6 +70,26 @@ class QuizTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	public function test_register_post_column_data() {
+		$column = 'questions';
+		$post   = new stdClass();
+
+		$post->ID         = 1;
+		$post->post_title = 'What a Wonderful World?';
+
+		\WP_Mock::userFunction( 'wp_cache_get' )
+			->once()
+			->with( 'xama_cache_questions_1' )
+			->andReturn( [ $post ] );
+
+		\WP_Mock::expectAction( 'xama_quiz_column_data', 'questions', 1 );
+
+		$this->post->register_post_column_data( $column, $post->ID );
+
+		$this->expectOutputString( 1 );
+		$this->assertConditionsMet();
+	}
+
 	public function test_register_post_columns() {
 		$columns = [
 			'name'      => 'Name',
