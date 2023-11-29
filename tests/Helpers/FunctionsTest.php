@@ -36,7 +36,7 @@ class FunctionsTest extends TestCase {
 		];
 
 		\WP_Mock::userFunction( 'wp_cache_get' )
-			->twice()
+			->once()
 			->with( 'xama_cache_quizzies' )
 			->andReturn( $posts );
 
