@@ -73,12 +73,12 @@ class QuestionTest extends TestCase {
 	public function test_url_slug() {
 		$slug = $this->post->url_slug();
 
-		$this->assertSame( $slug, 'quiz' );
+		$this->assertSame( $slug, 'question' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_is_post_visible_in_rest() {
-		\WP_Mock::expectFilter( 'xama_quiz_visible_in_rest', false );
+		\WP_Mock::expectFilter( 'xama_question_visible_in_rest', false );
 
 		$this->post->is_post_visible_in_rest();
 
