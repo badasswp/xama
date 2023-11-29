@@ -17,16 +17,17 @@
  * @return array
  */
 function xama_get_quizzies(): array {
-	$cache_key = 'xama_cache_quizzies';
+	$cache_key  = 'xama_cache_quizzies';
+	$cache_data = wp_cache_get( $cache_key );
 
-	if ( ! wp_cache_get( $cache_key ) ) {
+	if ( ! $cache_data ) {
 		$posts = \Xama\Posts\Quiz::get_posts();
 		wp_cache_set( $cache_key, $posts );
 
 		return (array) $posts;
 	}
 
-	return (array) wp_cache_get( $cache_key );
+	return (array) $cache_data;
 }
 
 /**
@@ -42,16 +43,17 @@ function xama_get_questions( $id ): array {
 		return [];
 	}
 
-	$cache_key = 'xama_cache_questions_' . (int) $id;
+	$cache_key  = 'xama_cache_questions_' . (int) $id;
+	$cache_data = wp_cache_get( $cache_key );
 
-	if ( ! wp_cache_get( $cache_key ) ) {
+	if ( ! $cache_data ) {
 		$posts = \Xama\Posts\Question::get_posts_by_id( $id );
 		wp_cache_set( $cache_key, $posts );
 
 		return (array) $posts;
 	}
 
-	return (array) wp_cache_get( $cache_key );
+	return (array) $cache_data;
 }
 
 /**
