@@ -152,4 +152,32 @@ class QuestionTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_posts_by_id() {
+		$post = $this->getMockBuilder( '\WP_Post' )
+					->disableOriginalConstructor()
+					->getMock();
+
+		$post->ID    = 1;
+		$post->title = 'What is WordPress';
+
+		\WP_Mock::userFunction( 'get_posts' )
+			->once()
+			->with(
+				[
+					'post_type'      => 'xama_question',
+					'post_status'    => 'publish',
+					'posts_per_page' => -1,
+					'meta_key'       => 'xama_quiz_id',
+					'meta_value'     => 1,
+				]
+			)
+			->andReturns( [ $post ] );
+
+		$posts = $this->post->get_posts_by_id( 1 );
+
+		$this->assertInstanceOf( \WP_Post::class, $posts[0] );
+		$this->assertIsArray( $posts );
+		$this->assertConditionsMet();
+	}
 }
