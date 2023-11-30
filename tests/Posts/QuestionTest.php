@@ -70,6 +70,41 @@ class QuestionTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	public function test_register_post_column_data() {
+		$post   = new stdClass();
+		$column = 'quiz';
+
+		$post->ID         = 1;
+		$post->post_title = 'What is WordPress?';
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_quiz_id', true )
+			->andReturn( 1 );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_answer', true )
+			->andReturn( 'A' );
+
+		\WP_Mock::userFunction( 'get_the_title' )
+			->once()
+			->with( 1 )
+			->andReturn( 'WordPress Test Quiz' );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 'WordPress Test Quiz' )
+			->andReturn( 'WordPress Test Quiz' );
+
+		\WP_Mock::expectAction( 'xama_question_column_data', 'quiz', 1 );
+
+		$this->post->register_post_column_data( $column, $post->ID );
+
+		$this->expectOutputString( 'WordPress Test Quiz' );
+		$this->assertConditionsMet();
+	}
+
 	public function test_url_slug() {
 		$slug = $this->post->url_slug();
 
