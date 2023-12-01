@@ -55,6 +55,45 @@ class ScoreTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	public function test_register_post_column_data() {
+		$column = 'percentage';
+		$post   = new stdClass();
+
+		$post->ID         = 1;
+		$post->post_title = 'What a Wonderful World?';
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 100, 'xama_score_quiz_id', true )
+			->andReturn( 1 );
+
+		\WP_Mock::userFunction( 'get_the_title' )
+			->with( 1 )
+			->andReturn( 'johndoe | WordPress Quiz' );
+
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 100, 'xama_score_total', true )
+			->andReturn( 2 );
+
+		\WP_Mock::userFunction( 'wp_cache_get' )
+			->once()
+			->with( 'xama_cache_questions_1' )
+			->andReturn( [ $post, $post, $post, $post ] );
+
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 50 )
+			->andReturn( 50 );
+
+		\WP_Mock::expectAction( 'xama_score_column_data', 'percentage', 100 );
+
+		$this->post->register_post_column_data( $column, 100 );
+
+		$this->expectOutputString( 50 );
+		$this->assertConditionsMet();
+	}
+
 	public function test_register_post_columns() {
 		$columns = [
 			'quiz'       => 'Quiz',
