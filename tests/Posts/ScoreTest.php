@@ -54,4 +54,19 @@ class ScoreTest extends TestCase {
 		$this->assertSame( $supports, [ 'title', 'thumbnail' ] );
 		$this->assertConditionsMet();
 	}
+
+	public function test_url_slug() {
+		$slug = $this->post->url_slug();
+
+		$this->assertSame( $slug, 'score' );
+		$this->assertConditionsMet();
+	}
+
+	public function test_is_post_visible_in_rest() {
+		\WP_Mock::expectFilter( 'xama_score_visible_in_rest', false );
+
+		$this->post->is_post_visible_in_rest();
+
+		$this->assertConditionsMet();
+	}
 }
