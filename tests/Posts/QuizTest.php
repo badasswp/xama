@@ -82,9 +82,14 @@ class QuizTest extends TestCase {
 			->with( 'xama_cache_questions_1' )
 			->andReturn( [ $post ] );
 
+		\WP_Mock::userFunction( 'esc_html' )
+			->once()
+			->with( 1 )
+			->andReturn( 1 );
+
 		\WP_Mock::expectAction( 'xama_quiz_column_data', 'questions', 1 );
 
-		$this->post->register_post_column_data( $column, $post->ID );
+		$this->post->register_post_column_data( $column, 1 );
 
 		$this->expectOutputString( 1 );
 		$this->assertConditionsMet();
