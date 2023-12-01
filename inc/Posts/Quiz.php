@@ -127,7 +127,7 @@ class Quiz extends Post {
 	public function register_post_column_data( $column, $post_id ): void {
 		switch ( $column ) {
 			case 'questions':
-				echo xama_get_count_questions( $post_id );
+				echo esc_html( xama_get_count_questions( $post_id ) );
 				break;
 
 			case 'url':
