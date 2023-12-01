@@ -55,6 +55,41 @@ class ScoreTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	public function test_register_post_columns() {
+		$columns = [
+			'quiz'       => 'Quiz',
+			'score'      => 'Score',
+			'total'      => 'Total',
+			'percentage' => 'Percentage (%)',
+			'date'       => 'Date',
+		];
+
+		\WP_Mock::userFunction(
+			'esc_html__',
+			[
+				'return' => function ( $column, $domain = Settings::DOMAIN ) {
+					return $column;
+				},
+			]
+		);
+
+		\WP_Mock::expectFilter( 'xama_score_columns', $columns );
+
+		$columns = $this->post->register_post_columns( $columns );
+
+		$this->assertSame(
+			$columns,
+			[
+				'quiz'       => 'Quiz',
+				'score'      => 'Score',
+				'total'      => 'Total',
+				'percentage' => 'Percentage (%)',
+				'date'       => 'Date',
+			]
+		);
+		$this->assertConditionsMet();
+	}
+
 	public function test_url_slug() {
 		$slug = $this->post->url_slug();
 
