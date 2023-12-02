@@ -34,4 +34,14 @@ class BootTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_plugin_domain() {
+		\WP_Mock::userFunction( 'load_plugin_textdomain' )
+			->once()
+			->with( 'xama', false, '/../../languages' );
+
+		$this->boot->register_plugin_domain();
+
+		$this->assertConditionsMet();
+	}
 }
