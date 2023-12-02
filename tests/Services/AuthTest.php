@@ -34,4 +34,35 @@ class AuthTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_auth_middleware() {
+		$post_types = [
+			'xama_quiz',
+			'xama_question',
+			'xama_score',
+		];
+
+		$user             = new stdClass();
+		$user->ID         = 1;
+		$user->user_login = 'johndoe';
+		$user->roles[0]   = 'xama';
+
+		\WP_Mock::expectFilter( 'xama_auth_pages', $post_types );
+
+		\WP_Mock::userFunction( 'get_post_type' )
+			->once()
+			->andReturn( 'xama_quiz' );
+
+		\WP_Mock::userFunction( 'is_user_logged_in' )
+			->once()
+			->andReturn( true );
+
+		\WP_Mock::userFunction( 'wp_get_current_user' )
+			->once()
+			->andReturn( $user );
+
+		$this->auth->register_auth_middleware();
+
+		$this->assertConditionsMet();
+	}
 }
