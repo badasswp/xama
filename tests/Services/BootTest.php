@@ -44,4 +44,35 @@ class BootTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_plugin_role() {
+		\WP_Mock::userFunction( 'get_role' )
+			->once()
+			->with( 'xama' )
+			->andReturn( null );
+
+		\WP_Mock::userFunction( 'add_role' )
+			->once()
+			->with(
+				'xama',
+				'Xama',
+				[
+					'read'               => true,
+					'edit_posts'         => false,
+					'upload_files'       => false,
+					'manage_categories'  => false,
+					'edit_others_posts'  => false,
+					'delete_posts'       => false,
+					'edit_theme_options' => false,
+					'install_plugins'    => false,
+					'edit_users'         => false,
+					'edit_plugins'       => false,
+				]
+			)
+			->andReturn( null );
+
+		$this->boot->register_plugin_role();
+
+		$this->assertConditionsMet();
+	}
 }
