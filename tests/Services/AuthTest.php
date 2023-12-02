@@ -65,4 +65,16 @@ class AuthTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_auth_login() {
+		$this->auth->register_auth_login();
+
+		$this->assertConditionsMet();
+	}
+
+	public function test_register_auth_logout() {
+		$this->auth->register_auth_logout();
+
+		$this->assertConditionsMet();
+	}
 }
