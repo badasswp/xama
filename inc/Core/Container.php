@@ -40,6 +40,8 @@ final class Container implements Registrable {
 	 * Initialize services in the constructor.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		self::$services = [

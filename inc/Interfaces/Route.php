@@ -15,6 +15,8 @@ interface Route {
 	/**
 	 * Request Callback.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @return WP_REST_Response
 	 */
 	public function request(): \WP_REST_Response;
@@ -22,12 +24,16 @@ interface Route {
 	/**
 	 * Response Callback.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @return WP_REST_Response
 	 */
 	public function response(): \WP_REST_Response;
 
 	/**
 	 * Permissions callback for endpoints.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return bool
 	 */
