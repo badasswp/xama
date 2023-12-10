@@ -39,7 +39,8 @@ class PostTest extends TestCase {
 	public function test_register() {
 		\WP_Mock::expectActionAdded( 'init', [ $this->post, 'register_post_types' ] );
 
-		\WP_Mock::expectFilterAdded( 'manage_xama_quiz_posts_columns', [ $this->post->objects[0], 'register_post_columns' ], 10, 2 );\WP_Mock::expectActionAdded( 'manage_xama_quiz_posts_custom_column', [ $this->post->objects[0], 'register_post_column_data' ], 10, 2 );
+		\WP_Mock::expectFilterAdded( 'manage_xama_quiz_posts_columns', [ $this->post->objects[0], 'register_post_columns' ], 10, 2 );
+		\WP_Mock::expectActionAdded( 'manage_xama_quiz_posts_custom_column', [ $this->post->objects[0], 'register_post_column_data' ], 10, 2 );
 		\WP_Mock::expectActionAdded( 'publish_xama_quiz', [ $this->post->objects[0], 'save_post_type' ], 10, 2 );
 
 		\WP_Mock::expectFilterAdded( 'manage_xama_question_posts_columns', [ $this->post->objects[1], 'register_post_columns' ], 10, 2 );
