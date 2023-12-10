@@ -10,8 +10,12 @@ use Xama\Services\REST;
 use Xama\Services\MetaBox;
 use Xama\Services\Template;
 
-use Xama\MetaBoxes\Answer;
+use Xama\Posts\Quiz;
+use Xama\Posts\Question;
+use Xama\Posts\Score;
+
 use Xama\MetaBoxes\Options;
+use Xama\MetaBoxes\Answer;
 use Xama\MetaBoxes\Scores;
 use Xama\MetaBoxes\Questions;
 
@@ -60,6 +64,15 @@ class ContainerTest extends TestCase {
 				Options::class,
 				Questions::class,
 				Scores::class,
+			]
+		);
+
+		\WP_Mock::expectFilter(
+			'xama_post_types',
+			[
+				Quiz::class,
+				Question::class,
+				Score::class,
 			]
 		);
 
