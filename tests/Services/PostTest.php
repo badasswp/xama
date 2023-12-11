@@ -55,4 +55,89 @@ class PostTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_post_types() {
+		$labels = [
+			'name'          => 'Quizzes',
+			'singular_name' => 'Quiz',
+			'add_new'       => 'Add New Quiz',
+			'add_new_item'  => 'Add New Quiz',
+			'new_item'      => 'New Quiz',
+			'edit_item'     => 'Edit Quiz',
+			'view_item'     => 'View Quiz',
+			'search_items'  => 'Search Quizzes',
+			'menu_name'     => 'Quizzes',
+		];
+
+		\WP_Mock::userFunction( 'post_type_exists' )
+			->once()
+			->with( 'xama_quiz' )
+			->andReturn( false );
+
+		\WP_Mock::userFunction( 'post_type_exists' )
+			->once()
+			->with( 'xama_question' )
+			->andReturn( true );
+
+		\WP_Mock::userFunction( 'post_type_exists' )
+			->once()
+			->with( 'xama_score' )
+			->andReturn( true );
+
+		\WP_Mock::userFunction(
+			'__',
+			[
+				'times' => 9,
+				'return' => function( $text ) {
+					return $text;
+				}
+			]
+		);
+
+		\WP_Mock::expectFilter(
+			'xama_quiz_supports',
+			[ 'title', 'editor' ]
+		);
+
+		\WP_Mock::expectFilter(
+			'xama_quiz_visible_in_rest',
+			false
+		);
+
+		\WP_Mock::expectFilter(
+			'xama_post_options',
+			[
+				'labels'       => $labels,
+				'public'       => true,
+				'has_archive'  => true,
+				'show_in_menu' => 'xama',
+				'supports'     => [ 'title', 'editor' ],
+				'show_in_rest' => false,
+				'rewrite'      => [
+					'slug' => 'quiz'
+				],
+			]
+		);
+
+		\WP_Mock::userFunction( 'register_post_type' )
+			->once()
+			->with(
+				'xama_quiz',
+				[
+					'labels'       => $labels,
+					'public'       => true,
+					'has_archive'  => true,
+					'show_in_menu' => 'xama',
+					'supports'     => [ 'title', 'editor' ],
+					'show_in_rest' => false,
+					'rewrite'      => [
+						'slug' => 'quiz'
+					],
+				]
+			);
+
+		$this->post->register_post_types();
+
+		$this->assertConditionsMet();
+	}
 }
