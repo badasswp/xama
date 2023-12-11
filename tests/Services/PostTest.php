@@ -87,10 +87,10 @@ class PostTest extends TestCase {
 		\WP_Mock::userFunction(
 			'__',
 			[
-				'times' => 9,
-				'return' => function( $text ) {
+				'times'  => 9,
+				'return' => function ( $text ) {
 					return $text;
-				}
+				},
 			]
 		);
 
@@ -114,7 +114,7 @@ class PostTest extends TestCase {
 				'supports'     => [ 'title', 'editor' ],
 				'show_in_rest' => false,
 				'rewrite'      => [
-					'slug' => 'quiz'
+					'slug' => 'quiz',
 				],
 			]
 		);
@@ -131,7 +131,7 @@ class PostTest extends TestCase {
 					'supports'     => [ 'title', 'editor' ],
 					'show_in_rest' => false,
 					'rewrite'      => [
-						'slug' => 'quiz'
+						'slug' => 'quiz',
 					],
 				]
 			);
