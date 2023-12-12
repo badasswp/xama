@@ -19,6 +19,15 @@ use Xama\Interfaces\Registrable;
 
 class REST extends Service implements Registrable {
 	/**
+	 * REST routes.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	private array $routes;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
