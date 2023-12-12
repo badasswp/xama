@@ -1,6 +1,7 @@
 /vendor/
 /node_modules/
 /dist/
+/build/
 
 composer.lock
 package-lock.json
