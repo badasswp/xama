@@ -17,6 +17,15 @@ use Xama\Middleware\WPAuthMiddleware;
 
 class Auth extends Service implements Registrable {
 	/**
+	 * Middleware Instance.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var \WPAuthMiddleware
+	 */
+	public $auth;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
