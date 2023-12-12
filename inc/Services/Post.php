@@ -19,6 +19,15 @@ use Xama\Interfaces\Registrable;
 
 class Post extends Service implements Registrable {
 	/**
+	 * Post Objects
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $objects;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
