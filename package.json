@@ -23,7 +23,8 @@
     "coverage": "npm-run-all --parallel coverage:*",
     "coverage:php": "php -dxdebug.mode=coverage vendor/bin/phpunit",
     "coverage:text": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text",
-    "coverage:xml": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-cobertura cobertura.xml"
+    "coverage:xml": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-cobertura cobertura.xml",
+    "wp-build": "./bin/build.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",
