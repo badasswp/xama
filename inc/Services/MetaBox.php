@@ -20,7 +20,7 @@ use Xama\Interfaces\Registrable;
 
 class MetaBox extends Service implements Registrable {
 	/**
-	 * MetaBox Objects
+	 * MetaBox Objects.
 	 *
 	 * @since 1.0.0
 	 *

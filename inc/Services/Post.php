@@ -19,7 +19,7 @@ use Xama\Interfaces\Registrable;
 
 class Post extends Service implements Registrable {
 	/**
-	 * Post Objects
+	 * Post Objects.
 	 *
 	 * @since 1.0.0
 	 *
