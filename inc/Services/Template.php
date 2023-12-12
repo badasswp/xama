@@ -16,6 +16,15 @@ use Xama\Interfaces\Registrable;
 
 class Template extends Service implements Registrable {
 	/**
+	 * Plugin Template.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	private string $template;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
