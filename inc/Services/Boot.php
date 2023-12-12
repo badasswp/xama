@@ -17,6 +17,15 @@ use Xama\Interfaces\Registrable;
 
 class Boot extends Service implements Registrable {
 	/**
+	 * Language DIR.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	private string $domain;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
