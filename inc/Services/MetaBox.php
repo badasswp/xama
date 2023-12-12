@@ -20,6 +20,15 @@ use Xama\Interfaces\Registrable;
 
 class MetaBox extends Service implements Registrable {
 	/**
+	 * MetaBox Objects
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $objects;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
