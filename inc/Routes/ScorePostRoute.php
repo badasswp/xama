@@ -39,6 +39,15 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	public string $endpoint = '/score';
 
 	/**
+	 * WP User.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $user;
+
+	/**
 	 * Request Callback.
 	 *
 	 * @since 1.0.0
@@ -46,11 +55,11 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return WP_REST_Response
 	 */
 	public function request(): \WP_REST_Response {
-		$this->user          = $this->request->get_json_params()['user'];
-		$this->user_quiz     = $this->request->get_json_params()['userQuiz'];
-		$this->user_question = $this->request->get_json_params()['userQuestion'];
-		$this->user_answer   = $this->request->get_json_params()['userAnswer'];
-		$this->user_score    = $this->request->get_json_params()['userScore'];
+		$this->user['user']     = $this->request->get_json_params()['user'];
+		$this->user['quiz']     = $this->request->get_json_params()['userQuiz'];
+		$this->user['question'] = $this->request->get_json_params()['userQuestion'];
+		$this->user['answer']   = $this->request->get_json_params()['userAnswer'];
+		$this->user['score']    = $this->request->get_json_params()['userScore'];
 
 		return $this->response();
 	}
@@ -63,13 +72,13 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return WP_REST_Response
 	 */
 	public function response(): \WP_REST_Response {
-		if ( ! preg_match( '/[1-9]+/', $this->user_question ) || ! preg_match( '/^[1-4]$/', $this->user_answer ) ) {
+		if ( ! preg_match( '/[1-9]+/', $this->user['question'] ) || ! preg_match( '/^[1-4]$/', $this->user['answer'] ) ) {
 			$response = [
 				'status'  => 400,
 				'message' => 'Bad Request!',
 				'request' => [
-					'userQuestion' => $this->user_question,
-					'userAnswer'   => $this->user_answer,
+					'userQuestion' => $this->user['question'],
+					'userAnswer'   => $this->user['answer'],
 				],
 			];
 
@@ -99,13 +108,13 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 			'message' => 'Score Post created successfully!',
 			'data'    => [
 				'quiz'          => [
-					'ID'    => $this->user_quiz,
-					'title' => get_the_title( $this->user_quiz ),
+					'ID'    => $this->user['quiz'],
+					'title' => get_the_title( $this->user['quiz'] ),
 				],
 				'question'      => [
-					'ID'         => $this->user_question,
-					'title'      => get_the_title( $this->user_question ),
-					'userAnswer' => $this->user_answer,
+					'ID'         => $this->user['question'],
+					'title'      => get_the_title( $this->user['question'] ),
+					'userAnswer' => $this->user['answer'],
 				],
 				'answer'        => $this->get_correct_answer(),
 				'isUserCorrect' => $this->is_answer_correct(),
@@ -125,27 +134,27 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 		$posts = new \WP_Query(
 			[
 				'post_type'   => Score::$name,
-				'post_author' => $this->user['id'],
+				'post_author' => $this->user['user']['id'],
 				'post_status' => 'publish',
 				'meta_key'    => 'xama_score_quiz_id',
-				'meta_value'  => $this->user_quiz,
+				'meta_value'  => $this->user['quiz'],
 			]
 		);
 
 		if ( ! $posts->found_posts ) {
-			$this->user_score = wp_insert_post(
+			$this->user['score'] = wp_insert_post(
 				[
 					'post_type'   => Score::$name,
 					'post_status' => 'publish',
-					'post_title'  => $this->user['login'] . ' | ' . get_the_title( $this->user_quiz ),
+					'post_title'  => $this->user['login'] . ' | ' . get_the_title( $this->user['quiz'] ),
 					'post_author' => $this->user['id'],
 				]
 			);
 
-			update_post_meta( $this->user_score, 'xama_score_quiz_id', $this->user_quiz );
+			update_post_meta( $this->user['score'], 'xama_score_quiz_id', $this->user['quiz'] );
 		}
 
-		return $this->user_score;
+		return $this->user['score'];
 	}
 
 	/**
@@ -156,12 +165,12 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return integer
 	 */
 	protected function create_score_meta(): int {
-		if ( ! $this->user_score ) {
+		if ( ! $this->user['score'] ) {
 			return 0;
 		}
 
-		$total_score     = get_post_meta( $this->user_score, 'xama_score_total', true ) ?: 0;
-		$total_questions = count( xama_get_questions( $this->user_quiz ) );
+		$total_score     = get_post_meta( $this->user['score'], 'xama_score_total', true ) ?: 0;
+		$total_questions = count( xama_get_questions( $this->user['quiz'] ) );
 
 		/**
 		 * Set user's total score.
@@ -169,12 +178,12 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 		 * Set user's selected option.
 		 * Set user's percentage.
 		 */
-		update_post_meta( $this->user_score, 'xama_score_total', $this->is_answer_correct() ? $total_score + 1 : $total_score );
-		update_post_meta( $this->user_score, 'xama_score_status_' . $this->user_question, (int) $this->is_answer_correct() );
-		update_post_meta( $this->user_score, 'xama_score_answer_' . $this->user_question, $this->user_answer );
-		update_post_meta( $this->user_score, 'xama_score_percentage', ( $total_score / $total_questions ) * 100 );
+		update_post_meta( $this->user['score'], 'xama_score_total', $this->is_answer_correct() ? $total_score + 1 : $total_score );
+		update_post_meta( $this->user['score'], 'xama_score_status_' . $this->user['question'], (int) $this->is_answer_correct() );
+		update_post_meta( $this->user['score'], 'xama_score_answer_' . $this->user['question'], $this->user['answer'] );
+		update_post_meta( $this->user['score'], 'xama_score_percentage', ( $total_score / $total_questions ) * 100 );
 
-		return $this->user_score;
+		return $this->user['score'];
 	}
 
 	/**
@@ -185,7 +194,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return boolean
 	 */
 	protected function is_answer_correct(): bool {
-		if ( (int) $this->get_correct_answer() === (int) $this->user_answer ) {
+		if ( (int) $this->get_correct_answer() === (int) $this->user['answer'] ) {
 			return true;
 		}
 
@@ -200,11 +209,11 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return string
 	 */
 	protected function get_correct_answer(): string {
-		if ( is_null( $this->user_question ) ) {
+		if ( is_null( $this->user['question'] ) ) {
 			return '';
 		}
 
-		return get_post_meta( $this->user_question, 'xama_answer', true );
+		return get_post_meta( $this->user['question'], 'xama_answer', true );
 	}
 
 	/**
