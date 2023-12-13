@@ -38,6 +38,15 @@ class QuizGetIDRoute extends Route implements \Xama\Interfaces\Route {
 	public string $endpoint = '/quiz/(?P<id>\d+)';
 
 	/**
+	 * Response Data.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $data;
+
+	/**
 	 * Request Callback.
 	 *
 	 * @since 1.0.0

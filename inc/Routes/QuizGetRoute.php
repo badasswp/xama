@@ -37,6 +37,15 @@ class QuizGetRoute extends Route implements \Xama\Interfaces\Route {
 	public string $endpoint = '/quiz';
 
 	/**
+	 * Response Data.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $data;
+
+	/**
 	 * Request Callback.
 	 *
 	 * @since 1.0.0
