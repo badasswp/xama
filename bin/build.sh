@@ -23,6 +23,7 @@ done
 cp "$PLUGIN_FILE" "$PLUGIN_BUILD/$PLUGIN_FILE"
 cp "readme.txt" "$PLUGIN_BUILD/readme.txt"
 cp "composer.json" "$PLUGIN_BUILD/composer.json"
+cp "composer.lock" "$PLUGIN_BUILD/composer.lock"
 
 # Set up Vendor within Build
 cd "$PLUGIN_BUILD"
