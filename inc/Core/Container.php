@@ -12,6 +12,7 @@
 namespace Xama\Core;
 
 use Xama\Services\Auth;
+use Xama\Services\Assets;
 use Xama\Services\Boot;
 use Xama\Services\Menu;
 use Xama\Services\REST;
@@ -47,6 +48,7 @@ final class Container implements Registrable {
 			MetaBox::class,
 			REST::class,
 			Template::class,
+			Assets::class,
 		];
 	}
 
