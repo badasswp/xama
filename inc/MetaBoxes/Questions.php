@@ -74,6 +74,23 @@ class Questions extends MetaBox {
 	}
 
 	/**
+	 * Set Visibility of MetaBox.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return boolean
+	 */
+	public function is_visible(): bool {
+		global $pagenow;
+
+		if ( is_admin() && $pagenow === 'post-new.php' && $this->get_post_type() === $_GET['post_type'] ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Return callback.
 	 *
 	 * @since 1.0.0
