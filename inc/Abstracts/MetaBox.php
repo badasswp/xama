@@ -110,6 +110,17 @@ abstract class MetaBox {
 	abstract public function save_meta_box( $post_id, $post ): void;
 
 	/**
+	 * Set Visibility of MetaBox.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return boolean
+	 */
+	public function is_visible(): bool {
+		return true;
+	}
+
+	/**
 	 * Register meta box.
 	 *
 	 * @since 1.0.0
@@ -135,6 +146,10 @@ abstract class MetaBox {
 				'priority'  => $this->get_priority(),
 			]
 		);
+
+		if ( ! $this->is_visible() ) {
+			return;
+		}
 
 		add_meta_box(
 			$meta_box['name'],
