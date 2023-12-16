@@ -62,6 +62,10 @@ class MetaBoxTest extends TestCase {
 			]
 		);
 
+		\WP_Mock::userFunction( 'is_admin' )
+			->once()
+			->andReturn( true );
+
 		// Loop 1
 		\WP_Mock::expectFilter(
 			'xama_metabox_options',
