@@ -83,7 +83,7 @@ class Questions extends MetaBox {
 	public function is_visible(): bool {
 		global $pagenow;
 
-		if ( is_admin() && $pagenow === 'post-new.php' && $this->get_post_type() === $_GET['post_type'] ) {
+		if ( is_admin() && 'post-new.php' === $pagenow && $this->get_post_type() === $_GET['post_type'] ) {
 			return false;
 		}
 
