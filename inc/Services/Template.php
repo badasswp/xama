@@ -59,7 +59,7 @@ class Template extends Service implements Registrable {
 			'xama_score',
 		];
 
-		if ( ! in_array( get_post_type(), $post_types, true ) ) {
+		if ( ! in_array( get_post_type(), $post_types, true ) || ! file_exists( $this->template ) ) {
 			return $template;
 		}
 
