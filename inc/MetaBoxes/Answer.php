@@ -73,6 +73,15 @@ class Answer extends MetaBox {
 	}
 
 	/**
+	 * Answer Options.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	private string $options = '';
+
+	/**
 	 * Return callback.
 	 *
 	 * @since 1.0.0
