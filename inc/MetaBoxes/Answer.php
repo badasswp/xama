@@ -79,7 +79,7 @@ class Answer extends MetaBox {
 	 *
 	 * @var string
 	 */
-	private string $options = '';
+	public string $options = '';
 
 	/**
 	 * Return callback.
