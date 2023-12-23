@@ -49,6 +49,8 @@ abstract class Route implements \Xama\Interfaces\Route {
 	/**
 	 * Request Callback.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @return WP_REST_Response
 	 */
 	abstract public function request(): \WP_REST_Response;
@@ -56,12 +58,16 @@ abstract class Route implements \Xama\Interfaces\Route {
 	/**
 	 * Response Callback.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @return WP_REST_Response
 	 */
 	abstract public function response(): \WP_REST_Response;
 
 	/**
 	 * Permissions callback for endpoints.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return bool
 	 */
