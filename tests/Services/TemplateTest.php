@@ -47,4 +47,18 @@ class TemplateTest extends TestCase {
 		$this->assertSame( $template, '' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_register_xama_template() {
+		$wp_template = '';
+
+		\WP_Mock::userFunction( 'get_post_type' )
+			->once()
+			->with()
+			->andReturn( 'xama_quiz' );
+
+		$template = $this->template->register_template( $wp_template );
+
+		$this->assertSame( $template, $this->template->template );
+		$this->assertConditionsMet();
+	}
 }
