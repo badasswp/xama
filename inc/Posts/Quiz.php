@@ -78,6 +78,8 @@ class Quiz extends Post {
 	 * @return void
 	 */
 	public function save_post_type( $post_id, $post ): void {
+		flush_rewrite_rules();
+
 		/**
 		 * Fires after saving Xama quiz.
 		 *

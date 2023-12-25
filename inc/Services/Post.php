@@ -86,15 +86,4 @@ class Post extends Service implements Registrable {
 			$object->register_post_type();
 		}
 	}
-
-	/**
-	 * Flush Rewrite Cache.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	public function rewrite_flush(): void {
-		flush_rewrite_rules();
-	}
 }
