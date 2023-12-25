@@ -22,7 +22,7 @@ class Template extends Service implements Registrable {
 	 *
 	 * @var string
 	 */
-	private string $template;
+	public string $template;
 
 	/**
 	 * Set up.
