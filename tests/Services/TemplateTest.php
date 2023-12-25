@@ -17,7 +17,8 @@ class TemplateTest extends TestCase {
 		\WP_Mock::setUp();
 
 		\WP_Mock::userFunction( 'plugin_dir_path' )
-			->once();
+			->once()
+			->andReturn( './inc/Services/' );
 
 		$this->template = new Template();
 	}
@@ -31,6 +32,19 @@ class TemplateTest extends TestCase {
 
 		$this->template->register();
 
+		$this->assertConditionsMet();
+	}
+
+	public function test_register_wp_template() {
+		$wp_template = '';
+
+		\WP_Mock::userFunction( 'get_post_type' )
+			->once()
+			->andReturn( 'post' );
+
+		$template = $this->template->register_template( $wp_template );
+
+		$this->assertSame( $template, '' );
 		$this->assertConditionsMet();
 	}
 }
