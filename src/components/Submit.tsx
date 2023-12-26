@@ -73,7 +73,6 @@ const Submit = () => {
       );
 
       const { data } = await response.json();
-      console.log( data );
       /**
        * Dispatch relevant global state values
        */
