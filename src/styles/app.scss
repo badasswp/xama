@@ -31,6 +31,22 @@
 			li {
 				margin-bottom: 10px;
 			}
+
+			@media screen and (max-width: 1080px) {
+				display: none;
+			}
+		}
+
+		@media screen and (max-width: 1080px) {
+			width: 100%;
+			height: auto;
+			position: initial;
+			top: auto;
+			right: auto;
+			bottom: auto;
+			left: auto;
+			padding: 75px;
+			text-align: center;
 		}
 	}
 
@@ -44,6 +60,12 @@
 		gap: 50px;
 		height: 100vh;
 		box-sizing: border-box;
+
+		@media screen and (max-width: 1080px) {
+			width: 100%;
+			height: auto;
+			margin-left: 0;
+		}
 
 		h2 {
 			text-align: center;
@@ -164,6 +186,10 @@
 				background: #f00;
 			}
 		}
+	}
+
+	@media screen and (max-width: 1080px) {
+		flex-direction: column;
 	}
 }
 
