@@ -146,8 +146,8 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 				[
 					'post_type'   => Score::$name,
 					'post_status' => 'publish',
-					'post_title'  => $this->user['login'] . ' | ' . get_the_title( $this->user['quiz'] ),
-					'post_author' => $this->user['id'],
+					'post_title'  => $this->user['user']['login'] . ' | ' . get_the_title( $this->user['quiz'] ),
+					'post_author' => $this->user['user']['id'],
 				]
 			);
 
