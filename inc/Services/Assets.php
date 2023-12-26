@@ -37,7 +37,11 @@ class Assets extends Service implements Registrable {
 		printf(
 			'<style type="%1$s">
 				.post-type-xama_question .wrap .wp-heading-inline+.page-title-action,
-				.post-type-xama_score .wrap .wp-heading-inline+.page-title-action {
+				.post-type-xama_question #edit-slug-box,
+				.post-type-xama_question #message a,
+				.post-type-xama_score .wrap .wp-heading-inline+.page-title-action,
+				.post-type-xama_score #edit-slug-box,
+				.post-type-xama_score #message a {
 					display: none;
 				}
 			</style>',
