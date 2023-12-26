@@ -62,6 +62,9 @@ class QuizTest extends TestCase {
 
 		$post->ID = 1;
 
+		\WP_Mock::userFunction( 'flush_rewrite_rules' )
+			->once();
+
 		\WP_Mock::expectAction( 'xama_quiz_save', $post->ID, $post );
 
 		$supports = $this->post->save_post_type( $post->ID, $post );
