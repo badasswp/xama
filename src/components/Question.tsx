@@ -17,7 +17,9 @@ const Question = () => {
   }
 
   return (
-    <h2>{ post.questions.length > counter && post.questions[counter].title }</h2>
+    post.questions.length > counter && (
+      <h2 dangerouslySetInnerHTML={{ __html: post.questions[counter].title }} />
+    )
   )
 }
 

@@ -13,7 +13,7 @@ const Title = () => {
   const post = useSelector( ( state: stateProps ) => state.post );
 
   return (
-    <h1>{ post.title }</h1>
+    <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
   )
 }
 
