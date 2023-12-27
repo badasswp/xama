@@ -170,7 +170,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 			return 0;
 		}
 
-		$total_score     = get_post_meta( $this->user['score'], 'xama_score_total', true ) ?: 0;
+		$total_score     = $this->get_total_score();
 		$total_questions = count( xama_get_questions( $this->user['quiz'] ) );
 
 		/**
@@ -182,7 +182,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 		update_post_meta( $this->user['score'], 'xama_score_total', $this->is_answer_correct() ? $total_score + 1 : $total_score );
 		update_post_meta( $this->user['score'], 'xama_score_status_' . $this->user['question'], (int) $this->is_answer_correct() );
 		update_post_meta( $this->user['score'], 'xama_score_answer_' . $this->user['question'], $this->user['answer'] );
-		update_post_meta( $this->user['score'], 'xama_score_percentage', ( $total_score / $total_questions ) * 100 );
+		update_post_meta( $this->user['score'], 'xama_score_percentage', ( $this->get_total_score() / $total_questions ) * 100 );
 
 		return $this->user['score'];
 	}
@@ -222,14 +222,29 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return string
+	 * @return integer
 	 */
-	protected function get_percentage(): string {
+	protected function get_percentage(): int {
 		if ( ! isset( $this->user['score'] ) ) {
-			return '0';
+			return 0;
 		}
 
-		return get_post_meta( $this->user['score'], 'xama_score_percentage', true );
+		return (int) get_post_meta( $this->user['score'], 'xama_score_percentage', true );
+	}
+
+	/**
+	 * Get Total Score.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return integer
+	 */
+	protected function get_total_score(): int {
+		if ( ! isset( $this->user['score'] ) ) {
+			return 0;
+		}
+
+		return (int) get_post_meta( $this->user['score'], 'xama_score_total', true );
 	}
 
 	/**
