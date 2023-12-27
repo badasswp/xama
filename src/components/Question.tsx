@@ -17,7 +17,7 @@ const Question = () => {
   }
 
   return (
-    <h2>{ post.questions[counter].title }</h2>
+    <h2>{ post.questions.length > counter && post.questions[counter].title }</h2>
   )
 }
 

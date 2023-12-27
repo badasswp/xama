@@ -27,7 +27,8 @@ const Options = () => {
   return (
     <ol>
       {
-        post.questions[counter].options.map( ( item, key ) => {
+        post.questions.length > counter &&
+        post.questions[counter].options.map((item, key) => {
           return (
             <li key={ key }>
               <input
