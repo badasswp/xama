@@ -30,6 +30,7 @@ export interface stateProps {
   user: {
     ID: string,
     login: string,
+    url: string,
   },
   rest: string;
   counter: number;
@@ -53,6 +54,7 @@ export const initialState: stateProps = {
   user: {
     ID: "0",
     login: '',
+    url: '',
   },
   rest: '',
   counter: 0,

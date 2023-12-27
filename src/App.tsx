@@ -47,6 +47,7 @@ const App = () => {
         {
           ID:    xama.getAttribute( 'data-user' ),
           login: xama.getAttribute( 'data-login' ),
+          url
         }
       ) );
 
