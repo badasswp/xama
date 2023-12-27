@@ -28,7 +28,7 @@ const Result = () => {
                   <span>Congratulations!</span>
                 </h1>
                 <p>
-                  <span dangerouslySetInnerHTML={{ __html: `You have successfully completed the test for ${ post.title }` }} />
+                  <span dangerouslySetInnerHTML={{ __html: `You have successfully completed the test for ${ post.title }.` }} />
                 </p>
                 <p>
                   <a href={ user.url }>Return to Website</a>
