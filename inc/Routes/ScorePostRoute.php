@@ -119,6 +119,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 				'answer'        => $this->get_correct_answer(),
 				'isUserCorrect' => $this->is_answer_correct(),
 				'scoreID'       => $post,
+				'percentage'    => $this->get_percentage(),
 			],
 		];
 	}
@@ -209,11 +210,26 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return string
 	 */
 	protected function get_correct_answer(): string {
-		if ( is_null( $this->user['question'] ) ) {
+		if ( ! isset( $this->user['question'] ) ) {
 			return '';
 		}
 
 		return get_post_meta( $this->user['question'], 'xama_answer', true );
+	}
+
+	/**
+	 * Get Percentage.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	protected function get_percentage(): string {
+		if ( ! isset( $this->user['score'] ) ) {
+			return '0';
+		}
+
+		return get_post_meta( $this->user['score'], 'xama_score_percentage', true );
 	}
 
 	/**
