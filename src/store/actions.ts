@@ -78,6 +78,13 @@ const actions = {
       payload: key
     }
   },
+
+  setPercentage: ( key ) => {
+    return {
+      type: 'SET_PERCENTAGE',
+      payload: key
+    }
+  },
 };
 
 export default actions;

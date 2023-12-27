@@ -81,6 +81,7 @@ const Submit = () => {
       dispatch( actions.setLoading( false ) );
       dispatch( actions.setMarkerOption( parseInt( data.answer ) ) );
       dispatch( actions.setScoreID( data.scoreID ) );
+      dispatch( actions.setPercentage( data.percentage ) );
 
       /**
        * Set component state values

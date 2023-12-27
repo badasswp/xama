@@ -34,6 +34,7 @@ export interface stateProps {
   rest: string;
   counter: number;
   error: string;
+  percentage: string;
 }
 
 export const initialState: stateProps = {
@@ -56,6 +57,7 @@ export const initialState: stateProps = {
   rest: '',
   counter: 0,
   error: '',
+  percentage: '',
 }
 
 const reducers = ( state = initialState, action ) => {
@@ -129,6 +131,12 @@ const reducers = ( state = initialState, action ) => {
       return {
         ...state,
         loading: action.payload,
+      }
+
+    case 'SET_PERCENTAGE':
+      return {
+        ...state,
+        percentage: action.payload,
       }
 
     default: return state
