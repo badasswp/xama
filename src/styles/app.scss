@@ -235,6 +235,34 @@
 			border-radius: 20px;
 			padding: 75px;
 			box-sizing: border-box;
+
+			& > div {
+				p:first-child {
+					margin-top: 0;
+				}
+
+				p:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		a {
+			background: #000;
+			color: #fff;
+			font: 600 15px/24px Inter, Arial;
+			border: none !important;
+			border-radius: 5px;
+			margin-top: 20px;
+			padding: 15px 25px;
+			cursor: pointer;
+			transition: all 0.3s;
+			text-decoration: none;
+			display: inline-block;
+
+			&:hover {
+				background: #f00;
+			}
 		}
 	}
 

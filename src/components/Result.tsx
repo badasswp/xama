@@ -24,8 +24,15 @@ const Result = () => {
                 <p>
                   <strong>{ user.login } | Score: { percentage }%</strong>
                 </p>
-                <h1>Congratulations!</h1>
-                <p>You have successfully completed the test for 10up Senior WordPress Engineer.</p>
+                <h1>
+                  <span>Congratulations!</span>
+                </h1>
+                <p>
+                  <span>You have successfully completed the test for { post.title }.</span>
+                </p>
+                <p>
+                  <a href={ user.url }>Return to Website</a>
+                </p>
               </div>
             </div>
           </div>
