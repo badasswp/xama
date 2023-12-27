@@ -100,7 +100,7 @@ const reducers = ( state = initialState, action ) => {
         },
       }
 
-    case 'SET_COUNTER_POSITION':
+    case 'SET_COUNTER':
       return {
         ...state,
         counter: action.payload,

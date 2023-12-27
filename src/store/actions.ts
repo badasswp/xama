@@ -44,9 +44,9 @@ const actions = {
     }
   },
 
-  setCounterPosition: ( key ) => {
+  setCounter: ( key ) => {
     return {
-      type: 'SET_COUNTER_POSITION',
+      type: 'SET_COUNTER',
       payload: key
     }
   },

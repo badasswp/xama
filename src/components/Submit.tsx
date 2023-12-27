@@ -27,9 +27,8 @@ const Submit = () => {
       /**
        * Dispatch relevant global state values
        */
-      dispatch( actions.setCounterPosition( counter + 1 ) );
+      dispatch( actions.setCounter( counter + 1 ) );
       dispatch( actions.setMarkerOption( 0 ) );
-
       /**
        * Set component state values
        */
