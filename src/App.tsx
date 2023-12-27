@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import Layout from './layout/Layout';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
+import Loader from './components/Loader';
 
 import actions from './store/actions';
 
@@ -77,8 +78,9 @@ const App = () => {
 
   return (
     <Layout>
-      <Sidebar/>
-      <Dashboard/>
+      <Sidebar />
+      <Dashboard />
+      <Loader />
     </Layout>
   );
 }

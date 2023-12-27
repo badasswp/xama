@@ -46,6 +46,8 @@ const Submit = () => {
       return;
     }
 
+    dispatch( actions.setLoading( true ) );
+
     /**
      * Perform POST request.
      */
@@ -76,6 +78,7 @@ const Submit = () => {
       /**
        * Dispatch relevant global state values
        */
+      dispatch( actions.setLoading( false ) );
       dispatch( actions.setMarkerOption( parseInt( data.answer ) ) );
       dispatch( actions.setScoreID( data.scoreID ) );
 

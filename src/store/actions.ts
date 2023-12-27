@@ -71,6 +71,13 @@ const actions = {
       payload: key
     }
   },
+
+  setLoading: ( key ) => {
+    return {
+      type: 'SET_LOADING',
+      payload: key
+    }
+  },
 };
 
 export default actions;

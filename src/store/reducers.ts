@@ -125,6 +125,12 @@ const reducers = ( state = initialState, action ) => {
         rest: action.payload,
       }
 
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: action.payload,
+      }
+
     default: return state
   }
 }
