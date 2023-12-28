@@ -42,6 +42,45 @@ abstract class Controller implements \Xama\Interfaces\Controller {
 	}
 
 	/**
+	 * Validate $_GET | $_POST data.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
+	public function validate(): array {
+		$http_error_msgs = [];
+
+		if ( ! isset( $this->rules ) ) {
+			return $http_error_msgs;
+		}
+
+		foreach ( $this->rules as $field => $rule ) {
+			switch ( $rule ) {
+				case 'email':
+					if ( empty( $this->data[ $field ] ) || ! is_email( $this->data[ $field ] ) ) {
+						$http_error_msgs[] = 'Error: Validating Email Address, email must contain a valid email address...';
+					}
+					break;
+
+				case 'password':
+					if ( empty( $this->data[ $field ] ) || strlen( $this->data[ $field ] ) < 6 ) {
+						$http_error_msgs[] = 'Error: Validating Password, password must contain a minimum of 6 unique characters...';
+					}
+					break;
+
+				case 'name':
+					if ( empty( $this->data[ $field ] ) || preg_match( '/[0-9]+/', $this->data[ $field ], $matches ) || strlen( $this->data[ $field ] ) < 2 ) {
+						$http_error_msgs[] = 'Error: Validating Name, name must contain a valid name...';
+					}
+					break;
+			}
+		}
+
+		return $http_error_msgs;
+	}
+
+	/**
 	 * Run logic.
 	 *
 	 * @since 1.0.0
