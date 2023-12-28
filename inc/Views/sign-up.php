@@ -75,7 +75,7 @@
 		}
 
 		#error {
- 			background: #ECECEC;
+			background: #ECECEC;
 			font-size: 10px !important;
 			padding: 0 20px;
 		}
@@ -100,11 +100,11 @@
 		</p>
 		<?php if ( isset( $_POST['http_error_msgs'] ) ) { ?>
 		<div id="error">
-		<?php
+			<?php
 			foreach ( $_POST['http_error_msgs'] as $msg ) {
 				echo '<p>' . esc_html__( $msg, 'xama' ) . '</p>';
 			}
-		?>
+			?>
 		</div>
 		<?php } ?>
 		<p id="fullname">

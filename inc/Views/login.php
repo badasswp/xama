@@ -37,7 +37,6 @@
 		p {
 			font-family: Inter, Arial;
 			font-size: 15px;
-			letter-spacing: -0.25px;
 		}
 
 		p label {
@@ -57,7 +56,6 @@
 			font-family: Inter, Arial;
 			font-size: 15px;
 			margin-top: 10px;
-			letter-spacing: -0.25px;
 		}
 
 		button {
@@ -76,6 +74,17 @@
 			background: #F00;
 		}
 
+		#error {
+			background: #ECECEC;
+			font-size: 10px !important;
+			padding: 0 20px;
+		}
+
+		#error p {
+			font-size: 12px;
+		}
+
+		#fullname,
 		#username {
 			margin-bottom: 0;
 		}
@@ -86,9 +95,18 @@
 		<h1>
 			<?php echo esc_html__( 'Login', 'xama' ); ?>
 		</h1>
-		<p>
-			<?php echo esc_html__( 'Please enter your username and password..', 'xama' ); ?>
+		<p style="opacity: 0.5">
+			<?php echo esc_html__( 'Please enter your login details..', 'xama' ); ?>
 		</p>
+		<?php if ( isset( $_POST['http_error_msgs'] ) ) { ?>
+		<div id="error">
+			<?php
+			foreach ( $_POST['http_error_msgs'] as $msg ) {
+				echo '<p>' . esc_html__( $msg, 'xama' ) . '</p>';
+			}
+			?>
+		</div>
+		<?php } ?>
 		<p id="username">
 			<label><?php echo esc_html__( 'Username:', 'xama' ); ?></label>
 			<input type="text" placeholder="you@email.com" name="xama_username" />
