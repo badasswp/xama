@@ -19,6 +19,8 @@ use Xama\Services\REST;
 use Xama\Services\Post;
 use Xama\Services\MetaBox;
 use Xama\Services\Template;
+use Xama\Services\Controller;
+
 use Xama\Interfaces\Registrable;
 
 /**
@@ -49,6 +51,7 @@ final class Container implements Registrable {
 			REST::class,
 			Template::class,
 			Assets::class,
+			Controller::class,
 		];
 	}
 
