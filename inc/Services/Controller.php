@@ -1,7 +1,9 @@
 <?php
 /**
- * Controller service responsible for binding
- * Controllers to pages.
+ * Controller Service.
+ *
+ * This service is responsible for binding Controller logic
+ * from GET & POST form requests to specific WP pages.
  *
  * @package Xama
  */
