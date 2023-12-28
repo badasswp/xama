@@ -15,6 +15,8 @@ interface Controller {
 	/**
 	 * Run logic.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function run();
