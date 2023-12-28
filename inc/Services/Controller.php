@@ -14,6 +14,15 @@ use Xama\Controllers\SignUpController;
 
 class Controller extends Service implements Registrable {
 	/**
+	 * Controller pages.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $pages;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
@@ -24,16 +33,6 @@ class Controller extends Service implements Registrable {
 		$this->pages = [
 			'sign-up' => SignUpController::class,
 		];
-
-		/**
-		 * Filter list of controlled pages.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $pages Controller pages.
-		 * @return array
-		 */
-		$this->pages = (array) apply_filters( 'xama_controllers', $this->pages );
 	}
 
 	/**
@@ -56,6 +55,16 @@ class Controller extends Service implements Registrable {
 	 */
 	public function register_controller() {
 		$page = get_queried_object()->post_name;
+
+		/**
+		 * Filter list of controlled pages.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $pages Controller pages.
+		 * @return array
+		 */
+		$this->pages = (array) apply_filters( 'xama_controllers', $this->pages );
 
 		if ( is_page() && in_array( $page, array_keys( $this->pages ), true ) ) {
 			$controller = new $this->pages[ $page ]();
