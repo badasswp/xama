@@ -55,7 +55,7 @@ class ContainerTest extends TestCase {
 			->once();
 
 		\WP_Mock::userFunction( 'plugin_dir_path' )
-			->once();
+			->times( 3 );
 
 		\WP_Mock::expectFilter(
 			'xama_meta_boxes',

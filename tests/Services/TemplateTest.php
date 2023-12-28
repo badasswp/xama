@@ -17,7 +17,7 @@ class TemplateTest extends TestCase {
 		\WP_Mock::setUp();
 
 		\WP_Mock::userFunction( 'plugin_dir_path' )
-			->once()
+			->twice()
 			->andReturn( './inc/Services/' );
 
 		$this->template = new Template();
@@ -29,6 +29,7 @@ class TemplateTest extends TestCase {
 
 	public function test_register() {
 		\WP_Mock::expectFilterAdded( 'template_include', [ $this->template, 'register_template' ] );
+		\WP_Mock::expectFilterAdded( 'template_include', [ $this->template, 'register_page_templates' ] );
 
 		$this->template->register();
 
