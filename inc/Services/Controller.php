@@ -12,6 +12,7 @@ namespace Xama\Services;
 
 use Xama\Abstracts\Service;
 use Xama\Interfaces\Registrable;
+use Xama\Controllers\LoginController;
 use Xama\Controllers\SignUpController;
 
 class Controller extends Service implements Registrable {
@@ -33,6 +34,7 @@ class Controller extends Service implements Registrable {
 	 */
 	public function __construct() {
 		$this->pages = [
+			'login'   => LoginController::class,
 			'sign-up' => SignUpController::class,
 		];
 	}
