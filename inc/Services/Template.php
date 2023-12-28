@@ -20,17 +20,23 @@ class Template extends Service implements Registrable {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var string
+	 * @var array
 	 */
-	public string $template;
+	public array $template;
 
 	/**
-	 * Set up.
+	 * Set Up.
 	 *
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->template = plugin_dir_path( __FILE__ ) . '../Views/index.php';
+		$path = plugin_dir_path( __FILE__ );
+
+		$this->template = [
+			'index'   => $path . '../Views/index.php',
+			'login'   => $path . '../Views/login.php',
+			'sign-up' => $path . '../Views/sign-up.php',
+		];
 	}
 
 	/**
@@ -42,6 +48,7 @@ class Template extends Service implements Registrable {
 	 */
 	public function register(): void {
 		add_filter( 'template_include', [ $this, 'register_template' ] );
+		add_filter( 'template_include', [ $this, 'register_page_templates' ] );
 	}
 
 	/**
@@ -49,20 +56,42 @@ class Template extends Service implements Registrable {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $template WP Template.
+	 * @param string $wp_template WP Template.
 	 * @return string
 	 */
-	public function register_template( $template ): string {
+	public function register_template( $wp_template ): string {
 		$post_types = [
 			'xama_quiz',
 			'xama_question',
 			'xama_score',
 		];
 
-		if ( ! in_array( get_post_type(), $post_types, true ) || ! file_exists( $this->template ) ) {
-			return $template;
+		if ( ! in_array( get_post_type(), $post_types, true ) || ! file_exists( $this->template['index'] ) ) {
+			return $wp_template;
 		}
 
-		return $this->template;
+		return $this->template['index'];
+	}
+
+	/**
+	 * Register Page Templates.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $wp_template WP Template.
+	 * @return string
+	 */
+	public function register_page_templates( $wp_template ): string {
+		$pages = [ 'login', 'sign-up' ];
+
+		if ( ! is_page( $pages ) ) {
+			return $wp_template;
+		}
+
+		foreach ( $pages as $page ) {
+			if ( is_page( $page ) ) {
+				return $this->template[ $page ];
+			}
+		}
 	}
 }
