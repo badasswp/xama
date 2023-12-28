@@ -17,7 +17,7 @@ class TemplateTest extends TestCase {
 		\WP_Mock::setUp();
 
 		\WP_Mock::userFunction( 'plugin_dir_path' )
-			->twice()
+			->once()
 			->andReturn( './inc/Services/' );
 
 		$this->template = new Template();
@@ -59,7 +59,7 @@ class TemplateTest extends TestCase {
 
 		$template = $this->template->register_template( $wp_template );
 
-		$this->assertSame( $template, $this->template->template );
+		$this->assertSame( $template, $this->template->template['index'] );
 		$this->assertConditionsMet();
 	}
 }

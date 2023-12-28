@@ -58,8 +58,8 @@ class BootTest extends TestCase {
 				'Xama',
 				[
 					'read'               => true,
-					'edit_posts'         => false,
-					'upload_files'       => false,
+					'edit_posts'         => true,
+					'upload_files'       => true,
 					'manage_categories'  => false,
 					'edit_others_posts'  => false,
 					'delete_posts'       => false,
