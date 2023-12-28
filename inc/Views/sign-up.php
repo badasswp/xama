@@ -74,6 +74,16 @@
 			background: #F00;
 		}
 
+		#error {
+ 			background: #ECECEC;
+			font-size: 10px !important;
+			padding: 0 20px;
+		}
+
+		#error p {
+			font-size: 12px;
+		}
+
 		#fullname,
 		#username {
 			margin-bottom: 0;
@@ -85,9 +95,18 @@
 		<h1>
 			<?php echo esc_html__( 'Sign Up', 'xama' ); ?>
 		</h1>
-		<p>
+		<p style="opacity: 0.5">
 			<?php echo esc_html__( 'Please register with your User details..', 'xama' ); ?>
 		</p>
+		<?php if ( isset( $_POST['http_error_msgs'] ) ) { ?>
+		<div id="error">
+		<?php
+			foreach ( $_POST['http_error_msgs'] as $msg ) {
+				echo '<p>' . esc_html__( $msg, 'xama' ) . '</p>';
+			}
+		?>
+		</div>
+		<?php } ?>
 		<p id="fullname">
 			<label><?php echo esc_html__( 'Full Name:', 'xama' ); ?></label>
 			<input type="text" placeholder="John Doe" name="xama_fullname" required />
