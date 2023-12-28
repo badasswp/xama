@@ -25,6 +25,8 @@ abstract class Controller implements \Xama\Interfaces\Controller {
 	 * Set up.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		if ( 'POST' !== $_SERVER['REQUEST_METHOD'] ) {
@@ -36,8 +38,6 @@ abstract class Controller implements \Xama\Interfaces\Controller {
 		}
 
 		$this->data = $_POST;
-
-		// Run Controller...
 		$this->run();
 	}
 
