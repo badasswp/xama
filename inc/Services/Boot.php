@@ -44,6 +44,7 @@ class Boot extends Service implements Registrable {
 	public function register(): void {
 		add_action( 'init', [ $this, 'register_plugin_domain' ] );
 		add_action( 'init', [ $this, 'register_plugin_role' ] );
+		add_action( 'init', [ $this, 'register_plugin_pages' ] );
 	}
 
 	/**
@@ -85,5 +86,34 @@ class Boot extends Service implements Registrable {
 				'edit_plugins'       => false,
 			]
 		);
+	}
+
+	/**
+	 * Register Plugin Pages.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function register_plugin_pages(): void {
+		$pages = [
+			'login'   => 'Login',
+			'sign-up' => 'Sign Up',
+		];
+
+		foreach ( $pages as $slug => $title ) {
+			$page = get_page_by_path( $slug );
+
+			if ( ! $page ) {
+				$args = array(
+					'post_title'  => $title,
+					'post_name'   => $slug,
+					'post_type'   => 'page',
+					'post_status' => 'publish',
+				);
+
+				$page_id = wp_insert_post( $args );
+			}
+		}
 	}
 }
