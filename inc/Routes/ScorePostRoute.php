@@ -135,8 +135,8 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 		$posts = new \WP_Query(
 			[
 				'post_type'   => Score::$name,
-				'post_author' => $this->user['user']['id'],
 				'post_status' => 'publish',
+				'author'      => $this->user['user']['id'],
 				'meta_key'    => 'xama_score_quiz_id',
 				'meta_value'  => $this->user['quiz'],
 			]
