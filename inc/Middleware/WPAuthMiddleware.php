@@ -27,6 +27,15 @@ class WPAuthMiddleware extends Middleware implements \Xama\Interfaces\Middleware
 	public string $redirect_page;
 
 	/**
+	 * Authenticated Page ID.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var integer
+	 */
+	public int $referrer;
+
+	/**
 	 * Set up.
 	 *
 	 * @since 1.0.0
@@ -43,6 +52,8 @@ class WPAuthMiddleware extends Middleware implements \Xama\Interfaces\Middleware
 	 * @return void
 	 */
 	public function authenticate(): void {
+		$this->referrer = get_the_ID();
+
 		if ( ! is_user_logged_in() ) {
 			$this->redirect();
 		}
