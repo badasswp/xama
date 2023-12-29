@@ -18,7 +18,8 @@
 
 		form {
 			background: #FFF;
-			width: 400px;
+			width: 500px;
+			max-width: 85%;
 			border-radius: 15px;
 			padding: 50px;
 			box-sizing: border-box;
@@ -85,15 +86,31 @@
 		}
 
 		#fullname,
-		#username {
+		#username,
+		#connect {
 			margin-bottom: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: #F00;
 		}
 	</style>
 </head>
+
+<?php
+if ( isset( $_GET['id'] ) ) {
+	$id = $_GET['id'];
+}
+?>
+
 <body>
 	<form method="POST" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 		<h1>
-			<?php echo esc_html__( 'Login', 'xama' ); ?>
+			<?php echo esc_html__( get_the_title( $id ) ?: 'Login', 'xama' ); ?>
 		</h1>
 		<p style="opacity: 0.5">
 			<?php echo esc_html__( 'Please enter your login details..', 'xama' ); ?>
@@ -118,6 +135,9 @@
 		<button type="submit" name="xama_signup">
 			<?php echo esc_html__( 'Login', 'xama' ); ?>
 		</button>
+		<p id="connect">
+			<label><a href="<?php echo home_url() . '/sign-up?id=' . $id; ?>"><?php echo esc_html__( 'Don\'t have an account?', 'xama' ); ?></a></label>
+		</p>
 		<?php wp_nonce_field( 'xama_action', 'xama_nonce' ); ?>
 	</form>
 </body>
