@@ -91,15 +91,20 @@ class SignUpController extends Controller implements \Xama\Interfaces\Controller
 			wp_logout();
 		}
 
+		// Get User...
 		$user = get_user_by( 'login', $this->data['xama_username'] );
 
 		if ( ! $user ) {
 			return;
 		}
 
+		// Set User...
 		wp_set_current_user( $user->ID, $this->data['xama_username'] );
 		wp_set_auth_cookie( $user->ID );
-		wp_redirect( get_permalink( 85 ) );
+
+		// Redirect User...
+		$url = isset( $_GET['id'] ) ? get_permalink( $_GET['id'] ) : home_url();
+		wp_redirect( $url );
 		exit;
 	}
 }
