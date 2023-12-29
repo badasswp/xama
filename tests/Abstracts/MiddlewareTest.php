@@ -45,6 +45,7 @@ class MiddlewareTest extends TestCase {
 }
 
 class ConcreteMiddleware extends Middleware {
+	public string $referrer = '';
 	public function login(): void {}
 	public function logout(): void {}
 	public function authenticate(): void {}

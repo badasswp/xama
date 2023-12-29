@@ -35,6 +35,10 @@ class WPAuthMiddlewareTest extends TestCase {
 
 		$this->middleware->exit = false;
 
+		\WP_Mock::userFunction( 'get_the_ID' )
+			->once()
+			->andReturn( 1 );
+
 		\WP_Mock::userFunction( 'is_user_logged_in' )
 			->once()
 			->andReturn( true );
@@ -67,6 +71,10 @@ class WPAuthMiddlewareTest extends TestCase {
 		$page->ID = 1;
 
 		$this->middleware->exit = false;
+
+		\WP_Mock::userFunction( 'get_the_ID' )
+			->once()
+			->andReturn( 1 );
 
 		\WP_Mock::userFunction( 'is_user_logged_in' )
 			->once()

@@ -49,6 +49,10 @@ class AuthTest extends TestCase {
 
 		\WP_Mock::expectFilter( 'xama_auth_pages', $post_types );
 
+		\WP_Mock::userFunction( 'get_the_ID' )
+			->once()
+			->andReturn( 1 );
+
 		\WP_Mock::userFunction( 'get_post_type' )
 			->once()
 			->andReturn( 'xama_quiz' );
