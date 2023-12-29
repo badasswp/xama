@@ -74,16 +74,15 @@ class Boot extends Service implements Registrable {
 			Settings::SLUG,
 			Settings::NAME,
 			[
-				'read'               => true,
-				'edit_posts'         => true,
-				'upload_files'       => true,
-				'manage_categories'  => false,
-				'edit_others_posts'  => false,
-				'delete_posts'       => false,
-				'edit_theme_options' => false,
-				'install_plugins'    => false,
-				'edit_users'         => false,
-				'edit_plugins'       => false,
+				'read'                        => true,
+				'edit_others_xama_score'      => true,
+				'publish_xama_score'          => true,
+				'read_xama_score'             => true,
+				'edit_xama_score'             => true,
+				'edit_published_xama_score'   => true,
+				'delete_xama_score'           => true,
+				'delete_published_xama_score' => true,
+				'create_xama_score'           => true,
 			]
 		);
 	}
