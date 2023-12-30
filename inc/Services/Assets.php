@@ -50,6 +50,18 @@ class Assets extends Service implements Registrable {
 				.post-type-xama_score #wp-content-editor-tools {
 					background: none;
 				}
+
+				.post-type-xama_quiz #post-body-content,
+				.post-type-xama_question #post-body-content,
+				.post-type-xama_score #post-body-content {
+					margin-bottom: 0;
+				}
+
+				.post-type-xama_quiz #titlediv,
+				.post-type-xama_question #titlediv,
+				.post-type-xama_score #titlediv {
+					margin-bottom: 20px;
+				}
 			</style>',
 			esc_attr( 'text/css' )
 		);
