@@ -65,34 +65,42 @@ class OptionsTest extends TestCase {
 	}
 
 	public function test_get_button() {
-		$url = 'http://example.com/wp-admin/post.php?post=1&action=edit';
+		\WP_Mock::userFunction(
+			'esc_url',
+			[
+				'times' => 2,
+				'return' => function( $url ) {
+					return $url;
+				}
+			]
+		);
 
-		\WP_Mock::userFunction( 'esc_url' )
-			->once()
-			->with( $url )
-			->andReturn( $url );
-
-		\WP_Mock::userFunction( 'esc_html__' )
-			->once()
-			->with( 'Go Back To Quiz', Settings::DOMAIN )
-			->andReturn( 'Go Back To Quiz' );
+		\WP_Mock::userFunction(
+			'esc_html__',
+			[
+				'times' => 2,
+				'return' => function( $text, $domain = Settings::DOMAIN ) {
+					return $text;
+				}
+			]
+		);
 
 		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
+			->twice()
 			->with( 1, 'xama_quiz_id', true )
 			->andReturn( 1 );
 
 		\WP_Mock::userFunction( 'home_url' )
-			->once()
+			->twice()
 			->andReturn( 'http://example.com' );
 
 		\WP_Mock::userFunction( 'absint' )
-			->once()
+			->twice()
 			->with( 1 )
 			->andReturn( 1 );
 
 		$reflection = new \ReflectionClass( $this->metabox );
-		$method     = $reflection->getMethod( 'get_button' );
+		$method     = $reflection->getMethod( 'get_buttons' );
 		$method->setAccessible( true );
 
 		$button = $method->invoke( $this->metabox );
@@ -100,12 +108,18 @@ class OptionsTest extends TestCase {
 		$expected = '<div>
 				<a
 					href="http://example.com/wp-admin/post.php?post=1&action=edit"
-					class="button button-primary button-large"
+					class="button button-secondary button-large"
 					style="margin-top: 5px;"
 				>Go Back To Quiz</a>
+				<a
+					href="http://example.com/wp-admin/post-new.php?post_type=xama_question&quiz_id=1"
+					class="button button-primary button-large"
+					style="margin-top: 5px;"
+				>Add New Question</a>
 			</div>';
 
 		$this->assertStringContainsString( '/wp-admin/post.php?post=1', $expected );
+		$this->assertStringContainsString( '/wp-admin/post-new.php?post_type=xama_question&quiz_id=1', $expected );
 		$this->assertSame( $expected, $button );
 		$this->assertConditionsMet();
 	}
@@ -126,7 +140,7 @@ class OptionsTest extends TestCase {
 			->andReturn( 1 );
 
 		$reflection = new \ReflectionClass( $this->metabox );
-		$method     = $reflection->getMethod( 'get_button_url' );
+		$method     = $reflection->getMethod( 'get_button1_url' );
 		$method->setAccessible( true );
 
 		$url = $method->invoke( $this->metabox );
