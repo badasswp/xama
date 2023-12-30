@@ -62,7 +62,6 @@ class ContainerTest extends TestCase {
 			[
 				Quiz::$name     => 'Quiz',
 				Question::$name => 'Question',
-				Score::$name    => 'Score',
 			]
 		);
 
