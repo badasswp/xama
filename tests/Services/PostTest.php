@@ -96,7 +96,7 @@ class PostTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'xama_quiz_supports',
-			[ 'title', 'editor' ]
+			[ 'title' ]
 		);
 
 		\WP_Mock::expectFilter(
@@ -111,7 +111,7 @@ class PostTest extends TestCase {
 				'public'       => true,
 				'has_archive'  => true,
 				'show_in_menu' => 'xama',
-				'supports'     => [ 'title', 'editor' ],
+				'supports'     => [ 'title' ],
 				'show_in_rest' => false,
 				'rewrite'      => [
 					'slug' => 'quiz',
@@ -128,7 +128,7 @@ class PostTest extends TestCase {
 					'public'       => true,
 					'has_archive'  => true,
 					'show_in_menu' => 'xama',
-					'supports'     => [ 'title', 'editor' ],
+					'supports'     => [ 'title' ],
 					'show_in_rest' => false,
 					'rewrite'      => [
 						'slug' => 'quiz',

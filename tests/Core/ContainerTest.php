@@ -58,6 +58,15 @@ class ContainerTest extends TestCase {
 			->once();
 
 		\WP_Mock::expectFilter(
+			'xama_editor_post_types',
+			[
+				Quiz::$name     => 'Quiz',
+				Question::$name => 'Question',
+				Score::$name    => 'Score',
+			]
+		);
+
+		\WP_Mock::expectFilter(
 			'xama_meta_boxes',
 			[
 				Answer::class,

@@ -46,12 +46,12 @@ class QuizTest extends TestCase {
 
 	public function test_get_supports() {
 		\WP_Mock::onFilter( 'xama_quiz_supports' )
-			->with( [ 'title', 'editor' ] )
-			->reply( [ 'title', 'editor' ] );
+			->with( [ 'title', ] )
+			->reply( [ 'title' ] );
 
 		$supports = $this->post->get_supports();
 
-		$this->assertSame( $supports, [ 'title', 'editor' ] );
+		$this->assertSame( $supports, [ 'title' ] );
 		$this->assertConditionsMet();
 	}
 
