@@ -36,7 +36,6 @@ class Editor extends Service implements Registrable {
 		$this->post_types = [
 			'xama_quiz'     => 'Quiz',
 			'xama_question' => 'Question',
-			'xama_score'    => 'Score',
 		];
 
 		/**
@@ -70,15 +69,24 @@ class Editor extends Service implements Registrable {
 	 * @return void
 	 */
 	public function register_editor_position( $post ): void {
+		global $wp_meta_boxes;
+
 		if ( ! in_array( $post->post_type, array_keys( $this->post_types ), true ) ) {
 			return;
 		}
 
+		// Show plugin's metaboxes first...
+		do_meta_boxes( get_current_screen(), 'advanced', $post );
+
+		// Unset global metaboxes to prevent re-display
+		unset( $wp_meta_boxes[ $post->post_type ]['advanced'] );
+
+		// Now, show Custom Editor...
 		add_meta_box(
 			'postdiv',
 			esc_html__( $this->post_types[ $post->post_type ] . ' ' . 'Instructions' ),
 			[ $this, 'register_custom_editor' ],
-			$post_type,
+			$post->post_type,
 			'normal',
 			'core'
 		);
