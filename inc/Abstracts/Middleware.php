@@ -35,11 +35,9 @@ abstract class Middleware implements \Xama\Interfaces\Middleware {
 	public function redirect( $exit = true ): void {
 		$this->logout();
 
-		// Get login page...
+		// Get Login page & URL...
 		$page = get_page_by_path( $this->redirect_page, OBJECT, 'page' );
-
-		// Get URL...
-		$url = get_permalink( $page->ID );
+		$url  = get_permalink( $page->ID );
 
 		if ( $this->referrer && preg_match( '/[0-9]+/', $this->referrer, $matches ) ) {
 			$url .= '?id=' . $this->referrer;
