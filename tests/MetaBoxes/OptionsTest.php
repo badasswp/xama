@@ -68,20 +68,20 @@ class OptionsTest extends TestCase {
 		\WP_Mock::userFunction(
 			'esc_url',
 			[
-				'times' => 2,
-				'return' => function( $url ) {
+				'times'  => 2,
+				'return' => function ( $url ) {
 					return $url;
-				}
+				},
 			]
 		);
 
 		\WP_Mock::userFunction(
 			'esc_html__',
 			[
-				'times' => 2,
-				'return' => function( $text, $domain = Settings::DOMAIN ) {
+				'times'  => 2,
+				'return' => function ( $text, $domain = Settings::DOMAIN ) {
 					return $text;
-				}
+				},
 			]
 		);
 
