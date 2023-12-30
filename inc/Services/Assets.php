@@ -36,6 +36,7 @@ class Assets extends Service implements Registrable {
 	public function register_styles(): void {
 		printf(
 			'<style type="%1$s">
+				.post-type-xama_quiz.post-php .wrap .wp-heading-inline+.page-title-action,
 				.post-type-xama_question .wrap .wp-heading-inline+.page-title-action,
 				.post-type-xama_question #edit-slug-box,
 				.post-type-xama_question #message a,
