@@ -89,7 +89,7 @@ class Options extends MetaBox {
 				%2$s
 				%3$s
 			</section>',
-			$this->get_button(),
+			$this->get_buttons(),
 			$this->get_options(),
 			$this->get_hidden()
 		);
@@ -102,17 +102,24 @@ class Options extends MetaBox {
 	 *
 	 * @return string
 	 */
-	protected function get_button(): string {
+	protected function get_buttons(): string {
 		return sprintf(
 			'<div>
 				<a
 					href="%1$s"
-					class="button button-primary button-large"
+					class="button button-secondary button-large"
 					style="margin-top: 5px;"
 				>%2$s</a>
+				<a
+					href="%3$s"
+					class="button button-primary button-large"
+					style="margin-top: 5px;"
+				>%4$s</a>
 			</div>',
-			esc_url( $this->get_button_url() ),
-			esc_html__( 'Go Back To Quiz', Settings::DOMAIN )
+			esc_url( $this->get_button1_url() ),
+			esc_html__( 'Go Back To Quiz', Settings::DOMAIN ),
+			esc_url( $this->get_button2_url() ),
+			esc_html__( 'Add New Question', Settings::DOMAIN )
 		);
 	}
 
@@ -123,7 +130,7 @@ class Options extends MetaBox {
 	 *
 	 * @return string
 	 */
-	protected function get_button_url(): string {
+	protected function get_button1_url(): string {
 		$id = ! isset( $_GET['quiz_id'] )
 			? get_post_meta( $this->post->ID, 'xama_quiz_id', true )
 			: $_GET['quiz_id'];
@@ -132,6 +139,26 @@ class Options extends MetaBox {
 			'%1$s/wp-admin/post.php?post=%2$s&action=edit',
 			home_url(),
 			absint( $id )
+		);
+	}
+
+	/**
+	 * Get Add New Question Button URL.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	protected function get_button2_url(): string {
+		$id = ! isset( $_GET['quiz_id'] )
+			? get_post_meta( $this->post->ID, 'xama_quiz_id', true )
+			: $_GET['quiz_id'];
+
+		return sprintf(
+			'%1$s/wp-admin/post-new.php?post_type=%3$s&quiz_id=%2$s',
+			home_url(),
+			absint( $id ),
+			$this->get_post_type()
 		);
 	}
 
