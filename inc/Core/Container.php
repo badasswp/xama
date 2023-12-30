@@ -12,11 +12,12 @@
 namespace Xama\Core;
 
 use Xama\Services\Auth;
-use Xama\Services\Assets;
 use Xama\Services\Boot;
 use Xama\Services\Menu;
 use Xama\Services\REST;
 use Xama\Services\Post;
+use Xama\Services\Editor;
+use Xama\Services\Assets;
 use Xama\Services\MetaBox;
 use Xama\Services\Template;
 use Xama\Services\Controller;
@@ -54,6 +55,7 @@ final class Container implements Registrable {
 			Template::class,
 			Assets::class,
 			Controller::class,
+			Editor::class,
 		];
 	}
 

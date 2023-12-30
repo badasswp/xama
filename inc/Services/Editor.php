@@ -1,0 +1,99 @@
+<?php
+/**
+ * Editor Service.
+ *
+ * This class is responsible for customizing
+ * the Editor used in the Plugin's custom post type
+ * WP admin pages.
+ *
+ * @package Xama
+ */
+
+namespace Xama\Services;
+
+use Xama\Core\Settings;
+use Xama\Abstracts\Service;
+use Xama\Interfaces\Registrable;
+
+class Editor extends Service implements Registrable {
+	/**
+	 * Plugin Post types.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $post_types;
+
+	/**
+	 * Set up.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		$this->post_types = [
+			'xama_quiz'     => 'Quiz',
+			'xama_question' => 'Question',
+			'xama_score'    => 'Score',
+		];
+
+		/**
+		 * Filter list of post_types.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $post_types Plugin post types.
+		 * @return array
+		 */
+		$this->post_types = (array) apply_filters( 'xama_editor_post_types', $this->post_types );
+	}
+
+	/**
+	 * Bind to WP.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function register(): void {
+		add_action( 'edit_form_after_title', [ $this, 'register_editor_position' ] );
+	}
+
+	/**
+	 * Register Editor position below all other metaboxes.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param \WP_Post $post WP Post object.
+	 * @return void
+	 */
+	public function register_editor_position( $post ): void {
+		if ( ! in_array( $post->post_type, array_keys( $this->post_types ), true ) ) {
+			return;
+		}
+
+		add_meta_box(
+			'postdiv',
+			esc_html__( $this->post_types[ $post->post_type ] . ' ' . 'Instructions' ),
+			[ $this, 'register_custom_editor' ],
+			$post_type,
+			'normal',
+			'core'
+		);
+	}
+
+	/**
+	 * Callback to display the editor box after other metaboxes.
+	 *
+	 * @param \WP_Post $post WP Post object.
+	 * @param array    $box  Metabox args.
+	 * @return void
+	 */
+	public function register_custom_editor( $post, $box ) {
+		$content = htmlspecialchars_decode( $post->post_content );
+
+		printf( '%1$s', wp_editor( $content, 'content', [ 'textarea_name' => 'content' ] ) );
+	}
+}
