@@ -58,6 +58,10 @@ class Controller extends Service implements Registrable {
 	 * @return void
 	 */
 	public function register_controller() {
+		if ( ! is_page() ) {
+			return;
+		}
+
 		$page = get_queried_object()->post_name;
 
 		/**
@@ -70,7 +74,7 @@ class Controller extends Service implements Registrable {
 		 */
 		$this->pages = (array) apply_filters( 'xama_controllers', $this->pages );
 
-		if ( is_page() && in_array( $page, array_keys( $this->pages ), true ) ) {
+		if ( in_array( $page, array_keys( $this->pages ), true ) ) {
 			$controller = new $this->pages[ $page ]();
 		}
 	}
