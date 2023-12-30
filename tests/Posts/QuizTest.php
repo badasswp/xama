@@ -46,7 +46,7 @@ class QuizTest extends TestCase {
 
 	public function test_get_supports() {
 		\WP_Mock::onFilter( 'xama_quiz_supports' )
-			->with( [ 'title', ] )
+			->with( [ 'title' ] )
 			->reply( [ 'title' ] );
 
 		$supports = $this->post->get_supports();
