@@ -19,6 +19,7 @@ use Xama\Services\Post;
 use Xama\Services\Editor;
 use Xama\Services\Assets;
 use Xama\Services\MetaBox;
+use Xama\Services\Notices;
 use Xama\Services\Template;
 use Xama\Services\Controller;
 
@@ -56,6 +57,7 @@ final class Container implements Registrable {
 			Assets::class,
 			Controller::class,
 			Editor::class,
+			Notices::class,
 		];
 	}
 
