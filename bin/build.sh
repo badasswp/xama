@@ -19,22 +19,31 @@ echo "================================"
 npm run build
 
 # Copy Plugin directories
+echo ""
+echo "Building Plugin directories..."
+echo "=============================="
 for dir in $PLUGIN_DIRS
 do
-  cp -r "$dir" "$PLUGIN_BUILD/$dir"
+  cp -rv "$dir" "$PLUGIN_BUILD/$dir"
 done
 
 # Copy Plugin files
-cp "$PLUGIN_FILE" "$PLUGIN_BUILD/$PLUGIN_FILE"
-cp "readme.txt" "$PLUGIN_BUILD/readme.txt"
-cp "composer.json" "$PLUGIN_BUILD/composer.json"
-cp "composer.lock" "$PLUGIN_BUILD/composer.lock"
+echo ""
+echo "Building Plugin setup files..."
+echo "=============================="
+cp -v "$PLUGIN_FILE" "$PLUGIN_BUILD/$PLUGIN_FILE"
+cp -v "readme.txt" "$PLUGIN_BUILD/readme.txt"
 
 # Set up Vendor within Build
+echo ""
+echo "Building Composer autoload files..."
+echo "==================================="
+cp -v "composer.json" "$PLUGIN_BUILD/composer.json"
+cp -v "composer.lock" "$PLUGIN_BUILD/composer.lock"
 cd "$PLUGIN_BUILD"
 composer install --no-dev
-rm "composer.json"
-rm "composer.lock"
+rm -v "composer.json"
+rm -v "composer.lock"
 
 # Finish Build
-echo "Build complete!"
+echo "Build Complete!"
