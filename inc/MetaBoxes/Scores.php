@@ -189,18 +189,19 @@ class Scores extends MetaBox {
 	 * @return string
 	 */
 	protected function get_question_options(): string {
-		$options = '';
+		$options = get_post_meta( $this->id, 'xama_options', true );
+		$html    = '';
 
-		foreach ( Settings::OPTIONS as $key => $value ) {
-			$options .= sprintf(
+		foreach ( $options as $key => $value ) {
+			$html .= sprintf(
 				'<li>
 					%1$s
 				</li>',
-				esc_html( get_post_meta( $this->id, 'xama_option_' . $key, true ) )
+				esc_html( $value )
 			);
 		}
 
-		return $options;
+		return $html;
 	}
 
 	/**
