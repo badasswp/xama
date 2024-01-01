@@ -13,6 +13,11 @@ else
 	mkdir "$PLUGIN_BUILD"
 fi
 
+# Ensure Latest NPM build
+echo "Building NPM production files..."
+echo "================================"
+npm run build
+
 # Copy Plugin directories
 for dir in $PLUGIN_DIRS
 do
