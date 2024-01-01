@@ -84,7 +84,7 @@ class Editor extends Service implements Registrable {
 		// Now, show Custom Editor...
 		add_meta_box(
 			'postdiv',
-			esc_html__( $this->post_types[ $post->post_type ] . ' ' . 'Instructions' ),
+			esc_html__( $this->post_types[ $post->post_type ] . ' ' . 'Instructions', Settings::DOMAIN ),
 			[ $this, 'register_custom_editor' ],
 			$post->post_type,
 			'normal',
