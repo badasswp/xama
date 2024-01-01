@@ -64,7 +64,7 @@ class ScoresTest extends TestCase {
 
 		\WP_Mock::userFunction( 'get_post_meta' )
 			->once()
-			->with( 1, 'xama_options', true)
+			->with( 1, 'xama_options', true )
 			->andReturn(
 				[
 					'Option 1',

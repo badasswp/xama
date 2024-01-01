@@ -72,20 +72,20 @@ class AnswerTest extends TestCase {
 		\WP_Mock::userFunction(
 			'esc_attr',
 			[
-				'times' => 8,
-				'return' => function( $i ) {
+				'times'  => 8,
+				'return' => function ( $i ) {
 					return $i;
-				}
+				},
 			]
 		);
 
 		\WP_Mock::userFunction(
 			'esc_html__',
 			[
-				'times' => 4,
-				'return' => function( $text, $domain = Settings::DOMAIN ) {
+				'times'  => 4,
+				'return' => function ( $text, $domain = Settings::DOMAIN ) {
 					return $text;
-				}
+				},
 			]
 		);
 
