@@ -4,8 +4,8 @@
  * Plugin URI:  https://github.com/badasswp/xama
  * Description: A simple WP plugin to help you set up Quizzes.
  * Version:     1.0.0
- * Author:      Chigozie Orunta
- * Author URI:  https://chigozieorunta.com
+ * Author:      Xama Team
+ * Author URI:  https://xama.ws
  * License:     GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: xama
