@@ -170,6 +170,8 @@ class QuestionTest extends TestCase {
 					'posts_per_page' => -1,
 					'meta_key'       => 'xama_quiz_id',
 					'meta_value'     => 1,
+					'orderby'        => 'date',
+					'order'          => 'ASC',
 				]
 			)
 			->andReturns( [ $post ] );
