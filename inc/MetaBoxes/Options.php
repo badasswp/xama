@@ -227,10 +227,14 @@ class Options extends MetaBox {
 	 * @return void
 	 */
 	public function save_meta_box( $post_id, $post ): void {
-		update_post_meta( $post_id, 'xama_option_1', sanitize_text_field( $_POST['xama_option_1'] ) );
-		update_post_meta( $post_id, 'xama_option_2', sanitize_text_field( $_POST['xama_option_2'] ) );
-		update_post_meta( $post_id, 'xama_option_3', sanitize_text_field( $_POST['xama_option_3'] ) );
-		update_post_meta( $post_id, 'xama_option_4', sanitize_text_field( $_POST['xama_option_4'] ) );
+		$options = [
+			sanitize_text_field( $_POST['xama_option_1'] ),
+			sanitize_text_field( $_POST['xama_option_2'] ),
+			sanitize_text_field( $_POST['xama_option_3'] ),
+			sanitize_text_field( $_POST['xama_option_4'] ),
+		];
+
+		update_post_meta( $post_id, 'xama_options', $options );
 
 		update_post_meta( $post_id, 'xama_quiz_id', sanitize_text_field( $_POST['xama_quiz_id'] ) );
 	}
