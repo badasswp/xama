@@ -1,4 +1,4 @@
-# Copyright (C) 2023 Chigozie Orunta
+# Copyright (C) 2023 AppWorld Team
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
@@ -31,8 +31,8 @@ msgstr ""
 "van Quizzen."
 
 #. Author of the plugin
-msgid "Chigozie Orunta"
-msgstr "Chigozie Orunta"
+msgid "AppWorld Team"
+msgstr "AppWorld Team"
 
 #. Author URI of the plugin
 msgid "https://chigozieorunta.com"
