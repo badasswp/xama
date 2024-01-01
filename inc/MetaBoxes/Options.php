@@ -172,10 +172,7 @@ class Options extends MetaBox {
 	protected function get_options(): string {
 		$this->options = '';
 
-		$question_options[1] = get_post_meta( $this->post->ID, 'xama_option_1', true );
-		$question_options[2] = get_post_meta( $this->post->ID, 'xama_option_2', true );
-		$question_options[3] = get_post_meta( $this->post->ID, 'xama_option_3', true );
-		$question_options[4] = get_post_meta( $this->post->ID, 'xama_option_4', true );
+		$options = get_post_meta( $this->post->ID, 'xama_options', true ) ?: array_fill( 0, 4, '' );
 
 		foreach ( $question_options as $key => $value ) {
 			$this->options .= sprintf(
