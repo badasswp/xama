@@ -200,7 +200,7 @@ class Questions extends MetaBox {
 	 * @return string
 	 */
 	protected function get_options(): string {
-		$options = get_post_meta( $this->id, 'xama_options', true );
+		$options = get_post_meta( $this->id, 'xama_options', true ) ?: [];
 		$html    = '';
 
 		foreach ( $options as $key => $option ) {
