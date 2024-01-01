@@ -141,23 +141,15 @@ class QuestionsTest extends TestCase {
 
 		\WP_Mock::userFunction( 'get_post_meta' )
 			->once()
-			->with( 1, 'xama_option_1', true )
-			->andReturn( '1' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_2', true )
-			->andReturn( '2' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_3', true )
-			->andReturn( '3' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_4', true )
-			->andReturn( '4' );
+			->with( 1, 'xama_options', true )
+			->andReturn(
+				[
+					'Option Value 1',
+					'Option Value 2',
+					'Option Value 3',
+					'Option Value 4',
+				]
+			);
 
 		\WP_Mock::userFunction( 'esc_html' )
 			->times( 4 )
@@ -205,23 +197,15 @@ class QuestionsTest extends TestCase {
 
 		\WP_Mock::userFunction( 'get_post_meta' )
 			->once()
-			->with( 1, 'xama_option_1', true )
-			->andReturn( '1' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_2', true )
-			->andReturn( '2' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_3', true )
-			->andReturn( '3' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_4', true )
-			->andReturn( '4' );
+			->with( 1, 'xama_options', true )
+			->andReturn(
+				[
+					'Option Value 1',
+					'Option Value 2',
+					'Option Value 3',
+					'Option Value 4',
+				]
+			);
 
 		\WP_Mock::userFunction( 'esc_html' )
 			->times( 4 )

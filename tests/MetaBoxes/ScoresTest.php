@@ -64,23 +64,15 @@ class ScoresTest extends TestCase {
 
 		\WP_Mock::userFunction( 'get_post_meta' )
 			->once()
-			->with( 1, 'xama_option_1', true )
-			->andReturn( 'Option 1' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_2', true )
-			->andReturn( 'Option 2' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_3', true )
-			->andReturn( 'Option 3' );
-
-		\WP_Mock::userFunction( 'get_post_meta' )
-			->once()
-			->with( 1, 'xama_option_4', true )
-			->andReturn( 'Option 4' );
+			->with( 1, 'xama_options', true)
+			->andReturn(
+				[
+					'Option 1',
+					'Option 2',
+					'Option 3',
+					'Option 4',
+				]
+			);
 
 		\WP_Mock::userFunction( 'esc_html' )
 			->once()

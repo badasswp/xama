@@ -154,8 +154,8 @@ class OptionsTest extends TestCase {
 
 	public function test_get_options() {
 		\WP_Mock::userFunction( 'get_post_meta' )
-			->times( 4 )
-			->andReturnValues(
+			->once()
+			->andReturn(
 				[
 					'Option 1',
 					'Option 2',
@@ -248,7 +248,7 @@ class OptionsTest extends TestCase {
 
 	public function test_save_meta_box() {
 		\WP_Mock::userFunction( 'update_post_meta' )
-			->times( 5 );
+			->times( 2 );
 
 		\WP_Mock::userFunction( 'sanitize_text_field' )
 			->times( 5 )
