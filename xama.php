@@ -48,10 +48,16 @@ function xama_can_autoload() {
  */
 function xama_autoload_notice() {
 	$class   = 'notice notice-error';
-	$message = 'Error: Composer not setup! Please run $ Composer install in the Xama plugin directory.';
+	$message = 'Error: Composer not setup! Please run $ composer install in the Xama plugin directory.';
 
-	// Display notice.
-	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
+	// On Composer error, display notice...
+	printf(
+		'<div class="%1$s">
+			<p>%2$s</p>
+		</div>',
+		esc_attr( $class ),
+		esc_html__( $message, 'xama' )
+	);
 }
 
 /**
