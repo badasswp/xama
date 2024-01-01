@@ -200,20 +200,19 @@ class Questions extends MetaBox {
 	 * @return string
 	 */
 	protected function get_options(): string {
-		$i       = 1;
-		$options = '';
+		$options = get_post_meta( $this->id, 'xama_options', true );
+		$html    = '';
 
-		while ( $i < 5 ) {
-			$options .= sprintf(
+		foreach ( $options as $key => $option ) {
+			$html .= sprintf(
 				'<li>
 					%1$s
 				</li>',
-				esc_html( get_post_meta( $this->id, 'xama_option_' . $i, true ) )
+				esc_html( $option )
 			);
-			++$i;
 		}
 
-		return $options;
+		return $html;
 	}
 
 	/**
