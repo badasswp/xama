@@ -86,19 +86,7 @@ class QuizGetIDRoute extends Route implements \Xama\Interfaces\Route {
 	protected function get_post(): array {
 		$post_id = $this->request->get_param( 'id' );
 
-		$posts = get_posts(
-			[
-				'post_type'      => Question::$name,
-				'post_status'    => 'publish',
-				'posts_per_page' => -1,
-				'orderby'        => 'date',
-				'order'          => 'ASC',
-				'meta_key'       => 'xama_quiz_id',
-				'meta_value'     => $post_id,
-			]
-		);
-
-		foreach ( $posts as $post ) {
+		foreach ( xama_get_questions( $post_id ) as $post ) {
 			$questions[] = [
 				'ID'             => $post->ID,
 				'title'          => get_the_title( $post->ID ),
