@@ -90,9 +90,10 @@ class Answer extends MetaBox {
 	 * @return void
 	 */
 	public function get_metabox_callback( $post ): void {
-		$answer = get_post_meta( $post->ID, 'xama_answer', true );
+		$answer  = get_post_meta( $post->ID, 'xama_answer', true );
+		$options = get_post_meta( $post->ID, 'xama_options', true ) ?: array_fill( 0, 4, '' );
 
-		foreach ( Settings::OPTIONS as $key => $value ) {
+		foreach ( array_slice( Settings::OPTIONS, 0, count( $options ) ) as $key => $value ) {
 			$this->options .= sprintf(
 				'<option value="%1$s" %3$s>
 					%2$s
