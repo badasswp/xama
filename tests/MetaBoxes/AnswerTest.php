@@ -64,28 +64,30 @@ class AnswerTest extends TestCase {
 			->with( 1, 'xama_answer', true )
 			->andReturn( 1 );
 
-		$i = 1;
+		\WP_Mock::userFunction( 'get_post_meta' )
+			->once()
+			->with( 1, 'xama_options', true )
+			->andReturn( array_fill( 0, 4, '' ) );
 
-		while ( $i < 5 ) {
-			$value = Settings::OPTIONS[ $i ];
+		\WP_Mock::userFunction(
+			'esc_attr',
+			[
+				'times' => 8,
+				'return' => function( $i ) {
+					return $i;
+				}
+			]
+		);
 
-			\WP_Mock::userFunction( 'esc_html__' )
-				->with( $value, Settings::DOMAIN )
-				->andReturn( $value );
-
-			++$i;
-		}
-
-		$i = 1;
-
-		while ( $i < 5 ) {
-			\WP_Mock::userFunction( 'esc_attr' )
-				->twice()
-				->with( $i )
-				->andReturn( $i );
-
-			++$i;
-		}
+		\WP_Mock::userFunction(
+			'esc_html__',
+			[
+				'times' => 4,
+				'return' => function( $text, $domain = Settings::DOMAIN ) {
+					return $text;
+				}
+			]
+		);
 
 		\WP_Mock::userFunction( 'selected' )
 			->once()
@@ -107,13 +109,13 @@ class AnswerTest extends TestCase {
 				class="widefat"
 				name="xama_answer"
 				style="margin-top: 5px;"
-			><option value="1" selected>
+			><option value="0" >
 					A
-				</option><option value="2" >
+				</option><option value="1" selected>
 					B
-				</option><option value="3" >
+				</option><option value="2" >
 					C
-				</option><option value="4" >
+				</option><option value="3" >
 					D
 				</option></select>'
 		);
