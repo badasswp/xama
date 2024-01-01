@@ -190,7 +190,7 @@ class Options extends MetaBox {
 				</p>',
 				esc_attr( $key + 1 ),
 				esc_attr( $value ),
-				esc_html__( 'Option ' . $key + 1, Settings::DOMAIN )
+				esc_html__( 'Option ' . ( $key + 1 ), Settings::DOMAIN )
 			);
 		}
 
