@@ -174,7 +174,7 @@ class Options extends MetaBox {
 
 		$options = get_post_meta( $this->post->ID, 'xama_options', true ) ?: array_fill( 0, 4, '' );
 
-		foreach ( $question_options as $key => $value ) {
+		foreach ( $options as $key => $value ) {
 			$this->options .= sprintf(
 				'<p>
 					<label for="option%1$s">
