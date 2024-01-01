@@ -246,6 +246,8 @@ class Question extends Post {
 				'posts_per_page' => -1,
 				'meta_key'       => 'xama_quiz_id',
 				'meta_value'     => $id,
+				'orderby'        => 'date',
+				'order'          => 'ASC',
 			]
 		);
 
