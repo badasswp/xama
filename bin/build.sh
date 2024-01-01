@@ -46,4 +46,6 @@ rm -v "composer.json"
 rm -v "composer.lock"
 
 # Finish Build
+echo ""
 echo "Build Complete!"
+echo "==============="
