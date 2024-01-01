@@ -176,7 +176,7 @@ class ScoresTest extends TestCase {
 		$this->metabox->id = 1;
 
 		// The asnwer the user provided...
-		$this->metabox->scores_meta['xama_score_answer_1'][0] = 1;
+		$this->metabox->scores_meta['xama_score_answer_1'][0] = 0;
 
 		\WP_Mock::userFunction( 'get_the_title' )
 			->once()
@@ -201,7 +201,7 @@ class ScoresTest extends TestCase {
 		\WP_Mock::userFunction( 'get_post_meta' )
 			->once()
 			->with( 1, 'xama_answer', true )
-			->andReturn( 1 );
+			->andReturn( 0 );
 
 		\WP_Mock::userFunction( 'esc_html__' )
 			->twice()
