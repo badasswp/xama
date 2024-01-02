@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Xama
+ * Plugin Name: Xama - Quiz, Exam, Poll & Survey Builder.
  * Plugin URI:  https://github.com/badasswp/xama
  * Description: A simple WP plugin to help you set up Quizzes.
  * Version:     1.0.0

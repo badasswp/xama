@@ -1,7 +1,7 @@
-=== Xama ===
+=== Xama - Quiz, Exam, Poll & Survey Builder ===
 
 Contributors: badasswp
-Tags: quiz, survey, exam, student
+Tags: quiz, exam, poll, survey, exam, student, builder
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
