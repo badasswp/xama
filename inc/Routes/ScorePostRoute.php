@@ -72,7 +72,7 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 	 * @return WP_REST_Response
 	 */
 	public function response(): \WP_REST_Response {
-		if ( ! preg_match( '/[1-9]+/', $this->user['question'] ) || ! preg_match( '/^[1-4]$/', $this->user['answer'] ) ) {
+		if ( ! preg_match( '/[1-9]+/', $this->user['question'] ) || ! preg_match( '/^[0-9]$/', $this->user['answer'] ) ) {
 			$response = [
 				'status'  => 400,
 				'message' => 'Bad Request!',
