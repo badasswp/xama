@@ -95,6 +95,8 @@ class Editor extends Service implements Registrable {
 	/**
 	 * Callback to display the editor box after other metaboxes.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param \WP_Post $post WP Post object.
 	 * @param array    $box  Metabox args.
 	 * @return void
