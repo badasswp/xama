@@ -28,7 +28,7 @@ const Submit = () => {
        * Dispatch relevant global state values
        */
       dispatch( actions.setCounter( counter + 1 ) );
-      dispatch( actions.setMarkerOption( 0 ) );
+      dispatch( actions.setMarkerOption( null ) );
       /**
        * Set component state values
        */
@@ -81,7 +81,6 @@ const Submit = () => {
       dispatch( actions.setMarkerOption( parseInt( data.answer ) ) );
       dispatch( actions.setScoreID( data.scoreID ) );
       dispatch( actions.setPercentage( data.percentage ) );
-
       /**
        * Set component state values
        */
