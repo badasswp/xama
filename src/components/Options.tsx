@@ -34,14 +34,14 @@ const Options = () => {
               <input
                 type="radio"
                 name="xama_options"
-                value={ key + 1 }
+                value={ key }
                 onClick={ onSelect }
               />
               <p>
                 <span>{ options[key] }.</span>
                 { item }
               </p>
-              { answer && answer.correct === key + 1 ? <i></i> : '' }
+              { answer.correct === key ? <i></i> : '' }
             </li>
           );
         } )
