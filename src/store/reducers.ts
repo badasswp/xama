@@ -48,7 +48,7 @@ export const initialState: stateProps = {
   },
   answer: {
     option: 0,
-    correct: 0,
+    correct: null,
     score: 0,
   },
   user: {
