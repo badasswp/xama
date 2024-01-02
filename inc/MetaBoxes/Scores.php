@@ -163,6 +163,13 @@ class Scores extends MetaBox {
 	 * @return string
 	 */
 	protected function get_question_and_score_info( $key, $value ): string {
+		$post_answer = get_post_meta( $this->id, 'xama_answer', true );
+		$user_answer = $this->scores_meta[ 'xama_score_answer_' . $this->id ][0];
+
+		if ( ! isset( Settings::OPTIONS[ $post_answer ] ) || ! isset( Settings::OPTIONS[ $user_answer ] ) ) {
+			return '';
+		};
+
 		$question_and_score_info = sprintf(
 			'<p style="color: %2$s">
 				<strong>%1$s</strong><br/>
@@ -172,8 +179,8 @@ class Scores extends MetaBox {
 			esc_html( get_the_title( $this->id ) ),
 			$value[0] ? esc_attr( 'rebeccapurple' ) : esc_attr( 'red' ),
 			$value[0] ? esc_attr( 'dashicons dashicons-yes' ) : esc_attr( 'dashicons dashicons-no' ),
-			esc_html__( Settings::OPTIONS[ get_post_meta( $this->id, 'xama_answer', true ) ], Settings::DOMAIN ),
-			esc_html__( Settings::OPTIONS[ $this->scores_meta[ 'xama_score_answer_' . $this->id ][0] ], Settings::DOMAIN ),
+			esc_html__( Settings::OPTIONS[ $post_answer ], Settings::DOMAIN ),
+			esc_html__( Settings::OPTIONS[ $user_answer ], Settings::DOMAIN ),
 			esc_html__( 'Question\'s Answer', Settings::DOMAIN ),
 			esc_html__( 'User\'s Answer', Settings::DOMAIN )
 		);
@@ -189,7 +196,7 @@ class Scores extends MetaBox {
 	 * @return string
 	 */
 	protected function get_question_options(): string {
-		$options = get_post_meta( $this->id, 'xama_options', true );
+		$options = get_post_meta( $this->id, 'xama_options', true ) ?: [];
 		$html    = '';
 
 		foreach ( $options as $key => $value ) {
