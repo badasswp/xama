@@ -168,7 +168,7 @@ class Scores extends MetaBox {
 
 		if ( ! isset( Settings::OPTIONS[ $post_answer ] ) || ! isset( Settings::OPTIONS[ $user_answer ] ) ) {
 			return '';
-		};
+		}
 
 		$question_and_score_info = sprintf(
 			'<p style="color: %2$s">
