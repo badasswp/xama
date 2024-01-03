@@ -236,12 +236,22 @@
 			box-sizing: border-box;
 			gap: 50px;
 
+			@media screen and (max-width: 1080px) {
+				flex-direction: column;
+				max-width: calc(100% - 75px);
+			}
+
 			& > div {
 				&:first-child {
 					h1 {
 						font-size: 96px;
 						letter-spacing: -5px;
 						color: #b8860b;
+
+						@media screen and (max-width: 1080px) {
+							margin-top: 0;
+							margin-bottom: 0;
+						}
 					}
 				}
 
@@ -251,6 +261,10 @@
 						display: flex;
 						align-items: center;
 						gap: 30px;
+
+						@media screen and (max-width: 1080px) {
+							justify-content: center;
+						}
 
 						div {
 							display: flex;
@@ -279,6 +293,10 @@
 						span {
 							line-height: 28px;
 						}
+					}
+
+					@media screen and (max-width: 1080px) {
+						text-align: center;
 					}
 				}
 			}
