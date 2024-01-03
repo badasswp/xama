@@ -47,3 +47,11 @@ jobs:
 
     - name: Run Test Suites
       run: composer run-script test
+
+    - name: Run Test Coverage
+      run: |
+        composer run-script coverage
+        cat cobertura.xml
+
+    - name: Report Coveralls
+      run: curl -sL https://coveralls.io/coveralls-linux.tar.gz | tar -xz && ./coveralls --repo-token=$COVERALLS_REPO_TOKEN --file=cobertura.xml
