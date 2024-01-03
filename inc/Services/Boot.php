@@ -45,6 +45,7 @@ class Boot extends Service implements Registrable {
 		add_action( 'init', [ $this, 'register_plugin_domain' ] );
 		add_action( 'init', [ $this, 'register_plugin_role' ] );
 		add_action( 'init', [ $this, 'register_plugin_pages' ] );
+		add_action( 'wp_loaded', [ $this, 'unregister_admin_bar' ] );
 	}
 
 	/**
@@ -113,6 +114,19 @@ class Boot extends Service implements Registrable {
 
 				$page_id = wp_insert_post( $args );
 			}
+		}
+	}
+
+	/**
+	 * Unregister Admin bar.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function unregister_admin_bar(): void {
+		if ( is_user_logged_in() && current_user_can( Settings::SLUG ) ) {
+			show_admin_bar( false );
 		}
 	}
 }
