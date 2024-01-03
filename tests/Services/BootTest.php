@@ -30,6 +30,7 @@ class BootTest extends TestCase {
 		\WP_Mock::expectActionAdded( 'init', [ $this->boot, 'register_plugin_domain' ] );
 		\WP_Mock::expectActionAdded( 'init', [ $this->boot, 'register_plugin_role' ] );
 		\WP_Mock::expectActionAdded( 'init', [ $this->boot, 'register_plugin_pages' ] );
+		\WP_Mock::expectActionAdded( 'wp_loaded', [ $this->boot, 'unregister_admin_bar' ] );
 
 		$this->boot->register();
 
