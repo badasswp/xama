@@ -195,6 +195,18 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 		update_post_meta( $this->user['score'], 'xama_score_answer_' . $this->user['question'], $this->user['answer'] );
 		update_post_meta( $this->user['score'], 'xama_score_percentage', ( $this->get_total_score() / $total_questions ) * 100 );
 
+		/**
+		 * Fires after Score has been saved.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param $user_quiz     User Quiz ID.
+		 * @param $user_question User Question ID.
+		 * @param $is_correct    Did user get answer correctly?
+		 * @return void;
+		 */
+		do_action( 'xama_score_save', $this->user['quiz'], $this->user['question'], $this->is_answer_correct() );
+
 		return $this->user['score'];
 	}
 
