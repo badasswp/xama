@@ -11,6 +11,7 @@
 
 namespace Xama\Services;
 
+use Xama\Posts\Quiz;
 use Xama\Abstracts\Service;
 use Xama\Interfaces\Registrable;
 
@@ -60,13 +61,7 @@ class Template extends Service implements Registrable {
 	 * @return string
 	 */
 	public function register_template( $wp_template ): string {
-		$post_types = [
-			'xama_quiz',
-			'xama_question',
-			'xama_score',
-		];
-
-		if ( ! in_array( get_post_type(), $post_types, true ) || ! file_exists( $this->template['index'] ) ) {
+		if ( get_post_type() !== Quiz::$name || ! file_exists( $this->template['index'] ) ) {
 			return $wp_template;
 		}
 
