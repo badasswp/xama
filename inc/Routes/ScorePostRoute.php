@@ -143,11 +143,22 @@ class ScorePostRoute extends Route implements \Xama\Interfaces\Route {
 		);
 
 		if ( ! $posts->found_posts ) {
+			/**
+			 * Filter Score title.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param string $user_login User Login.
+			 * @param string $user_quiz User Quiz ID.
+			 * @return string
+			 */
+			$user_login = (string) apply_filters( 'xama_score_title', $this->user['user']['login'], $this->user['quiz'] );
+
 			$this->user['score'] = wp_insert_post(
 				[
 					'post_type'   => Score::$name,
 					'post_status' => 'publish',
-					'post_title'  => $this->user['user']['login'] . ' | ' . get_the_title( $this->user['quiz'] ),
+					'post_title'  => $user_login . ' | ' . get_the_title( $this->user['quiz'] ),
 					'post_author' => $this->user['user']['id'],
 				]
 			);
