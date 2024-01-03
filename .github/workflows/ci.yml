@@ -47,8 +47,3 @@ jobs:
 
     - name: Run Test Suites
       run: composer run-script test
-
-    - name: Run Test Coverage
-      run: |
-        composer run-script coverage
-        cat cobertura.xml
