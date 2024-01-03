@@ -32,8 +32,8 @@ msgid "AppWorld Team"
 msgstr "AppWorld Team"
 
 #. Author URI of the plugin
-msgid "https://chigozieorunta.com"
-msgstr "https://chigozieorunta.com"
+msgid "https://xama.ws"
+msgstr "https://xama.ws"
 
 #. Quiz
 msgid "Quiz"
