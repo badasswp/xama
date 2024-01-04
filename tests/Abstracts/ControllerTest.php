@@ -90,7 +90,7 @@ class ControllerTest extends TestCase {
 
 		$this->controller->rules = [
 			'xama_username' => 'email',
-			'xama_password' => 'password'
+			'xama_password' => 'password',
 		];
 
 		$error_messages = $this->controller->validate();
