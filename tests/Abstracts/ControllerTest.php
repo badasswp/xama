@@ -64,6 +64,46 @@ class ControllerTest extends TestCase {
 		$this->assertSame( $error_messages, [] );
 		$this->assertConditionsMet();
 	}
+
+	public function test_validate_for_filled_rules() {
+		// Server Req. Method
+		$_SERVER['REQUEST_METHOD'] = 'POST';
+
+		// Post Nonce
+		$_POST = [
+			'xama_nonce'    => 'xama_nonce',
+			'xama_username' => 'john',
+			'xama_password' => 'jb',
+		];
+
+		\WP_Mock::userFunction( 'wp_verify_nonce' )
+			->once()
+			->with( 'xama_nonce', 'xama_action' )
+			->andReturn( true );
+
+		\WP_Mock::userFunction( 'is_email' )
+			->once()
+			->with( 'john' )
+			->andReturn( false );
+
+		$this->controller = new ConcreteController();
+
+		$this->controller->rules = [
+			'xama_username' => 'email',
+			'xama_password' => 'password'
+		];
+
+		$error_messages = $this->controller->validate();
+
+		$this->assertSame(
+			$error_messages,
+			[
+				'Error: Validating Email Address, email must contain a valid email address...',
+				'Error: Validating Password, password must contain a minimum of 6 unique characters...',
+			]
+		);
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcreteController extends Controller {
