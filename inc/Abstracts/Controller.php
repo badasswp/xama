@@ -19,7 +19,7 @@ abstract class Controller implements \Xama\Interfaces\Controller {
 	 *
 	 * @var array
 	 */
-	protected array $data = [];
+	public array $data = [];
 
 	/**
 	 * Set up.
