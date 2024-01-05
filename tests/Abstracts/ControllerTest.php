@@ -11,7 +11,7 @@ use WP_Mock\Tools\TestCase;
  * @covers Controller
  */
 class ControllerTest extends TestCase {
-	private $metabox;
+	private $controller;
 
 	public function setUp(): void {
 		\WP_Mock::setUp();
