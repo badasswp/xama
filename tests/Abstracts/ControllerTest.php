@@ -39,7 +39,7 @@ class ControllerTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
-	public function test_validate_for_empty_rules() {
+	public function test_validate() {
 		// Server Req. Method
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 
@@ -65,7 +65,7 @@ class ControllerTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
-	public function test_validate_for_filled_rules() {
+	public function test_validate_aborts_for_incorrect_data() {
 		// Server Req. Method
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 
