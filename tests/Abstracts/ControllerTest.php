@@ -138,8 +138,45 @@ class ControllerTest extends TestCase {
 		$this->assertSame( $error_messages, [] );
 		$this->assertConditionsMet();
 	}
+
+	public function test_run() {
+		// Server Req. Method
+		$_SERVER['REQUEST_METHOD'] = 'POST';
+
+		// Post Nonce
+		$_POST = [
+			'xama_nonce'    => 'xama_nonce',
+			'xama_username' => 'john@doe.com',
+			'xama_password' => 'johndoe',
+		];
+
+		\WP_Mock::userFunction( 'wp_verify_nonce' )
+			->once()
+			->with( 'xama_nonce', 'xama_action' )
+			->andReturn( true );
+
+		\WP_Mock::userFunction( 'is_email' )
+			->once()
+			->with( 'john@doe.com' )
+			->andReturn( true );
+
+		$this->controller = new ConcreteController();
+
+		$this->controller->rules = [
+			'xama_username' => 'email',
+			'xama_password' => 'password',
+		];
+
+		$error_messages = $this->controller->validate();
+
+		$this->assertSame( $error_messages, [] );
+		$this->assertSame( $this->controller->set, 1 );
+		$this->assertConditionsMet();
+	}
 }
 
 class ConcreteController extends Controller {
-	public function run(): void {}
+	public function run(): void {
+		$this->set = 1;
+	}
 }
