@@ -86,6 +86,9 @@ class LoginControllerTest extends TestCase {
 			->with( $user )
 			->andReturn( true );
 
+		// No need to run auth_user(),
+		// that is already run by default
+		// from the Contructor.
 		$this->controller = new LoginController();
 
 		$this->assertTrue( isset( $_POST['http_error_msgs'] ) );
