@@ -20,4 +20,35 @@ class LoginControllerTest extends TestCase {
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
 	}
+
+	public function test_run_aborts_due_to_error_msgs() {
+		// Server Req. Method
+		$_SERVER['REQUEST_METHOD'] = 'POST';
+
+		// Post Nonce
+		$_POST = [
+			'xama_nonce'    => 'xama_nonce',
+			'xama_username' => 'john',
+			'xama_password' => 'jb',
+		];
+
+		\WP_Mock::userFunction( 'wp_verify_nonce' )
+			->once()
+			->with( 'xama_nonce', 'xama_action' )
+			->andReturn( true );
+
+		\WP_Mock::userFunction( 'is_email' )
+			->once()
+			->with( 'john' )
+			->andReturn( false );
+
+		$this->controller = new LoginController();
+
+		$this->controller->rules = [
+			'xama_username' => 'email',
+			'xama_password' => 'password',
+		];
+
+		$this->assertConditionsMet();
+	}
 }
