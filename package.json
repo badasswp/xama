@@ -24,7 +24,8 @@
     "coverage:php": "php -dxdebug.mode=coverage vendor/bin/phpunit",
     "coverage:text": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text",
     "coverage:xml": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-cobertura cobertura.xml",
-    "wp-build": "./bin/build.sh"
+    "wp-build": "./bin/build.sh",
+    "coverall": "coveralls --repo-token=vKnPBucSuzWwrfkEMRVi6fJYUiwDGSjog --file=cobertura.xml"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",
