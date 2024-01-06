@@ -82,7 +82,7 @@ class SignUpController extends Controller implements \Xama\Interfaces\Controller
 	 *
 	 * @return void
 	 */
-	protected function reauth_user(): void {
+	protected function reauth_user( $exit = true ): void {
 		if ( is_user_logged_in() ) {
 			wp_logout();
 		}
@@ -101,6 +101,9 @@ class SignUpController extends Controller implements \Xama\Interfaces\Controller
 		// Redirect User...
 		$url = isset( $_GET['id'] ) ? get_permalink( $_GET['id'] ) : home_url();
 		wp_redirect( $url );
-		exit;
+
+		if ( $exit ) {
+			exit;
+		}
 	}
 }
