@@ -34,4 +34,53 @@ class SignUpControllerTest extends TestCase {
 		$this->assertTrue( empty( $_POST['http_error_msgs'] ) );
 		$this->assertConditionsMet();
 	}
+
+	public function test_create_user() {
+		$controller = Mockery::mock( SignUpController::class )->makePartial();
+
+		$controller->data = [
+			'xama_nonce'    => 'xama_nonce',
+			'xama_username' => 'john@doe.com',
+			'xama_password' => 'johndoe',
+			'xama_fullname' => 'John Doe',
+		];
+
+		$user_id = 1;
+
+		\WP_Mock::userFunction( 'sanitize_text_field' )
+			->times( 4 )
+			->with( 'John Doe' )
+			->andReturn( 'John Doe' );
+
+		\WP_Mock::userFunction( 'wp_insert_user' )
+			->once()
+			->with(
+				[
+					'user_login'           => 'john@doe.com',
+					'user_pass'            => 'johndoe',
+					'user_email'           => 'john@doe.com',
+					'display_name'         => 'John Doe',
+					'user_nicename'        => 'John Doe',
+					'nickname'             => 'John Doe',
+					'last_name'            => 'John Doe',
+					'show_admin_bar_front' => false,
+					'role'                 => 'xama',
+				]
+			)
+			->andReturn( $user_id );
+
+		\WP_Mock::userFunction( 'is_wp_error' )
+			->once()
+			->with( 1 )
+			->andReturn( false );
+
+		$controller->shouldAllowMockingProtectedMethods();
+
+		$controller->shouldReceive( 'reauth_user' )->once();
+
+		$controller->create_user();
+
+		$this->assertTrue( empty( $_POST['http_error_msgs'] ) );
+		$this->assertConditionsMet();
+	}
 }
