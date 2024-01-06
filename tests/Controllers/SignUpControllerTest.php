@@ -21,4 +21,17 @@ class SignUpControllerTest extends TestCase {
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
 	}
+
+	public function test_run() {
+		$controller = Mockery::mock( SignUpController::class )->makePartial();
+
+		$controller->shouldAllowMockingProtectedMethods();
+		$controller->shouldReceive( 'validate' )->andReturn( [] );
+		$controller->shouldReceive( 'create_user' )->once();
+
+		$controller->run();
+
+		$this->assertTrue( empty( $_POST['http_error_msgs'] ) );
+		$this->assertConditionsMet();
+	}
 }
