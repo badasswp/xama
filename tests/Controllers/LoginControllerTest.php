@@ -31,6 +31,7 @@ class LoginControllerTest extends TestCase {
 
 		$controller->run();
 
+		$this->assertTrue( empty( $_POST['http_error_msgs'] ) );
 		$this->assertConditionsMet();
 	}
 
@@ -62,6 +63,7 @@ class LoginControllerTest extends TestCase {
 
 		$controller->auth_user();
 
+		$this->assertTrue( empty( $_POST['http_error_msgs'] ) );
 		$this->assertConditionsMet();
 	}
 
