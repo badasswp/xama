@@ -81,6 +81,10 @@ class LoginControllerTest extends TestCase {
 			->once()
 			->andReturn( true );
 
+		\WP_Mock::userFunction( 'wp_logout' )
+			->once()
+			->andReturn( null );
+
 		\WP_Mock::userFunction( 'get_user_by' )
 			->once()
 			->with( 'login', 'john@doe.com' )
