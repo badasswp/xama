@@ -53,21 +53,17 @@ class SignUpController extends Controller implements \Xama\Interfaces\Controller
 	 * @return void
 	 */
 	protected function create_user(): void {
-		$user_id = wp_create_user( $this->data['xama_username'], $this->data['xama_password'] );
-
-		if ( is_wp_error( $user_id ) ) {
-			$_POST['http_error_msgs'][] = $user_id->get_error_message();
-			return;
-		}
-
-		( new \WP_User( $user_id ) )->set_role( Settings::SLUG );
-
-		$user_id = wp_update_user(
+		$user_id = wp_insert_user(
 			[
-				'ID'           => $user_id,
-				'user_email'   => $this->data['xama_username'],
-				'display_name' => sanitize_text_field( $this->data['xama_fullname'] ),
-				'last_name'    => sanitize_text_field( $this->data['xama_fullname'] ),
+				'user_login'           => $this->data['xama_username'],
+				'user_pass'            => $this->data['xama_password'],
+				'user_email'           => $this->data['xama_username'],
+				'display_name'         => sanitize_text_field( $this->data['xama_fullname'] ),
+				'user_nicename'        => sanitize_text_field( $this->data['xama_fullname'] ),
+				'nickname'             => sanitize_text_field( $this->data['xama_fullname'] ),
+				'last_name'            => sanitize_text_field( $this->data['xama_fullname'] ),
+				'show_admin_bar_front' => false,
+				'role'                 => Settings::SLUG,
 			]
 		);
 
