@@ -11,6 +11,10 @@
 
 namespace Xama\Services;
 
+use Xama\Posts\Quiz;
+use Xama\Posts\Question;
+use Xama\Posts\Score;
+
 use Xama\Abstracts\Service;
 use Xama\Interfaces\Registrable;
 use Xama\Middleware\WPAuthMiddleware;
@@ -56,9 +60,9 @@ class Auth extends Service implements Registrable {
 	 */
 	public function register_auth_middleware() {
 		$post_types = [
-			'xama_quiz',
-			'xama_question',
-			'xama_score',
+			Quiz::$name,
+			Question::$name,
+			Score::$name,
 		];
 
 		/**

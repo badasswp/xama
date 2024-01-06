@@ -11,6 +11,9 @@
 
 namespace Xama\Services;
 
+use Xama\Posts\Quiz;
+use Xama\Posts\Question;
+
 use Xama\Core\Settings;
 use Xama\Abstracts\Service;
 use Xama\Interfaces\Registrable;
@@ -34,8 +37,8 @@ class Editor extends Service implements Registrable {
 	 */
 	public function __construct() {
 		$this->post_types = [
-			'xama_quiz'     => 'Quiz',
-			'xama_question' => 'Question',
+			Quiz::$name     => 'Quiz',
+			Question::$name => 'Question',
 		];
 
 		/**
