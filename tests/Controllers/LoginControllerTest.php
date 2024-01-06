@@ -2,10 +2,11 @@
 
 namespace Xama\Tests\Controllers;
 
+use Mockery;
 use stdClass;
 use Xama\Core\Settings;
-use Xama\Controllers\LoginController;
 use WP_Mock\Tools\TestCase;
+use Xama\Controllers\LoginController;
 
 /**
  * @covers LoginController
@@ -19,6 +20,18 @@ class LoginControllerTest extends TestCase {
 
 	public function tearDown(): void {
 		\WP_Mock::tearDown();
+	}
+
+	public function test_run() {
+		$controller = Mockery::mock( LoginController::class )->makePartial();
+
+		$controller->shouldAllowMockingProtectedMethods();
+		$controller->shouldReceive( 'validate' )->andReturn( [] );
+		$controller->shouldReceive( 'auth_user' )->once();
+
+		$controller->run();
+
+		$this->assertConditionsMet();
 	}
 
 	public function test_run_aborts_due_to_error_msgs() {
