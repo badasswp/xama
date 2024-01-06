@@ -33,4 +33,35 @@ class LoginControllerTest extends TestCase {
 
 		$this->assertConditionsMet();
 	}
+
+	public function test_auth_user() {
+		$controller = Mockery::mock( LoginController::class )->makePartial();
+
+		$controller->data = [
+			'xama_nonce'    => 'xama_nonce',
+			'xama_username' => 'john@doe.com',
+			'xama_password' => 'johndoe',
+		];
+
+		$user     = new stdClass();
+		$user->ID = 1;
+
+		\WP_Mock::userFunction( 'wp_authenticate' )
+			->once()
+			->with( 'john@doe.com', 'johndoe' )
+			->andReturn( $user );
+
+		\WP_Mock::userFunction( 'is_wp_error' )
+			->once()
+			->with( $user )
+			->andReturn( false );
+
+		$controller->shouldAllowMockingProtectedMethods();
+
+		$controller->shouldReceive( 'reauth_user' )->once();
+
+		$controller->auth_user();
+
+		$this->assertConditionsMet();
+	}
 }
