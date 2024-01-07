@@ -152,4 +152,12 @@ class FunctionsTest extends TestCase {
 		$this->assertSame( $questions, $posts );
 		$this->assertConditionsMet();
 	}
+
+	public function test_xama_get_count_questions() {
+		$count = xama_get_count_questions( null );
+
+		$this->assertSame( $count, 0 );
+		$this->assertConditionsMet();
+
+	}
 }
