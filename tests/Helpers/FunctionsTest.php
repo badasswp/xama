@@ -116,4 +116,40 @@ class FunctionsTest extends TestCase {
 		$this->assertSame( $questions, $posts );
 		$this->assertConditionsMet();
 	}
+
+	public function test_xama_get_questions_sets_cache_if_not_set() {
+		$post = new stdClass();
+
+		$post->ID           = 1;
+		$post->post_title   = 'Hello World';
+		$post->post_content = '';
+
+		$posts = [
+			[
+				$post->ID,
+				$post->post_title,
+				$post->post_content,
+			],
+		];
+
+		\WP_Mock::userFunction( 'wp_cache_get' )
+			->once()
+			->with( 'xama_cache_questions_1' )
+			->andReturn( null );
+
+		\WP_Mock::userFunction( 'get_posts' )
+			->once()
+			->andReturn( $posts );
+
+		\WP_Mock::userFunction( 'wp_cache_set' )
+			->once()
+			->with( 'xama_cache_questions_1', $posts )
+			->andReturn( null );
+
+		$questions = xama_get_questions( 1 );
+
+		$this->assertIsArray( $questions );
+		$this->assertSame( $questions, $posts );
+		$this->assertConditionsMet();
+	}
 }
