@@ -81,4 +81,12 @@ class FunctionsTest extends TestCase {
 		$this->assertSame( $quizzies, $posts );
 		$this->assertConditionsMet();
 	}
+
+	public function test_xama_get_questions_if_id_is_null() {
+		$questions = xama_get_questions( null );
+
+		$this->assertIsArray( $questions );
+		$this->assertSame( $questions, [] );
+		$this->assertConditionsMet();
+	}
 }
