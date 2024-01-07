@@ -7,21 +7,24 @@ use Xama\Services\Boot;
 use Xama\Services\Menu;
 use Xama\Services\Post;
 use Xama\Services\REST;
+use Xama\Services\Assets;
+use Xama\Services\Editor;
 use Xama\Services\MetaBox;
+use Xama\Services\Notices;
 use Xama\Services\Template;
+use Xama\Services\Controller;
 
 use Xama\Posts\Quiz;
-use Xama\Posts\Question;
 use Xama\Posts\Score;
+use Xama\Posts\Question;
 
-use Xama\MetaBoxes\Options;
 use Xama\MetaBoxes\Answer;
 use Xama\MetaBoxes\Scores;
+use Xama\MetaBoxes\Options;
 use Xama\MetaBoxes\Questions;
 
-use Xama\Core\Container;
 use WP_Mock\Tools\TestCase;
-
+use Xama\Core\Container;
 /**
  * @covers Container
  */
@@ -47,6 +50,10 @@ class ContainerTest extends TestCase {
 		$this->assertTrue( in_array( MetaBox::class, Container::$services, true ) );
 		$this->assertTrue( in_array( REST::class, Container::$services, true ) );
 		$this->assertTrue( in_array( Template::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Assets::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Controller::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Editor::class, Container::$services, true ) );
+		$this->assertTrue( in_array( Notices::class, Container::$services, true ) );
 		$this->assertConditionsMet();
 	}
 
