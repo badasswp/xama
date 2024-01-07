@@ -91,19 +91,29 @@ class FunctionsTest extends TestCase {
 	}
 
 	public function test_xama_get_questions() {
-		$post             = new stdClass();
-		$post->ID         = 1;
-		$post->post_title = 'Hello World!';
+		$post = new stdClass();
+
+		$post->ID           = 1;
+		$post->post_title   = 'Hello World';
+		$post->post_content = '';
+
+		$posts = [
+			[
+				$post->ID,
+				$post->post_title,
+				$post->post_content,
+			],
+		];
 
 		\WP_Mock::userFunction( 'wp_cache_get' )
 			->once()
 			->with( 'xama_cache_questions_1' )
-			->andReturn( [ $post ] );
+			->andReturn( $posts );
 
 		$questions = xama_get_questions( 1 );
 
 		$this->assertIsArray( $questions );
-		$this->assertSame( $questions, [ $post ] );
+		$this->assertSame( $questions, $posts );
 		$this->assertConditionsMet();
 	}
 }
