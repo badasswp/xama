@@ -158,6 +158,5 @@ class FunctionsTest extends TestCase {
 
 		$this->assertSame( $count, 0 );
 		$this->assertConditionsMet();
-
 	}
 }
