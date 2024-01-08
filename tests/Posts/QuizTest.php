@@ -74,7 +74,7 @@ class QuizTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
-	public function test_register_post_column_data() {
+	public function test_register_post_column_for_questions() {
 		$column = 'questions';
 		$post   = new stdClass();
 
