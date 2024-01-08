@@ -4,8 +4,8 @@ namespace Xama\Tests\Posts;
 
 use Mockery;
 use stdClass;
-use Xama\Core\Settings;
 use Xama\Posts\Quiz;
+use Xama\Core\Settings;
 use WP_Mock\Tools\TestCase;
 
 /**
