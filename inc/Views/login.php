@@ -3,19 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login | <?php echo bloginfo(); ?></title>
+	<title><?php _e( 'Login', 'xama' ); ?> | <?php echo esc_html( bloginfo() ); ?></title>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-	<link href="<?php echo plugins_url(); ?>/xama/inc/Views/assets/styles.css" rel="stylesheet" />
+	<link href="<?php echo esc_url( plugins_url( '/xama/inc/Views/assets/styles.css' ) ); ?>" rel="stylesheet" />
 </head>
 
-<?php
-if ( isset( $_GET['id'] ) ) {
-	$id = $_GET['id'];
-}
-?>
+<?php $id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : ''; ?>
 
 <body>
-	<form method="POST" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+	<form method="POST" action="<?php echo esc_url( $_SERVER['REQUEST_URI'] ); ?>">
 		<h1>
 			<?php echo esc_html__( get_the_title( $id ) ?: 'Login', 'xama' ); ?>
 		</h1>
@@ -23,13 +19,13 @@ if ( isset( $_GET['id'] ) ) {
 			<?php echo esc_html__( 'Please enter your login details..', 'xama' ); ?>
 		</p>
 		<?php if ( isset( $_POST['http_error_msgs'] ) ) { ?>
-		<div id="error">
-			<?php
-			foreach ( $_POST['http_error_msgs'] as $msg ) {
-				echo '<p>' . esc_html__( $msg, 'xama' ) . '</p>';
-			}
-			?>
-		</div>
+			<div id="error">
+				<?php
+				foreach ( $_POST['http_error_msgs'] as $msg ) {
+					echo '<p>' . esc_html__( $msg, 'xama' ) . '</p>';
+				}
+				?>
+			</div>
 		<?php } ?>
 		<p id="username">
 			<label><?php echo esc_html__( 'Username:', 'xama' ); ?></label>
@@ -43,7 +39,11 @@ if ( isset( $_GET['id'] ) ) {
 			<?php echo esc_html__( 'Login', 'xama' ); ?>
 		</button>
 		<p id="connect">
-			<label><a href="<?php echo home_url() . '/sign-up?id=' . $id; ?>"><?php echo esc_html__( 'Don\'t have an account?', 'xama' ); ?></a></label>
+			<label>
+				<a href="<?php echo esc_url( home_url( '/sign-up?id=' . $id ) ); ?>">
+					<?php echo esc_html__( "Don't have an account?", 'xama' ); ?>
+				</a>
+			</label>
 		</p>
 		<?php wp_nonce_field( 'xama_action', 'xama_nonce' ); ?>
 	</form>
