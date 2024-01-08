@@ -133,7 +133,12 @@ class Quiz extends Post {
 				break;
 
 			case 'url':
-				echo $this->get_permalink( $post_id );
+				$arg = [
+					'a' => [
+						'href' => [],
+					],
+				];
+				echo wp_kses( $this->get_permalink( $post_id ), $arg );
 				break;
 		}
 
