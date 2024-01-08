@@ -2,6 +2,7 @@
 
 namespace Xama\Tests\Posts;
 
+use Mockery;
 use stdClass;
 use Xama\Core\Settings;
 use Xama\Posts\Quiz;
@@ -95,6 +96,39 @@ class QuizTest extends TestCase {
 		$this->post->register_post_column_data( $column, 1 );
 
 		$this->expectOutputString( 1 );
+		$this->assertConditionsMet();
+	}
+
+	public function test_register_post_column_for_url() {
+		$column = 'url';
+		$url    = 'https://example.com/quiz/url';
+
+		\WP_Mock::userFunction( 'wp_kses' )
+			->once()
+			->with(
+				'<a href="' . $url . '">' . $url . '</a>',
+				[
+					'a' => [
+						'href' => [],
+					],
+				]
+			)
+			->andReturn( '<a href="' . $url . '">' . $url . '</a>' );
+
+		\WP_Mock::expectAction( 'xama_quiz_column_data', 'url', 1 );
+
+		$mock = Mockery::mock( Quiz::class )->makePartial();
+
+		$mock->shouldReceive( 'get_permalink' )
+			->once()
+			->with( 1 )
+			->andReturn( '<a href="' . $url . '">' . $url . '</a>' );
+
+		$mock->register_post_column_data( $column, 1 );
+
+		$this->expectOutputString(
+			'<a href="https://example.com/quiz/url">https://example.com/quiz/url</a>'
+		);
 		$this->assertConditionsMet();
 	}
 
